@@ -1,27 +1,33 @@
 import {
   Bell,
   ChevronDown,
+  // CornerUpLeft, // Không cần nếu dùng SVG
   Heart,
+  MessageSquare, // Thêm icon này
+
+  // MoreHorizontal, // Không cần nếu dùng SVG
   Play,
   Plus,
+  Send, // Thêm icon này
   Share2,
   Star,
+  ThumbsDown, // Thêm icon này
   ThumbsUp,
 } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react"; // Thêm React nếu chưa có
 import { Link } from "react-router-dom";
+import TopMoviesWeek from "../components/TopMoviesWeek"; // Import sidebar phải
 import "./MovieDetail.scss";
-// THÊM CÁC DÒNG NÀY
-import movieBackdrop from "../assets/avar-film/anime.webp";
-// Bạn cần import ảnh poster đúng
-import moviePoster from "../assets/avar-film/a72b67c881f91562dd2d357568618297.webp"; // Ví dụ ảnh poster
+// THÊM CÁC DÒNG NÀY (Đảm bảo đường dẫn đúng)
+import moviePoster from "../assets/avar-film/a72b67c881f91562dd2d357568618297.webp"; // Ảnh poster
+import movieBackdrop from "../assets/avar-film/anime.webp"; // Ảnh backdrop
 
-// Dữ liệu gán cứng, dựa trên ảnh chụp "Tài Xế Giao Hàng"
+// Dữ liệu gán cứng
 const hardcodedMovie = {
   title: "Tài Xế Giao Hàng",
   originalTitle: "The Delivery Rider",
-  posterUrl: moviePoster, // Sử dụng biến đã import
-  backdropUrl: movieBackdrop, // Sử dụng biến đã import
+  posterUrl: moviePoster,
+  backdropUrl: movieBackdrop,
   imdb: 7.0,
   rating: "T18",
   quality: "70%",
@@ -35,11 +41,10 @@ const hardcodedMovie = {
   director:
     "Jomar del Rosario, Wong Ton Bin, Maiki de Vera, Lance Pimentel, Leober Pimentel",
   ratingScore: 6.0,
-  ratingCount: 12, // Giả định
+  ratingCount: 12,
 };
 
 const MovieDetail = () => {
-  // Bỏ 'comments' khỏi tab mặc định nếu muốn
   const [activeTab, setActiveTab] = useState("episodes");
 
   return (
@@ -48,13 +53,12 @@ const MovieDetail = () => {
       <div
         className="movie-backdrop"
         style={{
-          backgroundImage: `url(${hardcodedMovie.backdropUrl})`,
+          // Sử dụng biến CSS để truyền URL ảnh nền
+          "--backdrop-url": `url(${hardcodedMovie.backdropUrl})`,
         }}
-      >
-        <div className="backdrop-overlay"></div>
-      </div>
+      ></div>
 
-      {/* 2. NỘI DUNG CHÍNH (Sidebar Trái + Main Phải) */}
+      {/* 2. NỘI DUNG CHÍNH */}
       <div className="movie-content-container">
         <div className="movie-grid-layout">
           {/* ============================================= */}
@@ -66,114 +70,94 @@ const MovieDetail = () => {
               alt={hardcodedMovie.title}
               className="movie-poster"
             />
-            {/* ... (Code còn lại của sidebar) ... */}
-            <h1 className="movie-title">{hardcodedMovie.title}</h1>           {" "}
+            <h1 className="movie-title">{hardcodedMovie.title}</h1>
             <p className="movie-original-title">
-                            {hardcodedMovie.originalTitle}           {" "}
+              {hardcodedMovie.originalTitle}
             </p>
-            {/* Meta (IMDb, Rating,...) */}           {" "}
+            {/* Meta */}
             <div className="movie-meta">
-                           {" "}
               <span className="meta-badge imdb">
-                                IMDb {hardcodedMovie.imdb}             {" "}
+                IMDb {hardcodedMovie.imdb.toFixed(1)}
               </span>
-                           {" "}
               <span className="meta-badge rating">{hardcodedMovie.rating}</span>
-                           {" "}
               <span className="meta-badge quality">
-                                {hardcodedMovie.quality}             {" "}
+                {hardcodedMovie.quality}
               </span>
-                           {" "}
               <span className="meta-badge duration">
-                                {hardcodedMovie.duration}             {" "}
+                {hardcodedMovie.duration}
               </span>
-                         {" "}
             </div>
-            {/* Thể loại */}           {" "}
+            {/* Thể loại */}
             <div className="movie-genres">
-                           {" "}
               {hardcodedMovie.genres.map((genre) => (
                 <Link to={`/genre/${genre}`} key={genre} className="genre-tag">
-                                    {genre}               {" "}
+                  {genre}
                 </Link>
               ))}
-                         {" "}
             </div>
-            {/* Thông tin chi tiết */}           {" "}
+            {/* Thông tin chi tiết */}
             <div className="info-section">
-                           {" "}
               <div className="info-block">
-                                <strong>Giới thiệu:</strong>               {" "}
-                <p>{hardcodedMovie.overview}</p>             {" "}
+                <strong>Giới thiệu:</strong> <p>{hardcodedMovie.overview}</p>
               </div>
-                           {" "}
               <div className="info-block">
-                                <strong>Thời lượng:</strong>               {" "}
-                <p>{hardcodedMovie.fullDuration}</p>             {" "}
+                <strong>Thời lượng:</strong>{" "}
+                <p>{hardcodedMovie.fullDuration}</p>
               </div>
-                           {" "}
               <div className="info-block">
-                                <strong>Quốc gia:</strong>               {" "}
-                <p>{hardcodedMovie.country}</p>             {" "}
+                <strong>Quốc gia:</strong> <p>{hardcodedMovie.country}</p>
               </div>
-                           {" "}
               <div className="info-block">
-                                <strong>Sản xuất:</strong>               {" "}
-                <p>{hardcodedMovie.production}</p>             {" "}
+                <strong>Sản xuất:</strong> <p>{hardcodedMovie.production}</p>
               </div>
-                           {" "}
               <div className="info-block">
-                                <strong>Đạo diễn:</strong>               {" "}
-                <p>{hardcodedMovie.director}</p>             {" "}
+                <strong>Đạo diễn:</strong> <p>{hardcodedMovie.director}</p>
               </div>
-                         {" "}
             </div>
           </aside>
 
           {/* ============================================= */}
-          {/* CỘT BÊN PHẢI (NỘI DUNG CHÍNH) */}
+          {/* NỘI DUNG CHÍNH (GIỮA) */}
           {/* ============================================= */}
           <main className="movie-main-content">
             {/* Nút actions */}
             <div className="movie-actions">
-              {/* ... (Các nút Xem ngay, Yêu thích...) ... */}
               <button className="btn-play">
-                                <Play /> Xem Ngay              {" "}
+                {" "}
+                <Play /> Xem Ngay{" "}
               </button>
-                           {" "}
               <button className="btn-icon">
-                                <Heart /> <span>Yêu thích</span>             {" "}
+                {" "}
+                <Heart /> <span>Yêu thích</span>{" "}
               </button>
-                           {" "}
               <button className="btn-icon">
-                                <Plus /> <span>Thêm vào</span>             {" "}
+                {" "}
+                <Plus /> <span>Thêm vào</span>{" "}
               </button>
-                           {" "}
               <button className="btn-icon">
-                                <Share2 /> <span>Chia sẻ</span>             {" "}
+                {" "}
+                <Share2 /> <span>Chia sẻ</span>{" "}
               </button>
-                           {" "}
               <button className="btn-icon">
-                                <Bell /> <span>Báo lỗi</span>             {" "}
+                {" "}
+                <Bell /> <span>Báo lỗi</span>{" "}
               </button>
             </div>
 
             {/* Đánh giá */}
             <div className="movie-rating-box">
-              {/* ... (Code đánh giá) ... */}
               <div className="rating-score">
-                                <Star /> {hardcodedMovie.ratingScore.toFixed(1)}
-                             {" "}
+                {" "}
+                <Star /> {hardcodedMovie.ratingScore.toFixed(1)}{" "}
               </div>
-                           {" "}
               <div className="rating-count">
-                                ({hardcodedMovie.ratingCount} đánh giá)        
-                     {" "}
+                {" "}
+                ({hardcodedMovie.ratingCount} đánh giá){" "}
               </div>
-                            <button className="btn-rate">Đánh giá</button>
+              <button className="btn-rate">Đánh giá</button>
             </div>
 
-            {/* Tabs (Bỏ tab Bình luận) */}
+            {/* Tabs */}
             <div className="movie-tabs">
               <button
                 className={`tab-btn ${
@@ -181,107 +165,94 @@ const MovieDetail = () => {
                 }`}
                 onClick={() => setActiveTab("episodes")}
               >
-                Tập phim
+                {" "}
+                Tập phim{" "}
               </button>
               <button
                 className={`tab-btn ${activeTab === "gallery" ? "active" : ""}`}
                 onClick={() => setActiveTab("gallery")}
               >
-                Gallery
+                {" "}
+                Gallery{" "}
               </button>
               <button
                 className={`tab-btn ${activeTab === "actors" ? "active" : ""}`}
                 onClick={() => setActiveTab("actors")}
               >
-                Diễn viên
+                {" "}
+                Diễn viên{" "}
               </button>
               <button
                 className={`tab-btn ${activeTab === "suggest" ? "active" : ""}`}
                 onClick={() => setActiveTab("suggest")}
               >
-                Đề xuất
+                {" "}
+                Đề xuất{" "}
               </button>
-              {/* === XÓA NÚT BÌNH LUẬN Ở ĐÂY === */}
-              {/* <button
-                className={`tab-btn ${
-                  activeTab === "comments" ? "active" : ""
-                }`}
-                onClick={() => setActiveTab("comments")}
-              >
-                Bình luận (12)
-              </button> */}
             </div>
 
             {/* Nội dung Tabs */}
             <div className="movie-tab-content">
-              {/* Tab TẬP PHIM */}
               {activeTab === "episodes" && (
                 <div className="episodes-tab">
-                  {/* ... (Code của tab Tập phim) ... */}
                   <div className="episode-selector">
-                                       {" "}
-                    <button className="btn-episode-part">Phần 1</button>       
-                               {" "}
+                    <button className="btn-episode-part">Phần 1</button>
                     <div className="episode-options">
-                                           {" "}
                       <button className="btn-option">
-                                                <ChevronDown size={16} /> Phụ đề
-                                             {" "}
+                        {" "}
+                        <ChevronDown size={16} /> Phụ đề{" "}
                       </button>
-                                           {" "}
                       <button className="btn-option">
-                                                <ChevronDown size={16} /> Lồng
-                        tiếng                      {" "}
+                        {" "}
+                        <ChevronDown size={16} /> Lồng tiếng{" "}
                       </button>
-                                         {" "}
                     </div>
-                                     {" "}
                   </div>
-                                   {" "}
                   <div className="episode-list-wrapper">
-                                       {" "}
-                    <h3 className="list-title">Các bản chiếu</h3>               
-                       {" "}
+                    <h3 className="list-title">Các bản chiếu</h3>
                     <ul className="episode-list">
-                                           {" "}
                       <li className="episode-item active">
-                                               {" "}
-                        <div className="episode-badge">Phụ đề</div>             
-                                 {" "}
-                        <span className="episode-name">Tài Xế Giao Hàng</span> 
-                                             {" "}
-                        <button className="btn-watch-now">Xem bản này</button> 
-                                           {" "}
+                        <div className="episode-badge">Phụ đề</div>
+                        <span className="episode-name">
+                          {hardcodedMovie.title}
+                        </span>
+                        <button className="btn-watch-now">Xem bản này</button>
                       </li>
-                                         {" "}
+                      {/* Thêm các tập khác nếu có */}
                     </ul>
-                                     {" "}
                   </div>
                 </div>
               )}
-
-              {/* === XÓA ĐIỀU KIỆN 'activeTab === "comments"' Ở ĐÂY === */}
-              {/* {activeTab === "comments" && ( ... )} */}
-
-              {/* (Thêm nội dung cho các tab khác nếu có) */}
+              {/* Thêm nội dung cho tab Gallery, Diễn viên, Đề xuất nếu cần */}
+              {activeTab === "gallery" && <div>Nội dung Gallery...</div>}
+              {activeTab === "actors" && <div>Nội dung Diễn viên...</div>}
+              {activeTab === "suggest" && <div>Nội dung Đề xuất...</div>}
             </div>
             {/* Đóng thẻ .movie-tab-content */}
 
-            {/* Comment Section */}
+            {/* ========================================================== */}
+            {/* PHẦN BÌNH LUẬN (ĐÃ VIẾT LẠI JSX CHO KHỚP SCSS) */}
+            {/* ========================================================== */}
             <div className="comments-section">
               <div className="section-header">
                 <h2 className="section-title">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                  </svg>
-                  Bình luận <span className="comment-count">(12)</span>
+                  <MessageSquare size={22} strokeWidth={2.5} />
+                  Bình luận{" "}
+                  <span className="comment-count">
+                    ({hardcodedMovie.ratingCount})
+                  </span>
                 </h2>
               </div>
+
+              {/* Vẫn giữ comments-tab làm container chung */}
               <div className="comments-tab">
+                {/* --- Phần Input --- */}
                 <div className="comment-input-area">
                   <div className="input-header">
                     <p>
-                      Vui lòng <Link to="/login">đăng nhập</Link> để tham gia thảo luận
+                      {" "}
+                      Vui lòng <Link to="/login">đăng nhập</Link> để tham gia
+                      thảo luận{" "}
                     </p>
                   </div>
                   <div className="input-content">
@@ -294,21 +265,24 @@ const MovieDetail = () => {
                       <div className="comment-options">
                         <label className="spoiler-checkbox">
                           <input type="checkbox" />
-                          <span>Tiêu lệ?</span>
+                          <span>Tiết lộ?</span>
                         </label>
                       </div>
                       <button className="btn-submit-comment">
                         <span>Gửi bình luận</span>
-                        <Play size={16} />
+                        <Send size={16} />
                       </button>
                     </div>
                   </div>
                 </div>
+
+                {/* --- Danh sách Comment --- */}
                 <div className="comment-list">
+                  {/* Comment 1 */}
                   <div className="comment-item">
                     <div className="comment-avatar">
                       <img
-                        src="/images/avatar-placeholder.png"
+                        src="https://i.pravatar.cc/150?img=1" // Link avatar mẫu
                         alt="Avatar của mr simple"
                         className="avatar-image"
                       />
@@ -320,76 +294,176 @@ const MovieDetail = () => {
                           <span className="comment-badge">Thành viên</span>
                         </div>
                         <span className="comment-time">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            {" "}
+                            <circle cx="12" cy="12" r="10"></circle>{" "}
+                            <path d="M12 6v6l4 2"></path>{" "}
                           </svg>
                           17 giờ trước
                         </span>
                       </div>
                       <div className="comment-content">
                         <p className="comment-text">
-                          nhìn mấy con quảng cáo nháy nháy trông bẩn thật sự...
+                          nhìn mấy con quảng cáo nháy nháy trông bẩn thật
+                          sự...*** tớ sư mãy bọn casino campuchia lol
                         </p>
                       </div>
                       <div className="comment-actions">
                         <button className="action-btn like-btn">
-                          <ThumbsUp size={16} />
-                          <span>Thích</span>
+                          {" "}
+                          <ThumbsUp size={16} /> <span>Thích</span>{" "}
+                        </button>
+                        <button className="action-btn">
+                          {" "}
+                          <ThumbsDown size={16} />{" "}
                         </button>
                         <button className="action-btn reply-btn">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          {" "}
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
                             <path d="M3 10h10a5 5 0 0 1 5 5v4"></path>
                             <path d="m13 10-4-4 4-4"></path>
-                          </svg>
-                          <span>Trả lời</span>
+                          </svg>{" "}
+                          <span>Trả lời</span>{" "}
                         </button>
                         <button className="action-btn more-btn">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          {" "}
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
                             <circle cx="12" cy="12" r="1"></circle>
                             <circle cx="19" cy="12" r="1"></circle>
                             <circle cx="5" cy="12" r="1"></circle>
-                          </svg>
+                          </svg>{" "}
                         </button>
                       </div>
                     </div>
                   </div>
+
                   {/* Comment 2 */}
                   <div className="comment-item">
-                    <img
-                      src="/images/avatar-placeholder.png"
-                      alt="avatar"
-                      className="comment-avatar"
-                    />
+                    <div className="comment-avatar">
+                      <img
+                        src="https://i.pravatar.cc/150?img=2" // Link avatar khác
+                        alt="Avatar của Hưng Do"
+                        className="avatar-image"
+                      />
+                    </div>
                     <div className="comment-body">
                       <div className="comment-header">
-                        <span className="comment-author">Hưng Do</span>
-                        <span className="comment-time">20 giờ trước</span>
+                        <div className="user-info">
+                          <span className="comment-author">Hưng Do</span>
+                          <span className="comment-badge infinity">∞</span>{" "}
+                          {/* Huy hiệu vô cực */}
+                        </div>
+                        <span className="comment-time">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            {" "}
+                            <circle cx="12" cy="12" r="10"></circle>{" "}
+                            <path d="M12 6v6l4 2"></path>{" "}
+                          </svg>
+                          20 giờ trước
+                        </span>
                       </div>
-                      <p className="comment-text">
-                        {" "}
-                        Phim hay nhé mn. Lúc đầu xem khá cảm xúc...{" "}
-                      </p>
+                      <div className="comment-content">
+                        <p className="comment-text">
+                          Phim khá hay nhé mn. Lúc đầu xem khá cảm xúc nhất đoạn
+                          2 bố con sấp chia tay nhau
+                        </p>
+                      </div>
                       <div className="comment-actions">
-                        <button>
+                        <button className="action-btn like-btn">
                           {" "}
-                          <ThumbsUp size={14} />{" "}
+                          <ThumbsUp size={16} /> <span>Thích</span>{" "}
                         </button>
-                        <button>
+                        <button className="action-btn">
                           {" "}
-                          <ChevronDown size={14} />{" "}
+                          <ThumbsDown size={16} />{" "}
                         </button>
-                        <button>Trả lời</button>
-                        <span>--- Thêm</span>
+                        <button className="action-btn reply-btn">
+                          {" "}
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M3 10h10a5 5 0 0 1 5 5v4"></path>
+                            <path d="m13 10-4-4 4-4"></path>
+                          </svg>{" "}
+                          <span>Trả lời</span>{" "}
+                        </button>
+                        <button className="action-btn more-btn">
+                          {" "}
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="19" cy="12" r="1"></circle>
+                            <circle cx="5" cy="12" r="1"></circle>
+                          </svg>{" "}
+                        </button>
                       </div>
                     </div>
                   </div>
-                  {/* ... (Các comment khác) ... */}
+
+                  {/* ... (Thêm các comment khác nếu cần) ... */}
                 </div>
               </div>
             </div>
             {/* ========================================================== */}
           </main>
+
+          {/* ============================================= */}
+          {/* SIDEBAR PHẢI */}
+          {/* ============================================= */}
+          <aside className="movie-sidebar-right">
+            <TopMoviesWeek />
+          </aside>
         </div>
       </div>
     </div>

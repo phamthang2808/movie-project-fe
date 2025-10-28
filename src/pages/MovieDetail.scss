@@ -16,6 +16,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 .movie-backdrop {
   height: 50vh; // Chiều cao banner
   width: 100%;
+  background-image: var(--backdrop-url); // Sử dụng CSS variable từ JSX
   background-size: cover;
   background-position: center;
   position: relative;
@@ -49,7 +50,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
 .movie-grid-layout {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 300px 1fr 340px; // Trái: 300px | Giữa: tự động | Phải: 300px
   gap: 2rem;
 }
 
@@ -142,7 +143,15 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 }
 
 // ==========================
-// Nội dung chính (Phải)
+// Sidebar Phải (Top Movies Week)
+// ==========================
+.movie-sidebar-right {
+  position: relative;
+  // TopMoviesWeek component sẽ tự xử lý style bên trong
+}
+
+// ==========================
+// Nội dung chính (Giữa)
 // ==========================
 .movie-main-content {
   padding-top: 4rem; // Đẩy nội dung xuống 1 chút
@@ -373,7 +382,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
     // ==========================
     .comments-section {
       margin-top: 3rem;
-      
+
       .section-header {
         display: flex;
         align-items: center;
@@ -422,7 +431,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
               color: $primary-color;
               text-decoration: none;
               font-weight: 500;
-              
+
               &:hover {
                 text-decoration: underline;
               }
@@ -446,22 +455,24 @@ $btn-dark: rgba(255, 255, 255, 0.1);
             resize: vertical;
             margin-bottom: 1.5rem;
             min-height: 120px;
-            transition: all 0.3s ease;          &::placeholder {
-            color: $text-gray;
-          }
+            transition: all 0.3s ease;
 
-          &:focus {
-            outline: none;
-            border-color: $primary-color;
-            box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.2);
+            &::placeholder {
+              color: $text-gray;
+            }
+
+            &:focus {
+              outline: none;
+              border-color: $primary-color;
+              box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.2);
+            }
           }
-        }
 
           .comment-submit-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            
+
             .comment-options {
               .spoiler-checkbox {
                 display: flex;
@@ -487,24 +498,27 @@ $btn-dark: rgba(255, 255, 255, 0.1);
                   color: $text-gray;
                 }
               }
-            }          .btn-submit-comment {
-            background: $primary-color;
-            color: $bg-dark;
-            border: none;
-            border-radius: 20px;
-            padding: 0.75rem 1.5rem;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            
-            &:hover {
-              background: color.adjust($primary-color, $lightness: 10%);
-              transform: translateY(-1px);
+            }
+
+            .btn-submit-comment {
+              background: $primary-color;
+              color: $bg-dark;
+              border: none;
+              border-radius: 20px;
+              padding: 0.75rem 1.5rem;
+              font-weight: 600;
+              font-size: 0.95rem;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              transition: all 0.3s ease;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+              &:hover {
+                background: color.adjust($primary-color, $lightness: 10%);
+                transform: translateY(-1px);
+              }
             }
           }
         }
@@ -521,13 +535,13 @@ $btn-dark: rgba(255, 255, 255, 0.1);
           border-radius: 12px;
           padding: 1.5rem;
           transition: all 0.3s ease;
-          
+
           &:hover {
             background: color.adjust($bg-dark, $lightness: 4%);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
           }
-          
+
           &:hover {
             transform: translateY(-2px);
           }
@@ -652,6 +666,12 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 // ==========================
 // Responsive
 // ==========================
+@media (max-width: 1200px) {
+  .movie-grid-layout {
+    grid-template-columns: 250px 1fr 250px; // Thu nhỏ sidebar
+  }
+}
+
 @media (max-width: 968px) {
   .movie-content-container {
     margin-top: -100px;
@@ -659,6 +679,10 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
   .movie-grid-layout {
     grid-template-columns: 1fr; // Chuyển thành 1 cột
+  }
+
+  .movie-sidebar-right {
+    display: none; // Ẩn sidebar phải trên tablet/mobile
   }
 
   .movie-sidebar {
