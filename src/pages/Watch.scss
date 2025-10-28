@@ -1,0 +1,23 @@
+.watch-page {
+  .watch-player { background:#0b0f1a; padding:1rem 0; }
+  .watch-layout { max-width:1200px; margin:1.5rem auto; padding:0 1rem; display:grid; grid-template-columns:1fr 320px; gap:2rem; }
+  .title { font-size:2rem; font-weight:900; margin:.5rem 0; }
+  .meta { display:flex; gap:.5rem; flex-wrap:wrap; }
+  .chip { background:rgba(255,255,255,.08); padding:.35rem .6rem; border-radius:8px; font-weight:700; display:inline-flex; gap:.35rem; align-items:center; }
+  .overview { margin:1rem 0 1.5rem; color:rgba(255,255,255,.9); line-height:1.7; }
+  .cast-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:1rem; }
+  .cast-item img { width:100%; border-radius:10px; height:180px; object-fit:cover; }
+  .cast-item .name { font-weight:700; margin-top:.4rem; }
+  .cast-item .role { color:rgba(255,255,255,.7); font-size:.85rem; }
+  .watch-right .s-item { display:flex; gap:.75rem; background:rgba(255,255,255,.05); padding:.5rem; border-radius:10px; align-items:center; }
+  .watch-right .s-item img { width:60px; height:90px; object-fit:cover; border-radius:6px; }
+  .watch-right .s-title { font-weight:700; }
+  .watch-right .s-sub { color:rgba(255,255,255,.7); font-size:.85rem; }
+}
+
+@media (max-width:1024px){
+  .watch-page .watch-layout { grid-template-columns:1fr; }
+  .watch-page .cast-grid { grid-template-columns:repeat(3,1fr); }
+}
+
+
