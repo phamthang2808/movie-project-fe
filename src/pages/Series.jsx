@@ -2,22 +2,22 @@ import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Series.scss";
 
-import img01 from "../assets/avar-film/489955f87e659835e0620e46b86fe20f.webp";
-import img02 from "../assets/avar-film/c1670542b444808113121af72ebf2520.webp";
-import img03 from "../assets/avar-film/a8464a65aa3dca06b00862be682b737b.webp";
-import img04 from "../assets/avar-film/93bdf7e3dfd3a45031197779663334d9.webp";
 import img05 from "../assets/avar-film/086a7bc9b316bc3f9c2ff6d66ac65565.webp";
-import img06 from "../assets/avar-film/6c9779087671f044479dec8f8e06ce28.webp";
-import img07 from "../assets/avar-film/3fe1d3c8c7322bdc5c6fba7ecacc8c9f.webp";
 import img08 from "../assets/avar-film/2e581b6555172571c49ef08119f5631a.webp";
-import img09 from "../assets/avar-film/5f146da72268d7ce5449dcf2f8765454.webp";
-import img10 from "../assets/avar-film/85a2399375b56672c27f8c4ea0438ac7.webp";
 import img11 from "../assets/avar-film/2e96ceca88e057ff1969a128dfc5313d.webp";
 import img12 from "../assets/avar-film/3b94b724a4e3e771ef0050439e60189f.webp";
+import img07 from "../assets/avar-film/3fe1d3c8c7322bdc5c6fba7ecacc8c9f.webp";
+import img01 from "../assets/avar-film/489955f87e659835e0620e46b86fe20f.webp";
 import img13 from "../assets/avar-film/4b45a098954da4bf2722e9d57795e105.webp";
+import img09 from "../assets/avar-film/5f146da72268d7ce5449dcf2f8765454.webp";
+import img06 from "../assets/avar-film/6c9779087671f044479dec8f8e06ce28.webp";
+import img10 from "../assets/avar-film/85a2399375b56672c27f8c4ea0438ac7.webp";
 import img14 from "../assets/avar-film/87eb5583d2bdf6802e28e072f3fbd3eb.webp";
+import img04 from "../assets/avar-film/93bdf7e3dfd3a45031197779663334d9.webp";
+import img03 from "../assets/avar-film/a8464a65aa3dca06b00862be682b737b.webp";
 import img15 from "../assets/avar-film/b65793fc7a09710f0fa621587e2c9e86.webp";
 import img16 from "../assets/avar-film/b8d9e202ee4bfcb982931f907977a6f6.webp";
+import img02 from "../assets/avar-film/c1670542b444808113121af72ebf2520.webp";
 
 const seriesData = [
   {
@@ -278,4 +278,3 @@ const Series = () => {
 };
 
 export default Series;
-

@@ -1,10 +1,10 @@
+import { ArrowLeft, Calendar, Clock, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, Calendar, Clock, Star } from "lucide-react";
 import {
+  fetchMovieCast,
   fetchMovieDetails,
   fetchMovieVideos,
-  fetchMovieCast,
 } from "../services/movieService";
 import "./Watch.scss";
 

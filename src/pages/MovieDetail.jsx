@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import TopMoviesWeek from "../components/TopMoviesWeek";
 import "./MovieDetail.scss";
 // THÊM CÁC DÒNG NÀY
 import movieBackdrop from "../assets/avar-film/anime.webp";
@@ -48,7 +49,7 @@ const MovieDetail = () => {
       <div
         className="movie-backdrop"
         style={{
-          backgroundImage: `url(${hardcodedMovie.backdropUrl})`,
+          "--backdrop-url": `url(${hardcodedMovie.backdropUrl})`,
         }}
       >
         <div className="backdrop-overlay"></div>
@@ -271,7 +272,16 @@ const MovieDetail = () => {
             <div className="comments-section">
               <div className="section-header">
                 <h2 className="section-title">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                   </svg>
                   Bình luận <span className="comment-count">(12)</span>
@@ -281,7 +291,8 @@ const MovieDetail = () => {
                 <div className="comment-input-area">
                   <div className="input-header">
                     <p>
-                      Vui lòng <Link to="/login">đăng nhập</Link> để tham gia thảo luận
+                      Vui lòng <Link to="/login">đăng nhập</Link> để tham gia
+                      thảo luận
                     </p>
                   </div>
                   <div className="input-content">
@@ -294,7 +305,7 @@ const MovieDetail = () => {
                       <div className="comment-options">
                         <label className="spoiler-checkbox">
                           <input type="checkbox" />
-                          <span>Tiêu lệ?</span>
+                          <span>Ẩn danh</span>
                         </label>
                       </div>
                       <button className="btn-submit-comment">
@@ -320,7 +331,14 @@ const MovieDetail = () => {
                           <span className="comment-badge">Thành viên</span>
                         </div>
                         <span className="comment-time">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M12 6v6l4 2"></path>
                           </svg>
@@ -338,14 +356,28 @@ const MovieDetail = () => {
                           <span>Thích</span>
                         </button>
                         <button className="action-btn reply-btn">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
                             <path d="M3 10h10a5 5 0 0 1 5 5v4"></path>
                             <path d="m13 10-4-4 4-4"></path>
                           </svg>
                           <span>Trả lời</span>
                         </button>
                         <button className="action-btn more-btn">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
                             <circle cx="12" cy="12" r="1"></circle>
                             <circle cx="19" cy="12" r="1"></circle>
                             <circle cx="5" cy="12" r="1"></circle>
@@ -390,6 +422,10 @@ const MovieDetail = () => {
             </div>
             {/* ========================================================== */}
           </main>
+
+          <aside className="movie-sidebar-right">
+            <TopMoviesWeek />
+          </aside>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { ChevronDown, Search, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logoImg from "../assets/images/logo.png";
 import "./Header.scss";
 
 // ==========================================================
@@ -116,7 +117,7 @@ const Header = () => {
         <div className="header-left">
           <Link to="/" className="header-brand">
             <img
-              src="/images/logo.png"
+              src={logoImg}
               alt="ChillPhim Logo"
               className="logo-image"
               onError={(e) => {
@@ -124,7 +125,7 @@ const Header = () => {
                 e.target.nextSibling.style.display = "flex";
               }}
             />
-            <div className="logo-icon" style={{ display: "none" }}>
+            <div className="logo-icon">
               <div className="play-circle">
                 <div className="play-triangle"></div>
               </div>
@@ -151,7 +152,7 @@ const Header = () => {
             <Link to="/movies/single" className="nav-link">
               Phim Lẻ
             </Link>
-            <Link to="/movies/series" className="nav-link">
+            <Link to="/phim-bo" className="nav-link">
               Phim Bộ
             </Link>
 

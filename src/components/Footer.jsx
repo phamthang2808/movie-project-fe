@@ -1,4 +1,5 @@
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import logoImg from "../assets/images/logo.png";
 import "./Footer.scss";
 
 const uiText = {
@@ -24,7 +25,7 @@ const Footer = () => {
         {/* Logo and Brand */}
         <div className="footer-logo">
           <img
-            src="/images/logo.png"
+            src={logoImg}
             alt="ChillPhim Logo"
             className="logo-image"
             onError={(e) => {
@@ -41,12 +42,18 @@ const Footer = () => {
 
         {/* Social Media */}
         <div className="footer-social">
-          {/* ... (code các icon social) ... */}
-        </div>
-
-        {/* Links */}
-        <div className="footer-links">
-          {/* ... (code các link-group) ... */}
+          <a href="#" className="social-link" aria-label="Facebook">
+            <Facebook />
+          </a>
+          <a href="#" className="social-link" aria-label="Twitter">
+            <Twitter />
+          </a>
+          <a href="#" className="social-link" aria-label="Instagram">
+            <Instagram />
+          </a>
+          <a href="#" className="social-link" aria-label="Youtube">
+            <Youtube />
+          </a>
         </div>
 
         {/* Description */}

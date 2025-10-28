@@ -3,6 +3,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Home.scss";
 
+import featured1 from "../assets/images/1.jpg";
+import featured2 from "../assets/images/2.webp";
+import featured3 from "../assets/images/3.webp";
+import featured4 from "../assets/images/4.webp";
+import featured5 from "../assets/images/5.webp";
+import featured6 from "../assets/images/6.webp";
+
 import img05 from "../assets/avar-film/086a7bc9b316bc3f9c2ff6d66ac65565.webp";
 import img08 from "../assets/avar-film/2e581b6555172571c49ef08119f5631a.webp";
 import img11 from "../assets/avar-film/2e96ceca88e057ff1969a128dfc5313d.webp";
@@ -30,8 +37,8 @@ const featuredMoviesData = [
     id: 1,
     title: "Nhất Tiếu Tùy Ca",
     original_title: "Nhất Tiếu Tùy Ca",
-    backdrop_path: "/images/1.jpg",
-    poster_path: "/images/1.jpg",
+    backdrop_path: featured1,
+    poster_path: featured1,
     overview:
       "Nữ tướng quân Phó Nhất Tiếu (Lý Thấm) và hoàng tử Túc Sa Phượng Tùy Ca (Trần Triết Viễn) vốn là kẻ thù không đội trời chung. Sau một biến cố, cả hai bất đắc dĩ phải hợp tác, từ đó dần nảy sinh tình cảm, cùng nhau vượt qua thù hận và âm mưu.",
     release_date: "2025-10-02",
@@ -49,8 +56,8 @@ const featuredMoviesData = [
     id: 2,
     title: "Trăm Dăm Tử Thần",
     original_title: "The Long Walk",
-    backdrop_path: "/images/2.webp",
-    poster_path: "/images/2.webp",
+    backdrop_path: featured2,
+    poster_path: featured2,
     overview:
       'Dựa trên cuốn tiểu thuyết cùng tên của tác giả tiểu thuyết Stephen King. "Trăm Dăm Tử Thần" xoay quanh một nhóm thiếu niên tham gia một cuộc thi... Nếu không, họ sẽ bị loại khỏi cuộc chơi, vĩnh viễn.',
     release_date: "2025",
@@ -69,8 +76,8 @@ const featuredMoviesData = [
     id: 3,
     title: "TRON: Trò Chơi Ảo Giác ARES",
     original_title: "TRON: Ares",
-    backdrop_path: "/images/3.webp",
-    poster_path: "/images/3.webp",
+    backdrop_path: featured3,
+    poster_path: featured3,
     overview:
       "Trò Chơi Ảo Giác (TRON: Ares) theo chân Ares... một thực thể ảo di chuyển từ thế giới số đến thế giới thực trong một nhiệm vụ nguy hiểm, báo hiệu cuộc xâm lấn của trí tuệ nhân tạo...",
     release_date: "2025",
@@ -88,8 +95,8 @@ const featuredMoviesData = [
     id: 4,
     title: "Hoa Hồng Có Gai",
     original_title: "The Roses",
-    backdrop_path: "/images/4.webp",
-    poster_path: "/images/4.webp",
+    backdrop_path: featured4,
+    poster_path: featured4,
     overview:
       "Cuộc sống của Ivy và Theo (Những bông hồng) hoàn hảo... Nhưng đằng sau vẻ ngoài hào nhoáng là những mâu thuẫn rạn nứt,... sự nghiệp của Theo tuột dốc trong khi Ivy thăng hoa...",
     release_date: "2025",
@@ -108,8 +115,8 @@ const featuredMoviesData = [
     id: 5,
     title: "Tin Tốt Lành",
     original_title: "Good News",
-    backdrop_path: "/images/5.webp",
-    poster_path: "/images/5.webp",
+    backdrop_path: featured5,
+    poster_path: featured5,
     overview:
       "Khi bọn không tặc không chế một chuyến bay của Nhật Bản và yêu cầu bay tới Triều Tiên, một cựu điệp viên trên máy bay phải hành động. Anh ta phải tìm ra cách vô hiệu hóa máy bay và cứu các hành khách.",
     release_date: "2025",
@@ -127,8 +134,8 @@ const featuredMoviesData = [
     id: 6,
     title: "Hành Trình Rực Rỡ Ta Đã Yêu",
     original_title: "A Big Bold Beautiful Journey",
-    backdrop_path: "/images/1.webp",
-    poster_path: "/images/1.webp",
+    backdrop_path: featured6,
+    poster_path: featured6,
     overview:
       "Điều gì sẽ xảy ra nếu bạn có thể mở một cánh cửa và bước qua để sống sót một khoảnh khắc khác trong quá khứ? Sarah (Margot Robbie) và David (Colin Farrell) là hai người độc thân xa lạ tình cờ gặp nhau qua một người bạn chung. Không lâu sau, qua một bước ngoặt bất ngờ...",
     release_date: "2025",
@@ -530,6 +537,15 @@ const Home = () => {
                 </div>
               </a>
             ))}
+            <a
+              href="/topics"
+              className="topic-card topic-more"
+              style={{ "--topic-color": "#2a2a3e" }}
+            >
+              <div className="topic-content">
+                <h3 className="topic-name">+4 chủ đề</h3>
+              </div>
+            </a>
           </div>
         </section>
 

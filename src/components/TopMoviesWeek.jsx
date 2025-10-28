@@ -2,16 +2,16 @@ import { TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./TopMoviesWeek.scss";
 
-import poster1 from "../assets/avar-film/489955f87e659835e0620e46b86fe20f.webp";
-import poster2 from "../assets/avar-film/c1670542b444808113121af72ebf2520.webp";
-import poster3 from "../assets/avar-film/a8464a65aa3dca06b00862be682b737b.webp";
-import poster4 from "../assets/avar-film/93bdf7e3dfd3a45031197779663334d9.webp";
 import poster5 from "../assets/avar-film/086a7bc9b316bc3f9c2ff6d66ac65565.webp";
-import poster6 from "../assets/avar-film/6c9779087671f044479dec8f8e06ce28.webp";
-import poster7 from "../assets/avar-film/3fe1d3c8c7322bdc5c6fba7ecacc8c9f.webp";
 import poster8 from "../assets/avar-film/2e581b6555172571c49ef08119f5631a.webp";
+import poster7 from "../assets/avar-film/3fe1d3c8c7322bdc5c6fba7ecacc8c9f.webp";
+import poster1 from "../assets/avar-film/489955f87e659835e0620e46b86fe20f.webp";
 import poster9 from "../assets/avar-film/5f146da72268d7ce5449dcf2f8765454.webp";
+import poster6 from "../assets/avar-film/6c9779087671f044479dec8f8e06ce28.webp";
 import poster10 from "../assets/avar-film/85a2399375b56672c27f8c4ea0438ac7.webp";
+import poster4 from "../assets/avar-film/93bdf7e3dfd3a45031197779663334d9.webp";
+import poster3 from "../assets/avar-film/a8464a65aa3dca06b00862be682b737b.webp";
+import poster2 from "../assets/avar-film/c1670542b444808113121af72ebf2520.webp";
 
 const topMovies = [
   {
@@ -146,4 +146,3 @@ const TopMoviesWeek = () => {
 };
 
 export default TopMoviesWeek;
-

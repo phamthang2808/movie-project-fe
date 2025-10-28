@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import MovieDetail from "./pages/MovieDetail";
 import Register from "./pages/Register";
 import Search from "./pages/Search";
+import Series from "./pages/Series";
 import Watch from "./pages/Watch";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movie" element={<MovieDetail />} />
+          <Route path="/phim-bo" element={<Series />} />
           <Route path="/search" element={<Search />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

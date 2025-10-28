@@ -1,0 +1,249 @@
+// Biến màu (Nên import từ file global)
+$primary-color: #ff8c00;
+$text-white: #ffffff;
+$text-gray: #a0a0a0;
+$bg-dark: #1a1a2e; // Màu nền footer
+
+.footer {
+    background-color: $bg-dark; // Set màu nền cứng
+    color: $text-white;
+    padding: 3rem 0 2rem;
+    margin-top: 5rem;
+    position: relative;
+    border-top: 1px solid rgba(255, 140, 0, 0.2);
+    overflow: hidden; // Giữ overflow hidden
+
+    // Lớp phủ họa tiết icon (nằm bên dưới nội dung)
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        /* === SỬA ĐƯỜNG DẪN Ở ĐÂY === */
+        // Giả sử Footer.scss ở src/components/Footer/ và ảnh ở src/assets/images/
+        background-image: url('../assets/images/footer-icon.svg');
+        background-size: 100px 100px;
+        background-repeat: repeat;
+        opacity: 0.08;
+        pointer-events: none;
+        z-index: 00;
+    }
+
+    .footer-container {
+        max-width: 1900px;
+        margin: 0 auto;
+        padding: 0 2rem; // Giữ padding để căn lề chung
+        position: relative;
+        z-index: 1;
+    }
+
+    /* === SỬA BANNER === */
+    .footer-banner {
+        background: linear-gradient(135deg, #ff8c00, #ffa500);
+        color: #ffffff;
+        text-align: center; // Giữ căn giữa cho banner
+        padding: 0.5rem 1rem; // Giảm padding
+        border-radius: 8px; // Giảm bo góc
+        font-weight: 600;
+        font-size: 0.875rem; // Giảm cỡ chữ
+        margin-bottom: 2.5rem; // Tăng khoảng cách dưới
+        display: inline-block; // Để banner co lại theo nội dung
+        // box-shadow: 0 4px 15px rgba(255, 140, 0, 0.25); // Giảm bóng đổ
+        animation: pulse 3s ease-in-out infinite; // Giữ animation
+
+        // Đặt banner ở giữa container (nếu muốn)
+        display: block; // Hoặc inline-block nếu không muốn full width
+        width: fit-content; // Co lại theo text
+        margin-left: auto; // Căn giữa nếu là block
+        margin-right: auto; // Căn giữa nếu là block
+
+        @keyframes pulse {
+
+            // Giữ nguyên keyframes
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.015);
+            }
+
+            // Giảm độ phóng to
+        }
+    }
+
+    /* === SỬA CĂN LỀ === */
+    .footer-logo {
+        text-align: left; // Căn trái logo
+        margin-bottom: 1.5rem; // Giảm khoảng cách
+
+        .logo-image {
+            max-width: 270px; // Giảm kích thước logo
+            height: auto;
+            filter: none; // Bỏ hiệu ứng đổ bóng nếu muốn
+        }
+
+        .logo-icon {
+            display: none;
+        }
+    }
+
+    .footer-social {
+        display: flex;
+        justify-content: flex-start; // Căn trái các icon
+        gap: 0.75rem; // Giảm khoảng cách icon
+        margin-bottom: 1.5rem;
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px; // Giảm kích thước nút
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: $text-white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+
+            &:hover {
+                background: $primary-color;
+                border-color: $primary-color;
+                transform: translateY(-3px); // Giảm hiệu ứng hover
+                box-shadow: 0 6px 12px rgba(255, 140, 0, 0.3); // Giảm bóng đổ
+            }
+
+            svg {
+                width: 20px; // Giảm kích thước icon bên trong
+                height: 20px;
+            }
+        }
+    }
+
+    .footer-description {
+        text-align: left; // Căn trái mô tả
+        margin-bottom: 1.5rem;
+        padding: 0; // Bỏ padding thừa
+
+        p {
+            color: $text-gray;
+            line-height: 1.7; // Điều chỉnh dòng
+            font-size: 0.875rem; // Giảm cỡ chữ
+            max-width: 600px; // Bỏ giới hạn chiều rộng
+            margin: 0;
+        }
+    }
+
+    .footer-copyright {
+        text-align: left; // Căn trái copyright
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        p {
+            color: $text-gray;
+            font-size: 0.8125rem; // Giảm cỡ chữ
+            margin: 0;
+
+            strong {
+                color: $primary-color;
+            }
+        }
+    }
+
+    .back-to-top {
+        // Giữ nguyên nút back-to-top
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, $primary-color, #ffa500);
+        border: none;
+        color: $text-white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1000;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.6);
+        }
+
+        .arrow-icon {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 3rem;
+
+        .footer-container {
+            padding: 0 1rem; // Giảm padding responsive
+        }
+
+        .footer-banner {
+            font-size: 0.8125rem; // Giảm thêm cỡ chữ banner
+            padding: 0.5rem 0.75rem;
+        }
+
+        .footer-logo {
+            .logo-image {
+                max-width: 180px; // Giảm thêm logo
+            }
+        }
+
+        .footer-description {
+            padding: 0; // Bỏ padding thừa responsive
+
+            p {
+                font-size: 0.8125rem;
+            }
+        }
+
+        .back-to-top {
+            bottom: 1rem;
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+
+            .arrow-icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        .footer-logo .logo-image {
+            max-width: 150px;
+        }
+
+        // Giảm thêm logo mobile
+        .footer-social {
+            gap: 0.5rem; // Giảm thêm gap icon
+
+            .social-link {
+                width: 38px;
+                height: 38px;
+
+                svg {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+    }
+}

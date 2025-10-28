@@ -1,14 +1,12 @@
 .auth-page {
-    /* Full viewport minus header, center content */
     min-height: calc(100vh - 4.375rem);
     width: 100%;
     padding: 2rem 1rem 5rem;
-    /* extra bottom space to reach footer */
     display: flex;
     align-items: center;
     justify-content: center;
     background: #0b1220;
-    background-image: linear-gradient(rgba(11, 18, 32, 0.75), rgba(11, 18, 32, 0.85)), url("/images/footer-icon.svg");
+    background-image: linear-gradient(rgba(11, 18, 32, 0.75), rgba(11, 18, 32, 0.85)), url("../assets/images/footer-icon.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 45%;

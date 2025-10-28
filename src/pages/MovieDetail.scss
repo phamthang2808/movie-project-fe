@@ -1,47 +1,40 @@
 @use 'sass:color';
 
-// Biến màu (Bạn nên đặt ở file global và @import vào đây)
-$primary-color: #ff8c00; // Màu cam/vàng
-$bg-dark: #111827; // Nền chính
-$bg-light: #1F2937; // Nền sáng hơn 1 chút
+// Biến màu (Nên import từ file global)
+$primary-color: #ff8c00;
+$bg-dark: #111827; // Nền chính của trang
+$bg-light: #1F2937; // Nền sáng hơn 1 chút (cho input, nút)
+$bg-lighter: #374151; // Nền sáng hơn nữa
 $text-white: #ffffff;
-$text-gray: #a0a0a0;
-$text-gray-light: #d1d5db;
-$btn-dark: rgba(255, 255, 255, 0.1);
+$text-gray: #9ca3af; // Xám vừa (cho text phụ, icon)
+$text-gray-light: #d1d5db; // Xám sáng (cho text chính trong comment)
+$text-gray-dark: #6b7280; // Xám tối (cho time, placeholder)
+$border-color: rgba(255, 255, 255, 0.1); // Màu viền chung
 
 .movie-detail-page {
   width: 100%;
 }
 
 .movie-backdrop {
-  height: 50vh; // Chiều cao banner
+  height: 50vh;
   width: 100%;
+  background-image: var(--backdrop-url);
   background-size: cover;
   background-position: center;
   position: relative;
 
-  // Lớp phủ gradient
   &::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top,
-        $bg-dark 10%, // Dùng màu nền chính ở đáy
-        rgba(17, 24, 39, 0.7) 50%, // Màu tối hơn ở giữa
-        rgba(17, 24, 39, 0.3) 100% // Mờ dần ở trên
-      );
+    inset: 0;
+    background: linear-gradient(to top, $bg-dark 15%, rgba(17, 24, 39, 0.7) 60%, rgba(17, 24, 39, 0.3) 100%);
   }
 }
 
 .movie-content-container {
-  max-width: 1400px;
+  max-width: 1400px; // Giảm max-width để sidebar phải gần hơn
   margin: 0 auto;
   padding: 0 2rem;
-
-  // Kéo nội dung lên đè lên banner
   margin-top: -150px;
   position: relative;
   z-index: 10;
@@ -49,8 +42,9 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
 .movie-grid-layout {
   display: grid;
-  grid-template-columns: 300px 1fr 320px;
-  gap: 2rem;
+  // Tăng độ rộng sidebar phải, giảm cột giữa 1 chút
+  grid-template-columns: 280px 1fr 340px;
+  gap: 2.5rem; // Tăng khoảng cách cột
 }
 
 // ==========================
@@ -58,11 +52,11 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 // ==========================
 .movie-sidebar {
 
-  // ... (Code sidebar giữ nguyên) ...
+  // ... Giữ nguyên style sidebar trái ...
   .movie-poster {
     width: 100%;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid $border-color;
     margin-bottom: 1rem;
   }
 
@@ -144,14 +138,14 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 }
 
 // ==========================
-// Nội dung chính (Phải)
+// Nội dung chính (Giữa)
 // ==========================
 .movie-main-content {
-  padding-top: 4rem; // Đẩy nội dung xuống 1 chút
+  padding-top: 4rem;
   color: $text-white;
 
   .movie-actions {
-    // ... (Code movie-actions giữ nguyên) ...
+    // ... Giữ nguyên ...
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
@@ -159,7 +153,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
     .btn-play {
       background: $primary-color;
-      color: $bg-dark; // Đổi sang màu nền chính
+      color: $bg-dark;
       border: none;
       border-radius: 20px;
       padding: 0.75rem 1.5rem;
@@ -177,9 +171,9 @@ $btn-dark: rgba(255, 255, 255, 0.1);
     }
 
     .btn-icon {
-      background: $btn-dark;
+      background: rgba(255, 255, 255, 0.1);
       color: $text-white;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid $border-color;
       border-radius: 20px;
       padding: 0.75rem 1rem;
       font-size: 0.9rem;
@@ -202,7 +196,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   }
 
   .movie-rating-box {
-    // ... (Code movie-rating-box giữ nguyên) ...
+    // ... Giữ nguyên ...
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -234,7 +228,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
     .btn-rate {
       background: $primary-color;
-      color: $bg-dark; // Đổi sang màu nền chính
+      color: $bg-dark;
       border: none;
       border-radius: 6px;
       padding: 0.5rem 1rem;
@@ -245,7 +239,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   }
 
   .movie-tabs {
-    // ... (Code movie-tabs giữ nguyên) ...
+    // ... Giữ nguyên ...
     display: flex;
     gap: 1.5rem;
     border-bottom: 1px solid $bg-light;
@@ -271,12 +265,12 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   }
 
   .movie-tab-content {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 
     // Tab Tập Phim
     .episodes-tab {
 
-      // ... (Code episodes-tab giữ nguyên) ...
+      // ... Giữ nguyên ...
       .episode-selector {
         display: flex;
         justify-content: space-between;
@@ -324,18 +318,18 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
         .episode-list {
           list-style: none;
-          padding: 0; // Thêm reset padding
+          padding: 0;
 
           .episode-item {
             display: flex;
             align-items: center;
             padding: 1rem;
             border-radius: 6px;
-            background: $bg-dark; // Dùng nền chính
-            margin-bottom: 0.5rem; // Thêm khoảng cách giữa các tập
+            background: $bg-dark;
+            margin-bottom: 0.5rem;
 
             &:last-child {
-              margin-bottom: 0; // Xóa margin cho tập cuối
+              margin-bottom: 0;
             }
 
             &.active {
@@ -344,7 +338,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
             .episode-badge {
               background: $primary-color;
-              color: $bg-dark; // Đổi sang màu nền chính
+              color: $bg-dark;
               font-size: 0.8rem;
               font-weight: 700;
               padding: 0.25rem 0.5rem;
@@ -359,7 +353,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
             .btn-watch-now {
               background: $primary-color;
-              color: $bg-dark; // Đổi sang màu nền chính
+              color: $bg-dark;
               border: none;
               border-radius: 20px;
               padding: 0.5rem 1rem;
@@ -379,153 +373,150 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
   // Kết thúc .movie-tab-content
 
-  // ==========================
-  // Phần Bình Luận
-  // ==========================
+  /* ================================================== */
+  /* PHẦN BÌNH LUẬN (ĐÃ VIẾT LẠI HOÀN CHỈNH) */
+  /* ================================================== */
   .comments-section {
     margin-top: 3rem;
 
     .section-header {
-      // ... (Code section-header giữ nguyên) ...
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid $bg-light;
+      padding-bottom: 1rem;
 
       .section-title {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-        font-size: 1.25rem;
+        gap: 0.6rem; // Tăng gap icon
+        font-size: 1.3rem; // Tăng font
         font-weight: 600;
         color: $text-white;
+        margin: 0;
 
         svg {
-          color: $text-white;
+          width: 22px;
+          height: 22px;
         }
-      }
 
-      .comment-tabs {
-        display: flex;
-        gap: 0.5rem;
-
-        .comment-tab-btn {
-          background: none;
-          border: 1px solid rgba(255, 255, 255, 0.2);
+        .comment-count {
           color: $text-gray;
-          padding: 0.5rem 1rem;
-          border-radius: 6px;
-          font-size: 0.875rem;
-          cursor: pointer;
-          transition: all 0.2s;
-
-          &.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: $text-white;
-            border-color: rgba(255, 255, 255, 0.3);
-          }
-
-          &:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: $text-white;
-          }
+          font-weight: 400;
+          font-size: 1.1rem;
+          margin-left: 0.2rem;
         }
       }
     }
 
     .comment-input-area {
-      // ... (Code comment-input-area giữ nguyên) ...
-      background: transparent;
+      background: transparent; // Nền trong suốt
       border: none;
       padding: 0;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem; // Tăng khoảng cách dưới input
 
-      .input-hint {
-        color: $text-gray-light;
-        font-size: 0.875rem;
+      .input-header {
         margin-bottom: 1rem;
 
-        a {
-          color: $primary-color;
-          text-decoration: underline;
-          font-weight: 500;
+        p {
+          color: $text-gray-light;
+          font-size: 0.9rem; // Tăng font
 
-          &:hover {
-            color: color.adjust($primary-color, $lightness: 10%);
+          a {
+            color: $primary-color;
+            text-decoration: none;
+            font-weight: 600; // Tăng weight
+
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }
 
-      .comment-textarea {
-        width: 100%;
-        background: rgba(17, 24, 39, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 6px;
-        padding: 0.875rem;
-        color: $text-white;
-        font-family: inherit;
-        font-size: 0.875rem;
-        line-height: 1.5;
-        resize: vertical;
-        min-height: 80px;
-        margin-bottom: 0.875rem;
-        transition: all 0.2s ease;
+      .input-content {
+        .comment-textarea {
+          width: 100%;
+          background: $bg-light; // Nền sáng hơn
+          border: 1px solid $bg-lighter; // Viền sáng hơn nữa
+          border-radius: 8px; // Bo góc
+          padding: 1rem; // Tăng padding
+          color: $text-white;
+          font-family: inherit;
+          font-size: 0.9rem;
+          line-height: 1.6; // Tăng line-height
+          resize: vertical;
+          min-height: 100px; // Cao hơn
+          margin-bottom: 1rem;
+          transition: all 0.2s ease;
 
-        &::placeholder {
-          color: rgba(156, 163, 175, 0.5);
+          &::placeholder {
+            color: $text-gray;
+          }
+
+          // Placeholder sáng hơn
+          &:focus {
+            outline: none;
+            border-color: rgba($primary-color, 0.6); // Viền cam rõ hơn
+            background: color.adjust($bg-light, $lightness: 3%);
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.1); // Thêm shadow nhẹ khi focus
+          }
         }
 
-        &:focus {
-          outline: none;
-          border-color: rgba(255, 140, 0, 0.4);
-          background: rgba(17, 24, 39, 0.8);
-        }
-      }
+        .comment-submit-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
 
-      .input-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+          .comment-options {
+            .spoiler-checkbox {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              cursor: pointer;
 
-        .input-left {
-          .spoiler-checkbox {
+              input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
+                border-radius: 3px;
+                cursor: pointer;
+                accent-color: $primary-color;
+                background-color: $bg-light;
+                border: 1px solid $bg-lighter;
+              }
+
+              span {
+                font-size: 0.875rem;
+                color: $text-gray-light;
+              }
+            }
+          }
+
+          .btn-submit-comment {
+            background: $primary-color;
+            color: $text-white; // Chữ trắng trên nền cam
+            border: none;
+            border-radius: 6px;
+            padding: 0.6rem 1.25rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            cursor: pointer;
+            transition: all 0.2s ease;
 
-            input[type="checkbox"] {
-              width: 16px;
-              height: 16px;
-              border-radius: 3px;
-              cursor: pointer;
-              accent-color: $primary-color;
+            svg {
+              transform: rotate(-15deg);
             }
 
-            span {
-              font-size: 0.875rem;
-              color: $text-gray-light;
+            // Icon nghiêng
+
+            &:hover {
+              background: color.adjust($primary-color, $lightness: -8%); // Tối hơn khi hover
+              transform: translateY(-1px);
+              box-shadow: 0 4px 10px rgba($primary-color, 0.2); // Thêm shadow
             }
-          }
-        }
-
-        .btn-submit-comment {
-          background: $primary-color;
-          color: #111827;
-          border: none;
-          border-radius: 6px;
-          padding: 0.5rem 1.5rem;
-          font-weight: 700;
-          font-size: 0.875rem;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          transition: all 0.2s ease;
-
-          &:hover {
-            background: color.adjust($primary-color, $lightness: -5%);
-            transform: translateY(-1px);
           }
         }
       }
@@ -534,127 +525,142 @@ $btn-dark: rgba(255, 255, 255, 0.1);
     .comment-list {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 0; // Bỏ gap, dùng padding và border
 
       .comment-item {
         background: transparent;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        padding: 1.5rem 0;
+        border: none;
+        padding: 1.75rem 0; // Tăng padding top/bottom
         display: flex;
         gap: 1rem;
-
-        &:first-child {
-          padding-top: 0;
-        }
+        border-bottom: 1px solid $bg-light; // Đường kẻ dưới
 
         &:last-child {
           border-bottom: none;
         }
 
+        // &:first-child { padding-top: 0; } // Không cần nếu đã có header
+
         .comment-avatar {
           flex-shrink: 0;
-          width: 48px;
-          height: 48px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
-          object-fit: cover;
+          overflow: hidden;
+
+          .avatar-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
 
-        .comment-content {
+        .comment-body {
           flex: 1;
           min-width: 0;
+          padding-bottom: 0; // Bỏ padding bottom ở đây
 
           .comment-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.625rem;
+            justify-content: space-between; // Giữ nguyên
+            margin-bottom: 0.5rem;
 
             .user-info {
               display: flex;
               align-items: center;
               gap: 0.5rem;
 
-              .username {
-                font-weight: 500;
+              .comment-author {
+                font-weight: 600;
                 color: $text-white;
-                font-size: 0.9375rem;
+                font-size: 0.9rem;
               }
 
-              .verified-badge {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 0.75rem;
+              .comment-badge {
+                // Huy hiệu ∞
+                color: #fbbf24; // Màu vàng
+                font-size: 1.1rem; // To hơn
                 font-weight: 700;
-                color: $primary-color;
-
-                &.infinity {
-                  color: #fbbf24;
-                  font-size: 1.125rem;
-                }
+                line-height: 1; // Căn chỉnh ký tự ∞
               }
             }
 
             .comment-time {
-              font-size: 0.8125rem;
-              color: rgba(156, 163, 175, 0.8);
+              font-size: 0.8rem;
+              color: $text-gray-dark; // Tối hơn
               font-weight: 400;
+              display: flex;
+              align-items: center;
+              gap: 0.25rem;
+
+              svg {
+                width: 14px;
+                height: 14px;
+              }
             }
           }
 
-          .comment-text {
-            color: rgba(229, 231, 235, 0.95);
-            line-height: 1.625;
-            font-size: 0.9375rem;
-            margin-bottom: 0.875rem;
-            word-wrap: break-word;
+          .comment-content {
+            margin-bottom: 0.75rem;
+
+            .comment-text {
+              color: $text-gray-light;
+              line-height: 1.6;
+              font-size: 0.9rem;
+              word-wrap: break-word;
+            }
           }
 
-          /* === SỬA PHẦN NÀY === */
           .comment-actions {
             display: flex;
             align-items: center;
-            gap: 0.5rem; // Giảm gap giữa các nút
-            flex-wrap: wrap; // Cho phép xuống hàng nếu cần
+            gap: 0.5rem;
 
             .action-btn {
-              background: none;
-              border: 1px solid rgba(255, 255, 255, 0.15);
-              color: $text-gray; // Màu xám hơn
-              font-size: 0.8125rem; // Giảm kích thước chữ
-              font-weight: 400;
+              background: $bg-light; // Nền nút
+              border: none;
+              color: $text-gray; // Màu icon/text xám
+              font-size: 0.8rem;
+              font-weight: 500;
               cursor: pointer;
               display: inline-flex;
               align-items: center;
               justify-content: center;
-              gap: 0.375rem; // Giảm gap icon và chữ
-              padding: 0.375rem 0.75rem; // Giảm padding
-              border-radius: 50px;
+              gap: 0.375rem;
+              padding: 0.3rem 0.6rem; // Nút nhỏ hơn
+              border-radius: 6px;
               transition: all 0.2s ease;
-              white-space: nowrap; // Không xuống dòng chữ trong nút
+              white-space: nowrap;
 
               &:hover {
-                background: rgba(255, 255, 255, 0.05);
-                border-color: rgba(255, 255, 255, 0.25);
+                background: $bg-lighter; // Sáng hơn khi hover
                 color: $text-white;
               }
 
               svg {
-                width: 16px; // Giảm kích thước icon
+                width: 16px;
                 height: 16px;
                 stroke-width: 1.5;
-                flex-shrink: 0; // Tránh icon bị co lại
+                flex-shrink: 0;
               }
             }
           }
 
-          /* === KẾT THÚC SỬA === */
+          // Kết thúc .comment-actions
         }
+
+        // Kết thúc .comment-body
       }
+
+      // Kết thúc .comment-item
     }
+
+    // Kết thúc .comment-list
   }
 
   // Kết thúc .comments-section
+
 }
 
 // Kết thúc .movie-main-content
@@ -663,39 +669,18 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 // Sidebar Phải - Top Phim
 // ==========================
 .movie-sidebar-right {
+  // ... Giữ nguyên ...
   position: sticky;
-  top: 30rem;
+  top: 4rem + 1.5rem;
   align-self: flex-start;
-  max-height: 770px;
-  overflow-y: auto;
-  margin-right: -10rem; // Đẩy sát bên phải
-
-  // Custom scrollbar
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 140, 0, 0.3);
-    border-radius: 3px;
-
-    &:hover {
-      background: rgba(255, 140, 0, 0.5);
-    }
-  }
 }
 
 // ==========================
 // Responsive
 // ==========================
-
-// Ẩn sidebar phải khi màn hình vừa (< 1280px)
 @media (max-width: 1280px) {
+
+  // ... Giữ nguyên ...
   .movie-grid-layout {
     grid-template-columns: 280px 1fr;
   }
@@ -707,32 +692,29 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
 @media (max-width: 968px) {
 
-  // ... (Code responsive giữ nguyên) ...
+  // ... Giữ nguyên ...
   .movie-content-container {
     margin-top: -100px;
   }
 
   .movie-grid-layout {
-    grid-template-columns: 1fr; // Chuyển thành 1 cột
+    grid-template-columns: 1fr;
   }
 
-  // Ẩn sidebar phải trên tablet và mobile
   .movie-sidebar-right {
     display: none;
   }
 
   .movie-sidebar {
-
-    // Ẩn bớt thông tin sidebar
     .info-section {
       display: none;
     }
 
     .movie-poster {
-      width: 200px; // Thu nhỏ poster
+      width: 200px;
       float: left;
       margin-right: 1rem;
-      margin-bottom: 0; // Xóa margin bottom khi float
+      margin-bottom: 0;
     }
   }
 
@@ -743,7 +725,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
 @media (max-width: 640px) {
 
-  // ... (Code responsive giữ nguyên) ...
+  // ... Giữ nguyên ...
   .movie-content-container {
     padding: 0 1rem;
   }
@@ -751,8 +733,8 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   .movie-sidebar {
     .movie-poster {
       width: 120px;
-      margin-bottom: 1rem; // Thêm lại margin bottom khi không float nữa
-      float: none; // Bỏ float
+      margin-bottom: 1rem;
+      float: none;
     }
 
     .movie-title {
@@ -768,7 +750,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
     .btn-play,
     .btn-icon {
-      flex-basis: 100%; // Mỗi nút 1 hàng
+      flex-basis: 100%;
       justify-content: center;
     }
   }
@@ -794,7 +776,9 @@ $btn-dark: rgba(255, 255, 255, 0.1);
           height: 36px;
         }
 
-        .comment-content {
+        .comment-body {
+          padding-bottom: 1rem;
+
           .comment-header {
             flex-direction: column;
             align-items: flex-start;
@@ -806,7 +790,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
             }
           }
 
-          .comment-text {
+          .comment-content .comment-text {
             font-size: 0.875rem;
             margin-bottom: 0.75rem;
           }
@@ -817,15 +801,11 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
             .action-btn {
               padding: 0.375rem 0.75rem;
-              font-size: 0.8125rem;
+              font-size: 0.8rem;
 
               svg {
-                width: 16px;
-                height: 16px;
-              }
-
-              span {
-                font-size: 0.8125rem;
+                width: 14px;
+                height: 14px;
               }
             }
           }
@@ -834,13 +814,15 @@ $btn-dark: rgba(255, 255, 255, 0.1);
     }
 
     .comment-input-area {
+      padding: 0.75rem;
+
       .comment-textarea {
         min-height: 70px;
-        font-size: 0.8125rem;
+        font-size: 0.875rem;
         padding: 0.75rem;
       }
 
-      .input-footer {
+      .input-content .comment-submit-row {
         flex-direction: column;
         gap: 0.75rem;
         align-items: stretch;
@@ -852,5 +834,4 @@ $btn-dark: rgba(255, 255, 255, 0.1);
       }
     }
   }
-
 }
