@@ -1,9 +1,12 @@
 import { Bell, Heart, Play, Plus, Share2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const MovieActions = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="movie-actions">
-      <button className="btn-play">
+      <button className="btn-play" onClick={() => navigate("/watch")}>
         <Play /> Xem Ngay
       </button>
       <button className="btn-icon">

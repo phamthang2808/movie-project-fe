@@ -2,7 +2,8 @@ import { Loader2, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
-import { searchMovies } from "../services/movieService";
+import { searchMoviesAPI } from "../services/movieService";
+import { handleApiError } from "../utils/notification";
 import "./Search.scss";
 
 const SearchPage = () => {
@@ -22,10 +23,11 @@ const SearchPage = () => {
       try {
         setLoading(true);
         setError(null);
-        const results = await searchMovies(query);
-        setMovies(results);
+        const response = await searchMoviesAPI(query);
+        setMovies(response.data.result || response.data.movies || []);
       } catch (err) {
         setError("Không thể tìm kiếm phim");
+        handleApiError(err, "Không thể tìm kiếm phim");
         console.error(err);
       } finally {
         setLoading(false);

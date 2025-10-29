@@ -1,0 +1,115 @@
+/**
+ * NProgress Custom Styles
+ * Loading bar trên đầu trang với theme màu cam
+ */
+
+#nprogress {
+    pointer-events: none;
+
+    .bar {
+        background: linear-gradient(
+            90deg,
+            #ff6b35 0%,
+            #ff8c42 50%,
+            #ffaa5a 100%
+        ) !important;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        box-shadow: 0 0 10px #ff6b35, 0 0 5px #ff8c42;
+    }
+
+    .peg {
+        display: block;
+        position: absolute;
+        right: 0px;
+        width: 100px;
+        height: 100%;
+        box-shadow: 0 0 15px #ff6b35, 0 0 8px #ff8c42;
+        opacity: 1;
+        transform: rotate(3deg) translate(0px, -4px);
+    }
+
+    .spinner {
+        display: block;
+        position: fixed;
+        z-index: 9999;
+        top: 15px;
+        right: 15px;
+    }
+
+    .spinner-icon {
+        width: 18px;
+        height: 18px;
+        box-sizing: border-box;
+        border: solid 2px transparent;
+        border-top-color: #ff6b35;
+        border-left-color: #ff6b35;
+        border-radius: 50%;
+        animation: nprogress-spinner 400ms linear infinite;
+    }
+}
+
+.nprogress-custom {
+    pointer-events: none;
+}
+
+.nprogress-custom .bar {
+    background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 50%, #ffaa5a 100%);
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+}
+
+.nprogress-custom .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px #ff6b35, 0 0 5px #ff8c42;
+    opacity: 1;
+    transform: rotate(3deg) translate(0px, -4px);
+}
+
+@keyframes nprogress-spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// ==========================================
+// CUSTOM LOADING FOR SPECIFIC ROUTES
+// ==========================================
+
+/* Làm loading bar dày hơn cho mobile */
+@media (max-width: 768px) {
+    #nprogress .bar {
+        height: 4px;
+    }
+}
+
+/* Animation khi loading */
+@keyframes nprogress-glow {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+#nprogress .bar {
+    animation: nprogress-glow 1.5s ease-in-out infinite;
+}
+

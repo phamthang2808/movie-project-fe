@@ -132,13 +132,43 @@ body {
   .ant-input,
   .ant-input-affix-wrapper,
   textarea.ant-input,
-  .ant-input-textarea,
-  .ant-input-textarea-show-count::after {
-    background: transparent !important;
-    background-color: transparent !important;
+  .ant-input-textarea {
+    background: #0f1824 !important;
+    background-color: #0f1824 !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     color: rgba(255, 255, 255, 0.9) !important;
-    border-radius: 12px !important;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.15) !important;
+      background: #0f1824 !important;
+      background-color: #0f1824 !important;
+      box-shadow: none !important;
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      background: #0f1824 !important;
+      background-color: #0f1824 !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+  }
+
+  // Override wrapper
+  .ant-input-textarea,
+  .ant-input-textarea-show-count {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    &::before,
+    &::after {
+      box-shadow: none !important;
+    }
   }
 
   // Override Character Count
@@ -146,18 +176,78 @@ body {
     color: rgba(255, 255, 255, 0.4) !important;
   }
 
+  // Override textarea trong show-count wrapper
+  .ant-input-textarea-show-count {
+    background: transparent !important;
+    border: none !important;
+
+    textarea {
+      background: #0f1824 !important;
+      background-color: #0f1824 !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      color: rgba(255, 255, 255, 0.9) !important;
+      border-radius: 16px !important;
+      box-shadow: none !important;
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.15) !important;
+        background: #0f1824 !important;
+        background-color: #0f1824 !important;
+        box-shadow: none !important;
+      }
+
+      &:focus,
+      &:focus-visible,
+      &:focus-within {
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        background: #0f1824 !important;
+        background-color: #0f1824 !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.4) !important;
+      }
+    }
+  }
+
   // Override Checkbox
   .ant-checkbox-wrapper {
-    color: rgba(255, 255, 255, 0.6) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.9rem !important;
 
-    .ant-checkbox-inner {
-      background: transparent !important;
-      border-color: rgba(255, 255, 255, 0.3) !important;
+    span:not(.ant-checkbox) {
+      color: rgba(255, 255, 255, 0.9) !important;
     }
 
-    .ant-checkbox-checked .ant-checkbox-inner {
-      background-color: #ff8c00 !important;
-      border-color: #ff8c00 !important;
+    .ant-checkbox {
+      .ant-checkbox-inner {
+        width: 18px !important;
+        height: 18px !important;
+        background: #0f1824 !important;
+        border: 2px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 4px !important;
+
+        &::after {
+          border-color: #fff !important;
+        }
+      }
+
+      &.ant-checkbox-checked {
+        .ant-checkbox-inner {
+          background: rgba(255, 255, 255, 0.1) !important;
+          border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        &::after {
+          border-color: #fff !important;
+        }
+      }
+
+      &:hover .ant-checkbox-inner {
+        border-color: rgba(255, 255, 255, 0.25) !important;
+      }
     }
   }
 
@@ -165,27 +255,28 @@ body {
   .btn-submit-comment.ant-btn-primary {
     background: transparent !important;
     background-color: transparent !important;
-    border: 1px solid rgba(255, 140, 0, 0.5) !important;
-    color: #ff8c00 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     box-shadow: none !important;
+    border-radius: 8px !important;
 
     svg {
-      color: #ff8c00 !important;
-      stroke: #ff8c00 !important;
+      color: rgba(255, 255, 255, 0.8) !important;
+      stroke: rgba(255, 255, 255, 0.8) !important;
     }
 
     &:hover,
     &:focus,
     &:active {
-      background: rgba(255, 140, 0, 0.1) !important;
-      background-color: rgba(255, 140, 0, 0.1) !important;
-      border-color: #ff8c00 !important;
-      color: #ff8c00 !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      background-color: rgba(255, 255, 255, 0.05) !important;
+      border-color: rgba(255, 255, 255, 0.3) !important;
+      color: rgba(255, 255, 255, 0.9) !important;
       box-shadow: none !important;
 
       svg {
-        color: #ff8c00 !important;
-        stroke: #ff8c00 !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        stroke: rgba(255, 255, 255, 0.9) !important;
       }
     }
   }

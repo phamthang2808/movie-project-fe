@@ -1,8 +1,9 @@
-import { ChevronDown, Search, User } from "lucide-react";
+import { ChevronDown, Menu, Search, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoImg from "../assets/images/logo.png";
 import "./Header.scss";
+import UserMenu from "./UserMenu";
 
 // ==========================================================
 // BƯỚC 1: Đưa dữ liệu ra ngoài component cho tối ưu
@@ -72,6 +73,22 @@ const genresData = [
   "Ẩm Thực",
 ];
 
+// Dữ liệu cho menu "Quốc gia"
+const countriesData = [
+  "Anh",
+  "Canada",
+  "Hàn Quốc",
+  "Hồng Kông",
+  "Mỹ",
+  "Nhật Bản",
+  "Pháp",
+  "Thái Lan",
+  "Trung Quốc",
+  "Úc",
+  "Đài Loan",
+  "Đức",
+];
+
 // Dữ liệu cho menu "Thêm"
 const moreLinksData = [
   { title: "Lịch chiếu", path: "/lich-chieu" },
@@ -87,6 +104,16 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Check if user is logged in
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check localStorage for token
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,6 +140,15 @@ const Header = () => {
   return (
     <header className={`header ${isScrolled ? "scrolled" : ""}`}>
       <div className="header-container">
+        {/* Hamburger Menu Button (Mobile) */}
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Menu"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
         {/* Left Section: Logo + Search */}
         <div className="header-left">
           <Link to="/" className="header-brand">
@@ -182,7 +218,18 @@ const Header = () => {
               <span className="nav-link">
                 Quốc gia <ChevronDown className="dropdown-icon" />
               </span>
-              {/* (Bạn có thể thêm menu cho Quốc gia ở đây) */}
+              {/* Menu dropdown cho Quốc gia */}
+              <div className="dropdown-menu countries-dropdown">
+                {countriesData.map((country) => (
+                  <Link
+                    key={country}
+                    to={`/country/${encodeURIComponent(country)}`}
+                    className="dropdown-item"
+                  >
+                    {country}
+                  </Link>
+                ))}
+              </div>
             </div>
 
             <Link to="/trending" className="nav-link">
@@ -217,12 +264,110 @@ const Header = () => {
         <div className="header-actions">
           {/* <div className="nav-link-special">NEW Rổ Bóng</div> */}
           {/* <div className="download-app"> ... </div> */}
-          <Link to="/login" className="member-btn">
-            <User className="user-icon" />
-            Thành viên
-          </Link>
+
+          {/* Show UserMenu if logged in, otherwise show login button */}
+          {isLoggedIn ? (
+            <UserMenu />
+          ) : (
+            <Link to="/login" className="member-btn">
+              <User className="user-icon" />
+              Thành viên
+            </Link>
+          )}
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+        <div className="mobile-menu-header">
+          <h2>Menu</h2>
+          <button
+            className="mobile-menu-close"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <nav className="mobile-nav">
+          <Link
+            to="/movies/single"
+            className="mobile-nav-link"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Phim Lẻ
+          </Link>
+          <Link
+            to="/phim-bo"
+            className="mobile-nav-link"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Phim Bộ
+          </Link>
+
+          <div className="mobile-nav-section">
+            <h3 className="mobile-nav-section-title">Thể loại</h3>
+            <div className="mobile-nav-grid">
+              {genresData.slice(0, 12).map((genre) => (
+                <Link
+                  key={genre}
+                  to={`/genre/${encodeURIComponent(genre)}`}
+                  className="mobile-nav-item"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {genre}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="mobile-nav-section">
+            <h3 className="mobile-nav-section-title">Quốc gia</h3>
+            <div className="mobile-nav-grid">
+              {countriesData.map((country) => (
+                <Link
+                  key={country}
+                  to={`/country/${encodeURIComponent(country)}`}
+                  className="mobile-nav-item"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {country}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <Link
+            to="/trending"
+            className="mobile-nav-link"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Xem Chung
+          </Link>
+
+          <div className="mobile-nav-section">
+            <h3 className="mobile-nav-section-title">Thêm</h3>
+            {moreLinksData.map((link) => (
+              <Link
+                key={link.title}
+                to={link.path}
+                className="mobile-nav-item"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.title}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile Menu Backdrop */}
+      {isMobileMenuOpen && (
+        <div
+          className="mobile-menu-backdrop"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
     </header>
   );
 };

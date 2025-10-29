@@ -1,7 +1,12 @@
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Auth.scss";
 
 const Register = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   return (
     <div className="auth-page">
       <div className="auth-left" aria-hidden="true"></div>
@@ -38,24 +43,46 @@ const Register = () => {
             <label className="auth-label" htmlFor="password">
               Mật khẩu
             </label>
-            <input
-              id="password"
-              type="password"
-              className="auth-input"
-              placeholder="••••••••"
-              required
-            />
+            <div className="auth-input-wrapper">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                className="auth-input"
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                className="auth-toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
 
             <label className="auth-label" htmlFor="confirm">
               Nhập lại mật khẩu
             </label>
-            <input
-              id="confirm"
-              type="password"
-              className="auth-input"
-              placeholder="••••••••"
-              required
-            />
+            <div className="auth-input-wrapper">
+              <input
+                id="confirm"
+                type={showConfirmPassword ? "text" : "password"}
+                className="auth-input"
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                className="auth-toggle-password"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                aria-label={
+                  showConfirmPassword ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"
+                }
+              >
+                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
 
             <div className="auth-captcha">
               <span className="captcha-badge">Thành công!</span>

@@ -1,0 +1,214 @@
+@import "../index.scss";
+
+// ==========================================
+// RECHARGE PAGE
+// ==========================================
+.recharge-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b1218 0%, #1a2332 100%);
+  padding: 2rem 1rem;
+  padding-top: 5rem; // Space for header
+}
+
+.recharge-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// ==========================================
+// HEADER
+// ==========================================
+.recharge-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+  }
+
+  .recharge-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+  }
+}
+
+// ==========================================
+// USER INFO SECTION
+// ==========================================
+.user-info-section {
+  background: linear-gradient(135deg, #1e2938 0%, #2a3647 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  .user-avatar-large {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 165, 0, 0.3);
+    }
+
+    .premium-badge {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      border: 2px solid #1e2938;
+    }
+  }
+
+  .user-details {
+    flex: 1;
+
+    .username {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      margin: 0 0 0.75rem 0;
+    }
+
+    .balance-display {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9375rem;
+
+      svg {
+        color: $primary-color;
+      }
+
+      .label {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .amount {
+        font-weight: 700;
+        color: white;
+        font-size: 1.125rem;
+      }
+    }
+
+    .history-link {
+      color: $primary-color;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: lighten($primary-color, 10%);
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// ==========================================
+// RESPONSIVE
+// ==========================================
+@media (max-width: 768px) {
+  .recharge-page {
+    padding: 1.5rem 1rem;
+    padding-top: 4.5rem;
+  }
+
+  .recharge-header {
+    .recharge-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .user-info-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+
+    .user-details {
+      .balance-display {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .recharge-header {
+    .recharge-title {
+      font-size: 1.25rem;
+    }
+
+    .back-btn {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  .user-info-section {
+    .user-avatar-large {
+      width: 64px;
+      height: 64px;
+
+      .premium-badge {
+        width: 24px;
+        height: 24px;
+        font-size: 0.875rem;
+      }
+    }
+
+    .user-details {
+      .username {
+        font-size: 1.25rem;
+      }
+
+      .balance-display {
+        font-size: 0.875rem;
+
+        .amount {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+

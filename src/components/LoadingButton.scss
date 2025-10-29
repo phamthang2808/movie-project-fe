@@ -1,0 +1,156 @@
+@import "../index.scss";
+
+.loading-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: inherit;
+
+    &:focus {
+        outline: none;
+    }
+
+    .spinner {
+        animation: spin 1s linear infinite;
+    }
+
+    .btn-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // ==========================================
+    // VARIANTS - Kiểu button
+    // ==========================================
+
+    &.primary {
+        background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+
+        &:hover:not(.disabled) {
+            background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+            box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
+            transform: translateY(-1px);
+        }
+
+        &:active:not(.disabled) {
+            transform: translateY(0);
+        }
+    }
+
+    &.secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        &:hover:not(.disabled) {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    &.outline {
+        background: transparent;
+        color: #ff6b35;
+        border: 2px solid #ff6b35;
+
+        &:hover:not(.disabled) {
+            background: rgba(255, 107, 53, 0.1);
+            border-color: #ff8c42;
+        }
+    }
+
+    &.danger {
+        background: #dc3545;
+        color: white;
+        box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+
+        &:hover:not(.disabled) {
+            background: #c82333;
+            box-shadow: 0 6px 16px rgba(220, 53, 69, 0.4);
+        }
+    }
+
+    // ==========================================
+    // SIZES - Kích thước
+    // ==========================================
+
+    &.small {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        border-radius: 6px;
+
+        .spinner {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    &.medium {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    &.large {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+
+    // ==========================================
+    // STATES - Trạng thái
+    // ==========================================
+
+    &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
+}
+
+// ==========================================
+// ANIMATION - Hiệu ứng quay spinner
+// ==========================================
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// ==========================================
+// RESPONSIVE
+// ==========================================
+
+@media (max-width: 768px) {
+    .loading-btn {
+        &.medium {
+            padding: 0.65rem 1.2rem;
+            font-size: 0.85rem;
+        }
+
+        &.large {
+            padding: 0.85rem 1.5rem;
+            font-size: 0.95rem;
+        }
+    }
+}
+

@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MovieDetail from "./pages/MovieDetail";
+import Recharge from "./pages/Recharge";
 import Register from "./pages/Register";
 import Search from "./pages/Search";
 import Series from "./pages/Series";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/watch" element={<Watch />} />
+          <Route path="/recharge" element={<Recharge />} />
         </Routes>
       </main>
       {!shouldHideFooter && <Footer />}

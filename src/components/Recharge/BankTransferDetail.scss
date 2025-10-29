@@ -1,0 +1,265 @@
+@import "../../index.scss";
+
+// ==========================================
+// BANK TRANSFER DETAIL
+// ==========================================
+.bank-transfer-detail {
+  background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+  border: 2px solid rgba(255, 165, 0, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.detail-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+.detail-subtitle {
+  font-size: 0.875rem;
+  color: #4fc3f7;
+  text-align: center;
+  margin: 0 0 2rem 0;
+}
+
+// ==========================================
+// DETAIL GRID
+// ==========================================
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+// ==========================================
+// BANK INFO SECTION
+// ==========================================
+.bank-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .info-label {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.6);
+    min-width: 120px;
+  }
+
+  .info-value-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .info-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    text-align: right;
+
+    &.highlight {
+      color: $primary-color;
+      font-weight: 700;
+      font-size: 1.0625rem;
+    }
+  }
+
+  .copy-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+
+    &:hover {
+      background: rgba(255, 165, 0, 0.15);
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+  }
+}
+
+// ==========================================
+// QR SECTION
+// ==========================================
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.qr-wrapper {
+  background: white;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.qr-image {
+  width: 240px;
+  height: 240px;
+  display: block;
+}
+
+.timer-display {
+  text-align: center;
+
+  .timer-label {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .timer-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    font-family: "Courier New", monospace;
+    letter-spacing: 2px;
+  }
+}
+
+// ==========================================
+// DETAIL NOTE
+// ==========================================
+.detail-note {
+  background: rgba(255, 165, 0, 0.1);
+  border: 1px solid rgba(255, 165, 0, 0.3);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+
+  p {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0 0 0.75rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: $primary-color;
+      font-weight: 700;
+    }
+  }
+}
+
+// ==========================================
+// RESPONSIVE
+// ==========================================
+@media (max-width: 968px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .qr-section {
+    order: -1; // Show QR first on mobile
+  }
+}
+
+@media (max-width: 480px) {
+  .bank-transfer-detail {
+    padding: 1.5rem 1rem;
+  }
+
+  .detail-title {
+    font-size: 1.25rem;
+  }
+
+  .detail-subtitle {
+    font-size: 0.8125rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-grid {
+    gap: 1.5rem;
+  }
+
+  .bank-info-section {
+    gap: 1rem;
+  }
+
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+
+    .info-label {
+      min-width: auto;
+      font-size: 0.875rem;
+    }
+
+    .info-value-group {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .info-value {
+      font-size: 0.9375rem;
+      text-align: left;
+
+      &.highlight {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .qr-wrapper {
+    padding: 0.75rem;
+  }
+
+  .qr-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .timer-display {
+    .timer-label {
+      font-size: 0.875rem;
+    }
+
+    .timer-value {
+      font-size: 1.75rem;
+    }
+  }
+
+  .detail-note {
+    padding: 1rem 1.25rem;
+
+    p {
+      font-size: 0.875rem;
+    }
+  }
+}
+

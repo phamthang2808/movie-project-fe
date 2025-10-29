@@ -385,7 +385,22 @@
     }
 }
 
-// 2. Dành cho "Thêm" (Danh sách dọc)
+// 2. Dành cho "Quốc gia" (Grid 4 cột)
+.countries-dropdown {
+    width: max-content;
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); // 4 cột cho quốc gia
+    gap: 0.5rem 1rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+
+    .nav-link-dropdown:hover & {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+// 3. Dành cho "Thêm" (Danh sách dọc)
 .more-dropdown {
     width: 200px; // Chiều rộng cố định
     display: flex;
@@ -393,7 +408,155 @@
     gap: 0.25rem;
 }
 
+// ================================================
+// MOBILE MENU (Hamburger Menu)
+// ================================================
+
+.mobile-menu-btn {
+    display: none; // Ẩn mặc định
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-right: 0.75rem;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background: #1a1a1a;
+    z-index: 2000;
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+
+    &.open {
+        left: 0;
+    }
+}
+
+.mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    h2 {
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+    }
+}
+
+.mobile-menu-close {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: rotate(90deg);
+    }
+}
+
+.mobile-nav {
+    padding: 1rem 0;
+}
+
+.mobile-nav-link {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 1rem 1.25rem;
+    transition: background-color 0.2s, color 0.2s;
+    border-left: 3px solid transparent;
+
+    &:hover {
+        background-color: rgba(255, 140, 0, 0.1);
+        border-left-color: #ff8c00;
+        color: #ff8c00;
+    }
+
+    &:active {
+        background-color: rgba(255, 140, 0, 0.2);
+    }
+}
+
+.mobile-nav-section {
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav-section-title {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 1.25rem;
+    margin: 0;
+}
+
+.mobile-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+}
+
+.mobile-nav-item {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    text-align: center;
+
+    &:hover {
+        background-color: rgba(255, 140, 0, 0.15);
+        color: #ff8c00;
+        transform: translateY(-2px);
+    }
+}
+
+.mobile-menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1999;
+    backdrop-filter: blur(2px);
+}
+
+// ================================================
 // Responsive
+// ================================================
+
 @media (max-width: 1200px) {
     .header-nav {
         gap: 0.75rem;
@@ -419,49 +582,42 @@
 }
 
 @media (max-width: 968px) {
-    .header-container {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 0 1rem;
+
+    // Hiển thị hamburger button
+    .mobile-menu-btn {
+        display: block;
     }
 
-    .header-nav {
-        order: 3;
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-        gap: 1rem;
-
-        &::-webkit-scrollbar {
-            height: 0.25rem;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 0.125rem;
-        }
-    }
-
+    // Ẩn desktop navigation
     .header-center {
-        order: 2;
-        width: 100%;
+        display: none;
+    }
+
+    .header-container {
+        gap: 0.75rem;
+        padding: 0 1rem;
+        flex-wrap: nowrap;
     }
 
     .header-left {
-        order: 1;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+        flex: 1;
         max-width: 100%;
+        gap: 0.75rem;
     }
 
     .header-search {
         width: 100%;
         max-width: 100%;
+        flex: 1;
     }
 
     .logo-image {
-        height: 3rem;
-        max-width: 10rem;
+        height: 2.5rem;
+        max-width: 8rem;
+    }
+
+    .header-actions {
+        flex-shrink: 0;
     }
 }
 

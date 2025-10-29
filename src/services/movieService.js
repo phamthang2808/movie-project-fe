@@ -1,92 +1,317 @@
-import axios from "axios";
+import instance from "./api.config";
 
-const API_KEY = "cdf2af64302763e61b5739b22c39e997"; // Public demo key - replace with your own
-const BASE_URL = "https://api.themoviedb.org/3";
+// ==========================================
+// MOVIES API - Lấy thông tin phim từ Backend
+// ==========================================
 
-const api = axios.create({
-    baseURL: BASE_URL,
-    params: {
-        api_key: API_KEY,
-        language: "vi-VN", // Vietnamese
-    },
-});
-
-export const fetchPopularMovies = async () => {
-    try {
-        const response = await api.get("/movie/popular");
-        return response.data.results;
-    } catch (error) {
-        console.error("Error fetching popular movies:", error);
-        throw error;
-    }
+/**
+ * Lấy danh sách phim với filters
+ * @param {Object} params - { type, genre, page, limit, sort }
+ * type: 'popular' | 'top_rated' | 'upcoming' | 'now_playing'
+ */
+export const fetchMoviesAPI = (params = {}) => {
+    const URL = "/movies";
+    return instance.get(URL, {
+        params
+    });
 };
 
-export const fetchTopRatedMovies = async () => {
-    try {
-        const response = await api.get("/movie/top_rated");
-        return response.data.results;
-    } catch (error) {
-        console.error("Error fetching top rated movies:", error);
-        throw error;
-    }
+/**
+ * Lấy chi tiết phim theo ID
+ */
+export const fetchMovieByIdAPI = (movieId) => {
+    const URL = `/movies/${movieId}`;
+    return instance.get(URL);
 };
 
-export const fetchUpcomingMovies = async () => {
-    try {
-        const response = await api.get("/movie/upcoming");
-        return response.data.results;
-    } catch (error) {
-        console.error("Error fetching upcoming movies:", error);
-        throw error;
-    }
+/**
+ * Tìm kiếm phim
+ */
+export const searchMoviesAPI = (query, page = 1, limit = 20) => {
+    const URL = "/movies/search";
+    return instance.get(URL, {
+        params: {
+            query,
+            page,
+            limit
+        }
+    });
 };
 
-export const fetchMovieDetails = async (id) => {
-    try {
-        const response = await api.get(`/movie/${id}`);
-        return response.data;
-    } catch (error) {
-        console.error("Error fetching movie details:", error);
-        throw error;
-    }
+/**
+ * Lấy danh sách thể loại
+ */
+export const fetchGenresAPI = () => {
+    const URL = "/genres";
+    return instance.get(URL);
 };
 
-export const fetchMovieVideos = async (id) => {
-    try {
-        const response = await api.get(`/movie/${id}/videos`);
-        return response.data.results;
-    } catch (error) {
-        console.error("Error fetching movie videos:", error);
-        throw error;
-    }
+/**
+ * Lấy phim theo thể loại
+ */
+export const fetchMoviesByGenreAPI = (genreId, page = 1, limit = 20) => {
+    const URL = `/movies/genre/${genreId}`;
+    return instance.get(URL, {
+        params: {
+            page,
+            limit
+        }
+    });
 };
 
-export const fetchMovieCast = async (id) => {
-    try {
-        const response = await api.get(`/movie/${id}/credits`);
-        return response.data;
-    } catch (error) {
-        console.error("Error fetching movie cast:", error);
-        throw error;
-    }
+/**
+ * Lấy video/trailer của phim
+ */
+export const fetchMovieVideosAPI = (movieId) => {
+    const URL = `/movies/${movieId}/videos`;
+    return instance.get(URL);
 };
 
-export const searchMovies = async (query) => {
-    try {
-        const response = await api.get("/search/movie", {
-            params: {
-                query,
-            },
-        });
-        return response.data.results;
-    } catch (error) {
-        console.error("Error searching movies:", error);
-        throw error;
-    }
+/**
+ * Lấy danh sách diễn viên
+ */
+export const fetchMovieCastAPI = (movieId) => {
+    const URL = `/movies/${movieId}/cast`;
+    return instance.get(URL);
 };
 
+/**
+ * Lấy phim tương tự
+ */
+export const fetchSimilarMoviesAPI = (movieId) => {
+    const URL = `/movies/${movieId}/similar`;
+    return instance.get(URL);
+};
 
+/**
+ * Lấy phim đề xuất
+ */
+export const fetchRecommendedMoviesAPI = (movieId) => {
+    const URL = `/movies/${movieId}/recommendations`;
+    return instance.get(URL);
+};
 
+// ==========================================
+// AUTH API - Đăng nhập, đăng ký
+// ==========================================
 
+export const registerUserAPI = (fullName, email, password, phone) => {
+    const URL = "/auth/register";
+    const data = {
+        fullName,
+        email,
+        password,
+        phone
+    };
+    return instance.post(URL, data);
+};
 
+export const loginUserAPI = (email, password) => {
+    const URL = "/auth/login";
+    const data = {
+        username: email,
+        password
+    };
+    return instance.post(URL, data);
+};
 
+export const getAccountAPI = () => {
+    const URL = "/auth/account";
+    return instance.get(URL);
+};
+
+export const logOutAPI = () => {
+    const URL = "/auth/logout";
+    return instance.post(URL);
+};
+
+export const forgotPasswordAPI = (email) => {
+    const URL = "/auth/forgot-password";
+    return instance.post(URL, {
+        email
+    });
+};
+
+export const resetPasswordAPI = (token, newPassword) => {
+    const URL = "/auth/reset-password";
+    return instance.post(URL, {
+        token,
+        newPassword
+    });
+};
+
+// ==========================================
+// USER API - Profile, Avatar
+// ==========================================
+
+export const getUserProfileAPI = () => {
+    const URL = "/user/profile";
+    return instance.get(URL);
+};
+
+export const updateUserProfileAPI = (userId, fullName, phone, avatar) => {
+    const URL = "/user";
+    const data = {
+        _id: userId,
+        fullName,
+        phone,
+        avatar
+    };
+    return instance.put(URL, data);
+};
+
+export const changePasswordAPI = (oldPassword, newPassword) => {
+    const URL = "/user/change-password";
+    const data = {
+        oldPassword,
+        newPassword
+    };
+    return instance.post(URL, data);
+};
+
+// ==========================================
+// FILE UPLOAD API
+// ==========================================
+
+export const handleUploadFile = (file, folder) => {
+    const URL = "/file/upload";
+    const config = {
+        headers: {
+            "upload-type": folder,
+            "Content-Type": "multipart/form-data",
+        },
+    };
+
+    const bodyFormData = new FormData();
+    bodyFormData.append("fileImg", file);
+
+    return instance.post(URL, bodyFormData, config);
+};
+
+// ==========================================
+// COMMENT API - Bình luận phim
+// ==========================================
+
+export const fetchMovieCommentsAPI = (movieId, current = 1, pageSize = 10) => {
+    const URL = `/comments/${movieId}?current=${current}&pageSize=${pageSize}`;
+    return instance.get(URL);
+};
+
+export const createCommentAPI = (movieId, content, isSpoiler = false) => {
+    const URL = `/comments/${movieId}`;
+    const data = {
+        content,
+        isSpoiler
+    };
+    return instance.post(URL, data);
+};
+
+export const replyToCommentAPI = (commentId, content) => {
+    const URL = `/comments/${commentId}/reply`;
+    const data = {
+        content
+    };
+    return instance.post(URL, data);
+};
+
+export const likeCommentAPI = (commentId) => {
+    const URL = `/comments/${commentId}/like`;
+    return instance.post(URL);
+};
+
+export const dislikeCommentAPI = (commentId) => {
+    const URL = `/comments/${commentId}/dislike`;
+    return instance.post(URL);
+};
+
+export const deleteCommentAPI = (commentId) => {
+    const URL = `/comments/${commentId}`;
+    return instance.delete(URL);
+};
+
+export const hideCommentAPI = (commentId) => {
+    const URL = `/comments/${commentId}/hide`;
+    return instance.post(URL);
+};
+
+export const reportCommentAPI = (commentId, reason) => {
+    const URL = `/comments/${commentId}/report`;
+    const data = {
+        reason
+    };
+    return instance.post(URL, data);
+};
+
+// ==========================================
+// WATCHLIST API - Danh sách xem sau
+// ==========================================
+
+export const getWatchlistAPI = (current = 1, pageSize = 10) => {
+    const URL = `/watchlist?current=${current}&pageSize=${pageSize}`;
+    return instance.get(URL);
+};
+
+export const addToWatchlistAPI = (movieId, movieData) => {
+    const URL = "/watchlist/add";
+    const data = {
+        movieId,
+        ...movieData
+    };
+    return instance.post(URL, data);
+};
+
+export const removeFromWatchlistAPI = (movieId) => {
+    const URL = `/watchlist/${movieId}`;
+    return instance.delete(URL);
+};
+
+export const checkInWatchlistAPI = (movieId) => {
+    const URL = `/watchlist/check/${movieId}`;
+    return instance.get(URL);
+};
+
+// ==========================================
+// FAVORITES API - Danh sách yêu thích
+// ==========================================
+
+export const getFavoritesAPI = (current = 1, pageSize = 10) => {
+    const URL = `/favorites?current=${current}&pageSize=${pageSize}`;
+    return instance.get(URL);
+};
+
+export const addToFavoritesAPI = (movieId, movieData) => {
+    const URL = "/favorites/add";
+    const data = {
+        movieId,
+        ...movieData
+    };
+    return instance.post(URL, data);
+};
+
+export const removeFromFavoritesAPI = (movieId) => {
+    const URL = `/favorites/${movieId}`;
+    return instance.delete(URL);
+};
+
+// ==========================================
+// WATCH HISTORY API - Lịch sử xem
+// ==========================================
+
+export const getWatchHistoryAPI = (current = 1, pageSize = 10) => {
+    const URL = `/history?current=${current}&pageSize=${pageSize}`;
+    return instance.get(URL);
+};
+
+export const addToWatchHistoryAPI = (movieId, movieData) => {
+    const URL = "/history/add";
+    const data = {
+        movieId,
+        ...movieData
+    };
+    return instance.post(URL, data);
+};
+
+export const clearWatchHistoryAPI = () => {
+    const URL = "/history/clear";
+    return instance.delete(URL);
+};

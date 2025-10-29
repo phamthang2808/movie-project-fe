@@ -1,5 +1,7 @@
 import { Star } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import Pagination from "../components/Pagination";
 import "./Series.scss";
 
 import img05 from "../assets/avar-film/086a7bc9b316bc3f9c2ff6d66ac65565.webp";
@@ -223,6 +225,19 @@ const uiText = {
 };
 
 const Series = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12; // 12 phim mỗi trang
+
+  // Tính toán pagination
+  const totalPages = Math.ceil(seriesData.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentSeries = seriesData.slice(startIndex, endIndex);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="series-page">
       <div className="container">
@@ -232,7 +247,7 @@ const Series = () => {
         </div>
 
         <div className="series-grid">
-          {seriesData.map((series) => (
+          {currentSeries.map((series) => (
             <Link
               to={`/movie/${series.id}`}
               key={series.id}
@@ -272,6 +287,15 @@ const Series = () => {
             </Link>
           ))}
         </div>
+
+        {/* Pagination */}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          maxVisible={5}
+          showFirstLast={true}
+        />
       </div>
     </div>
   );

@@ -64,6 +64,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="footer-copyright">
           <p>{uiText["ban-quyen"]}</p>
+          <p className="copyright-owner">Bản quyền thuộc về Thắng cá chép</p>
         </div>
       </div>
       {/* ĐÓNG THẺ DIV BỌC LẠI Ở ĐÂY */}

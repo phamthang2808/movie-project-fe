@@ -20,28 +20,83 @@
         }
 
         // Textarea wrapper để chứa count
-        .ant-input-textarea {
+        .ant-input-textarea,
+        .ant-input-textarea-show-count {
             position: relative !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
 
-            textarea {
-                border-radius: 12px !important;
+            &::before,
+            &::after {
+                box-shadow: none !important;
+            }
+
+            textarea,
+            .ant-input {
+                border-radius: 16px !important;
+                background: #0f1824 !important;
+                background-color: #0f1824 !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: rgba(255, 255, 255, 0.9) !important;
+                box-shadow: none !important;
+
+                &:hover {
+                    border-color: rgba(255, 255, 255, 0.15) !important;
+                    background: #0f1824 !important;
+                    background-color: #0f1824 !important;
+                    box-shadow: none !important;
+                }
+
+                &:focus,
+                &:focus-visible,
+                &:focus-within {
+                    border-color: rgba(255, 255, 255, 0.2) !important;
+                    background: #0f1824 !important;
+                    background-color: #0f1824 !important;
+                    box-shadow: none !important;
+                    outline: none !important;
+                }
             }
         }
 
-        // Textarea styling
+        // Textarea styling - cùng màu nền web
         .comment-textarea.ant-input {
-            border-radius: 12px !important;
+            border-radius: 16px !important;
             padding: 12px !important;
+            background: #0f1824 !important; // Màu nền tối giống web
+            border: 1px solid rgba(255, 255, 255, 0.1) !important; // Viền trắng mỏng
+            color: rgba(255, 255, 255, 0.9) !important;
+
+            &:hover {
+                border-color: rgba(255, 255, 255, 0.15) !important;
+                background: #0f1824 !important;
+            }
+
+            &:focus {
+                border-color: rgba(255, 255, 255, 0.2) !important;
+                background: #0f1824 !important;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.4) !important;
+            }
         }
 
         // Wrapper cho textarea với counter  
         .ant-input-textarea-show-count {
             margin-bottom: 1rem !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
 
             &::after {
                 color: rgba(255, 255, 255, 0.3) !important;
                 font-size: 0.75rem !important;
                 margin-top: 0.5rem !important;
+                box-shadow: none !important;
             }
         }
 
@@ -49,6 +104,46 @@
         .ant-input-data-count {
             color: rgba(255, 255, 255, 0.3) !important;
             font-size: 0.75rem !important;
+        }
+
+        // Checkbox "Ẩn danh" đẹp hơn
+        .ant-checkbox-wrapper {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 400;
+            font-size: 0.9rem !important;
+
+            span:not(.ant-checkbox) {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+
+            .ant-checkbox {
+                .ant-checkbox-inner {
+                    width: 18px !important;
+                    height: 18px !important;
+                    background: #0f1824 !important;
+                    border: 2px solid rgba(255, 255, 255, 0.15) !important;
+                    border-radius: 4px !important;
+
+                    &::after {
+                        border-color: #fff !important;
+                    }
+                }
+
+                &.ant-checkbox-checked {
+                    .ant-checkbox-inner {
+                        background: rgba(255, 255, 255, 0.1) !important;
+                        border-color: rgba(255, 255, 255, 0.3) !important;
+                    }
+
+                    &::after {
+                        border-color: #fff !important;
+                    }
+                }
+
+                &:hover .ant-checkbox-inner {
+                    border-color: rgba(255, 255, 255, 0.25) !important;
+                }
+            }
         }
 
         .comment-submit-row {
@@ -70,37 +165,38 @@
                 flex-shrink: 0 !important;
                 background: transparent !important;
                 background-color: transparent !important;
-                border: 1px solid rgba(255, 140, 0, 0.5) !important;
-                color: #ff8c00 !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                color: rgba(255, 255, 255, 0.8) !important;
                 font-weight: 500 !important;
+                border-radius: 8px !important;
 
                 svg {
-                    color: #ff8c00 !important;
-                    stroke: #ff8c00 !important;
+                    color: rgba(255, 255, 255, 0.8) !important;
+                    stroke: rgba(255, 255, 255, 0.8) !important;
                 }
 
                 &:hover {
-                    background: rgba(255, 140, 0, 0.1) !important;
-                    background-color: rgba(255, 140, 0, 0.1) !important;
-                    border-color: #ff8c00 !important;
-                    color: #ff8c00 !important;
+                    background: rgba(255, 255, 255, 0.05) !important;
+                    background-color: rgba(255, 255, 255, 0.05) !important;
+                    border-color: rgba(255, 255, 255, 0.3) !important;
+                    color: rgba(255, 255, 255, 0.9) !important;
 
                     svg {
-                        color: #ff8c00 !important;
-                        stroke: #ff8c00 !important;
+                        color: rgba(255, 255, 255, 0.9) !important;
+                        stroke: rgba(255, 255, 255, 0.9) !important;
                     }
                 }
 
                 &:active,
                 &:focus {
-                    background: rgba(255, 140, 0, 0.15) !important;
-                    background-color: rgba(255, 140, 0, 0.15) !important;
-                    border-color: #ff8c00 !important;
-                    color: #ff8c00 !important;
+                    background: rgba(255, 255, 255, 0.08) !important;
+                    background-color: rgba(255, 255, 255, 0.08) !important;
+                    border-color: rgba(255, 255, 255, 0.3) !important;
+                    color: rgba(255, 255, 255, 0.9) !important;
 
                     svg {
-                        color: #ff8c00 !important;
-                        stroke: #ff8c00 !important;
+                        color: rgba(255, 255, 255, 0.9) !important;
+                        stroke: rgba(255, 255, 255, 0.9) !important;
                     }
                 }
             }
@@ -276,6 +372,179 @@
             // Button không có span (dislike)
             &:not(.like-btn):not(.reply-btn):not(.more-btn) {
                 padding: 0.4rem 0.55rem !important;
+            }
+        }
+    }
+
+    // More Menu Dropdown
+    .more-menu-wrapper {
+        position: relative !important;
+        margin-left: auto !important;
+
+        .more-menu {
+            position: absolute !important;
+            top: calc(100% + 0.5rem) !important;
+            right: 0 !important;
+            background: #1a2539 !important;
+            border: 1px solid rgba(255, 140, 0, 0.2) !important;
+            border-radius: 8px !important;
+            padding: 0.5rem 0 !important;
+            min-width: 120px !important;
+            z-index: 100 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+
+            .menu-item {
+                width: 100% !important;
+                background: transparent !important;
+                border: none !important;
+                color: rgba(255, 255, 255, 0.8) !important;
+                padding: 0.6rem 1rem !important;
+                text-align: left !important;
+                font-size: 0.85rem !important;
+                cursor: pointer !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 0.5rem !important;
+                transition: all 0.2s ease !important;
+
+                svg {
+                    width: 16px !important;
+                    height: 16px !important;
+                }
+
+                &:hover {
+                    background: rgba(255, 140, 0, 0.1) !important;
+                    color: #ff8c00 !important;
+                }
+            }
+        }
+    }
+
+    // Reply Form
+    .reply-form {
+        margin-top: 1rem !important;
+        padding-left: 0 !important;
+        border-left: 2px solid rgba(255, 255, 255, 0.1) !important;
+        padding-left: 1rem !important;
+
+        .reply-input {
+            .input-content {
+
+                .comment-textarea,
+                textarea.ant-input,
+                .ant-input-textarea-show-count textarea {
+                    background: #0f1824 !important;
+                    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                    border-radius: 16px !important;
+
+                    &:hover {
+                        border-color: rgba(255, 255, 255, 0.15) !important;
+                        background: #0f1824 !important;
+                    }
+
+                    &:focus {
+                        border-color: rgba(255, 255, 255, 0.2) !important;
+                        background: #0f1824 !important;
+                        box-shadow: none !important;
+                        outline: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Toggle Replies Button
+    .toggle-replies-btn {
+        margin-top: 0.75rem !important;
+        margin-bottom: 0 !important;
+        padding: 0.4rem 0.75rem !important;
+        background: transparent !important;
+        border: none !important;
+        color: rgba(255, 140, 0, 0.8) !important;
+        font-size: 0.85rem !important;
+        font-weight: 500 !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        transition: all 0.2s ease !important;
+
+        svg {
+            width: 14px !important;
+            height: 14px !important;
+        }
+
+        &:hover {
+            color: #ff8c00 !important;
+            background: rgba(255, 140, 0, 0.05) !important;
+            border-radius: 4px !important;
+        }
+    }
+
+    // Replies List - Thụt vào bên trái
+    .replies-list {
+        margin-top: 0.75rem !important;
+        margin-left: 3rem !important; // Thụt vào tương ứng với avatar + gap
+        padding-left: 1rem !important;
+        border-left: 2px solid rgba(255, 255, 255, 0.05) !important;
+
+        .comment-item {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+
+            &:first-child {
+                padding-top: 0 !important;
+            }
+
+            &:last-child {
+                border-bottom: none !important;
+                padding-bottom: 0 !important;
+            }
+
+            // Replies không cần thụt thêm nữa
+            .replies-list {
+                margin-left: 0 !important;
+            }
+
+            // Toggle button trong replies không hiển thị
+            .toggle-replies-btn {
+                display: none !important;
+            }
+        }
+    }
+
+    // Hidden Comment State
+    .comment-item.comment-hidden {
+        opacity: 0.4 !important;
+        filter: blur(2px) !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+
+        &:hover {
+            opacity: 0.6 !important;
+        }
+
+        .comment-content {
+            position: relative !important;
+
+            .hidden-overlay {
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                background: rgba(26, 37, 57, 0.95) !important;
+                padding: 0.75rem 1.5rem !important;
+                border-radius: 8px !important;
+                border: 1px solid rgba(255, 140, 0, 0.3) !important;
+                z-index: 10 !important;
+                white-space: nowrap !important;
+
+                span {
+                    color: #ff8c00 !important;
+                    font-size: 0.85rem !important;
+                    font-weight: 500 !important;
+                }
             }
         }
     }
