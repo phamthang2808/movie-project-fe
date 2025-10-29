@@ -127,3 +127,4 @@ Các biến màu:
 - Primary: `#ff8c00`
 - Background: `#0b1220`, `#151f30`
 - Text: `#ffffff`, `#9ca3af`
+
