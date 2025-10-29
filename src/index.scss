@@ -15,9 +15,14 @@ $text-gray-light: #D1D5DB;
   box-sizing: border-box;
 }
 
-html,
+html {
+  height: 100%;
+}
+
 #root {
   height: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 body {
@@ -26,9 +31,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $bg-dark;
+  background-color: #0a0e14;
+  background-image: url('./assets/images/footer-icon.svg');
+  background-size: 120px 120px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center;
   color: $text-white;
   height: 100%;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg,
+        rgba(11, 18, 24, 0.92) 0%,
+        rgba(17, 24, 39, 0.88) 50%,
+        rgba(11, 18, 24, 0.92) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 .btn-primary {

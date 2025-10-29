@@ -111,8 +111,23 @@ const Header = () => {
 
   useEffect(() => {
     // Check localStorage for token
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
+    const checkLoginStatus = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    };
+
+    checkLoginStatus();
+
+    // Listen for storage changes (when logout happens)
+    window.addEventListener("storage", checkLoginStatus);
+
+    // Also check periodically in case of same-tab logout
+    const interval = setInterval(checkLoginStatus, 1000);
+
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+      clearInterval(interval);
+    };
   }, []);
 
   useEffect(() => {

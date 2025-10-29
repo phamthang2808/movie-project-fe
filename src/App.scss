@@ -3,26 +3,11 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  z-index: 1;
 }
 
 .main-content {
   flex-grow: 1;
   position: relative;
-
-  &::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: url('./assets/images/footer-icon.svg');
-    background-size: 80px 80px;
-    background-repeat: repeat;
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  >* {
-    position: relative;
-    z-index: 1;
-  }
+  z-index: 1;
 }

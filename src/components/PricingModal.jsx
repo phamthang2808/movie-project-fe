@@ -18,7 +18,7 @@ const pricingPlans = [
       "Chat không cần chờ",
       "Chat sử dụng stickers và Gifs",
       "Tải lên ảnh đại diện của bạn",
-      "Tên được gán nhãn ROX",
+      "Tên được gán nhãn VIP",
     ],
   },
   {
@@ -34,7 +34,7 @@ const pricingPlans = [
       "Chat không cần chờ",
       "Chat sử dụng stickers và Gifs",
       "Tải lên ảnh đại diện của bạn",
-      "Tên được gán nhãn ROX",
+      "Tên được gán nhãn VIP",
     ],
   },
   {
@@ -49,7 +49,7 @@ const pricingPlans = [
       "Chat không cần chờ",
       "Chat sử dụng stickers và Gifs",
       "Tải lên ảnh đại diện của bạn",
-      "Tên được gán nhãn ROX",
+      "Tên được gán nhãn VIP",
     ],
   },
 ];
@@ -123,7 +123,7 @@ const PricingModal = ({ isOpen, onClose, user }) => {
         </div>
 
         {/* Title */}
-        <h1 className="pricing-title">Nâng cấp tài khoản RoX ngay bây giờ</h1>
+        <h1 className="pricing-title">Nâng cấp tài khoản ngay bây giờ</h1>
 
         {/* Pricing Cards */}
         <div className="pricing-cards">

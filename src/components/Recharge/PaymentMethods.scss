@@ -30,6 +30,11 @@
         border-color: rgba(255, 165, 0, 0.5);
         transform: translateY(-4px);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+
+        .method-icon {
+            background: rgba(255, 165, 0, 0.1);
+            transform: scale(1.05);
+        }
     }
 
     &.selected {
@@ -53,19 +58,43 @@
     }
 
     &.disabled {
-        opacity: 0.5;
+        opacity: 0.6;
         cursor: not-allowed;
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
 
         .method-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.5);
             cursor: not-allowed;
+            border-color: rgba(255, 255, 255, 0.1);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.08);
+            }
         }
     }
 
     .method-icon {
-        width: 64px;
-        height: 64px;
+        width: 80px;
+        height: 80px;
         background: rgba(255, 255, 255, 0.05);
         border-radius: 16px;
         display: flex;
@@ -76,9 +105,10 @@
         transition: all 0.3s ease;
 
         .payment-icon-img {
-            width: 48px;
-            height: 48px;
+            width: 56px;
+            height: 56px;
             object-fit: contain;
+            transition: transform 0.3s ease;
         }
     }
 
@@ -105,10 +135,18 @@
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
 
         &:hover:not(:disabled) {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 165, 0, 0.15);
             border-color: $primary-color;
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(255, 165, 0, 0.2);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.98);
         }
 
         &:disabled {

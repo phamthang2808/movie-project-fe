@@ -1,0 +1,572 @@
+@use '../index.scss'as *;
+@use 'sass:color';
+
+.account-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0b1218 0%, #1a2332 100%);
+    padding: 2rem 1rem;
+    padding-top: 6rem;
+}
+
+.account-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.account-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #ff8c00 0%, #ff6b00 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        color: $text-gray;
+        font-size: 1.1rem;
+    }
+}
+
+.account-content {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.account-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 6rem;
+}
+
+.profile-card {
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 107, 0, 0.05) 100%);
+    border: 1px solid rgba(255, 140, 0, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.avatar-section {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #ff8c00;
+    box-shadow: 0 8px 24px rgba(255, 140, 0, 0.3);
+}
+
+.avatar-upload-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff8c00 0%, #ff6b00 100%);
+    border: 3px solid #1a2332;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.5);
+    }
+
+    svg {
+        color: white;
+    }
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.profile-email {
+    color: $text-gray;
+    margin-bottom: 1.5rem;
+}
+
+.balance-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.balance-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff8c00 0%, #ff6b00 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+
+    svg {
+        color: white;
+    }
+}
+
+.balance-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: center;
+
+    .balance-label {
+        color: $text-gray;
+        font-size: 0.875rem;
+    }
+
+    .balance-amount {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ff8c00;
+    }
+}
+
+.recharge-btn {
+    background: linear-gradient(135deg, #ff8c00 0%, #ff6b00 100%);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(255, 140, 0, 0.3);
+    }
+}
+
+.quick-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 140, 0, 0.3);
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+        border-radius: 10px;
+        background: rgba(255, 140, 0, 0.1);
+        color: #ff8c00;
+    }
+
+    .stat-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .stat-label {
+            color: $text-gray;
+            font-size: 0.875rem;
+        }
+
+        .stat-value {
+            color: white;
+            font-weight: 600;
+        }
+    }
+}
+
+.account-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.info-section,
+.security-section,
+.danger-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+    }
+}
+
+.edit-btn,
+.save-btn,
+.cancel-btn,
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #ff8c00 0%, #ff6b00 100%);
+    color: white;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+    }
+}
+
+.edit-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+}
+
+.cancel-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.info-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $text-gray;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    svg {
+        color: #ff8c00;
+    }
+}
+
+.info-value {
+    color: white;
+    font-size: 1rem;
+    padding: 0.875rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.info-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 140, 0, 0.3);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s;
+
+    &:focus {
+        outline: none;
+        border-color: #ff8c00;
+        box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+    }
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+.security-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.security-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 140, 0, 0.2);
+    }
+}
+
+.security-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    svg {
+        color: #ff8c00;
+    }
+
+    .security-content {
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        p {
+            font-size: 0.875rem;
+            color: $text-gray;
+        }
+    }
+}
+
+.action-btn {
+    background: rgba(255, 140, 0, 0.1);
+    color: #ff8c00;
+    border: 1px solid rgba(255, 140, 0, 0.3);
+
+    &:hover {
+        background: rgba(255, 140, 0, 0.2);
+        border-color: #ff8c00;
+    }
+}
+
+.verified-badge {
+    padding: 0.5rem 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.danger-section {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.danger-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.logout-btn,
+.delete-account-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn {
+    background: rgba(255, 140, 0, 0.1);
+    color: #ff8c00;
+    border: 1px solid rgba(255, 140, 0, 0.3);
+
+    &:hover {
+        background: rgba(255, 140, 0, 0.2);
+        border-color: #ff8c00;
+        transform: translateY(-2px);
+    }
+}
+
+.delete-account-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+
+    &:hover {
+        background: rgba(239, 68, 68, 0.2);
+        border-color: #ef4444;
+        transform: translateY(-2px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .account-content {
+        grid-template-columns: 300px 1fr;
+        gap: 1.5rem;
+    }
+
+    .profile-card {
+        padding: 1.5rem;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .account-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .account-sidebar {
+        position: static;
+        grid-row: 1;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .account-page {
+        padding: 1rem 0.5rem;
+        padding-top: 5rem;
+    }
+
+    .account-header {
+        margin-bottom: 2rem;
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+    }
+
+    .profile-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+
+        h3 {
+            font-size: 1.25rem;
+        }
+    }
+
+    .edit-actions {
+        width: 100%;
+
+        button {
+            flex: 1;
+        }
+    }
+
+    .info-section,
+    .security-section,
+    .danger-section {
+        padding: 1.5rem;
+    }
+
+    .danger-actions {
+        flex-direction: column;
+
+        button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .account-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+    }
+
+    .balance-amount {
+        font-size: 1.25rem !important;
+    }
+
+    .info-grid {
+        gap: 1rem;
+    }
+}
