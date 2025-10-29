@@ -1,0 +1,205 @@
+@use '../../index.scss'as *;
+
+.pagination-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding: 2rem 0;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover:not(.disabled) {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #ff8c00;
+        color: #ff8c00;
+        transform: translateY(-1px);
+    }
+
+    &:active:not(.disabled) {
+        transform: translateY(0);
+    }
+
+    &.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .btn-text {
+        display: inline;
+    }
+}
+
+.first-btn,
+.last-btn {
+    min-width: 40px;
+    padding: 0;
+}
+
+.pagination-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.pagination-number {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 140, 0, 0.5);
+        color: #ff8c00;
+    }
+
+    &.active {
+        background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+        border-color: transparent;
+        color: white;
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+        font-weight: 600;
+        pointer-events: none;
+    }
+}
+
+.pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.pagination-info {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+
+    .current {
+        color: #ff8c00;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .pagination-container {
+        margin-top: 2rem;
+        padding: 1.5rem 0;
+    }
+
+    .pagination {
+        gap: 0.4rem;
+    }
+
+    .pagination-btn {
+        min-width: 36px;
+        height: 36px;
+        padding: 0 0.6rem;
+        font-size: 0.8125rem;
+
+        .btn-text {
+            display: none;
+        }
+    }
+
+    .first-btn,
+    .last-btn {
+        display: none;
+    }
+
+    .pagination-numbers {
+        gap: 0.3rem;
+    }
+
+    .pagination-number {
+        min-width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+
+    .pagination-ellipsis {
+        min-width: 30px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+
+    .pagination-info {
+        font-size: 0.8125rem;
+
+        .current {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination {
+        gap: 0.3rem;
+    }
+
+    .pagination-btn {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 0.5rem;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .pagination-numbers {
+        gap: 0.25rem;
+    }
+
+    .pagination-number {
+        min-width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .pagination-ellipsis {
+        min-width: 24px;
+        height: 32px;
+    }
+}

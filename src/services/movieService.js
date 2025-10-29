@@ -1,4 +1,4 @@
-import instance from "./api.config";
+import axiosInstance from "./api/config";
 
 // ==========================================
 // MOVIES API - Lấy thông tin phim từ Backend
@@ -11,7 +11,7 @@ import instance from "./api.config";
  */
 export const fetchMoviesAPI = (params = {}) => {
     const URL = "/movies";
-    return instance.get(URL, {
+    return axiosInstance.get(URL, {
         params
     });
 };
@@ -21,7 +21,7 @@ export const fetchMoviesAPI = (params = {}) => {
  */
 export const fetchMovieByIdAPI = (movieId) => {
     const URL = `/movies/${movieId}`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 /**
@@ -29,7 +29,7 @@ export const fetchMovieByIdAPI = (movieId) => {
  */
 export const searchMoviesAPI = (query, page = 1, limit = 20) => {
     const URL = "/movies/search";
-    return instance.get(URL, {
+    return axiosInstance.get(URL, {
         params: {
             query,
             page,
@@ -43,7 +43,7 @@ export const searchMoviesAPI = (query, page = 1, limit = 20) => {
  */
 export const fetchGenresAPI = () => {
     const URL = "/genres";
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 /**
@@ -51,7 +51,7 @@ export const fetchGenresAPI = () => {
  */
 export const fetchMoviesByGenreAPI = (genreId, page = 1, limit = 20) => {
     const URL = `/movies/genre/${genreId}`;
-    return instance.get(URL, {
+    return axiosInstance.get(URL, {
         params: {
             page,
             limit
@@ -64,7 +64,7 @@ export const fetchMoviesByGenreAPI = (genreId, page = 1, limit = 20) => {
  */
 export const fetchMovieVideosAPI = (movieId) => {
     const URL = `/movies/${movieId}/videos`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 /**
@@ -72,7 +72,7 @@ export const fetchMovieVideosAPI = (movieId) => {
  */
 export const fetchMovieCastAPI = (movieId) => {
     const URL = `/movies/${movieId}/cast`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 /**
@@ -80,7 +80,7 @@ export const fetchMovieCastAPI = (movieId) => {
  */
 export const fetchSimilarMoviesAPI = (movieId) => {
     const URL = `/movies/${movieId}/similar`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 /**
@@ -88,7 +88,7 @@ export const fetchSimilarMoviesAPI = (movieId) => {
  */
 export const fetchRecommendedMoviesAPI = (movieId) => {
     const URL = `/movies/${movieId}/recommendations`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 // ==========================================
@@ -103,7 +103,7 @@ export const registerUserAPI = (fullName, email, password, phone) => {
         password,
         phone
     };
-    return instance.post(URL, data);
+    return axiosInstance.post(URL, data);
 };
 
 export const loginUserAPI = (email, password) => {
@@ -112,29 +112,29 @@ export const loginUserAPI = (email, password) => {
         username: email,
         password
     };
-    return instance.post(URL, data);
+    return axiosInstance.post(URL, data);
 };
 
 export const getAccountAPI = () => {
     const URL = "/auth/account";
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 export const logOutAPI = () => {
     const URL = "/auth/logout";
-    return instance.post(URL);
+    return axiosInstance.post(URL);
 };
 
 export const forgotPasswordAPI = (email) => {
     const URL = "/auth/forgot-password";
-    return instance.post(URL, {
+    return axiosInstance.post(URL, {
         email
     });
 };
 
 export const resetPasswordAPI = (token, newPassword) => {
     const URL = "/auth/reset-password";
-    return instance.post(URL, {
+    return axiosInstance.post(URL, {
         token,
         newPassword
     });
@@ -146,7 +146,7 @@ export const resetPasswordAPI = (token, newPassword) => {
 
 export const getUserProfileAPI = () => {
     const URL = "/user/profile";
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 export const updateUserProfileAPI = (userId, fullName, phone, avatar) => {
@@ -157,7 +157,7 @@ export const updateUserProfileAPI = (userId, fullName, phone, avatar) => {
         phone,
         avatar
     };
-    return instance.put(URL, data);
+    return axiosInstance.put(URL, data);
 };
 
 export const changePasswordAPI = (oldPassword, newPassword) => {
@@ -166,7 +166,7 @@ export const changePasswordAPI = (oldPassword, newPassword) => {
         oldPassword,
         newPassword
     };
-    return instance.post(URL, data);
+    return axiosInstance.post(URL, data);
 };
 
 // ==========================================
@@ -185,7 +185,7 @@ export const handleUploadFile = (file, folder) => {
     const bodyFormData = new FormData();
     bodyFormData.append("fileImg", file);
 
-    return instance.post(URL, bodyFormData, config);
+    return axiosInstance.post(URL, bodyFormData, config);
 };
 
 // ==========================================
@@ -194,7 +194,7 @@ export const handleUploadFile = (file, folder) => {
 
 export const fetchMovieCommentsAPI = (movieId, current = 1, pageSize = 10) => {
     const URL = `/comments/${movieId}?current=${current}&pageSize=${pageSize}`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 export const createCommentAPI = (movieId, content, isSpoiler = false) => {
@@ -203,7 +203,7 @@ export const createCommentAPI = (movieId, content, isSpoiler = false) => {
         content,
         isSpoiler
     };
-    return instance.post(URL, data);
+    return axiosInstance.post(URL, data);
 };
 
 export const replyToCommentAPI = (commentId, content) => {
@@ -211,27 +211,27 @@ export const replyToCommentAPI = (commentId, content) => {
     const data = {
         content
     };
-    return instance.post(URL, data);
+    return axiosInstance.post(URL, data);
 };
 
 export const likeCommentAPI = (commentId) => {
     const URL = `/comments/${commentId}/like`;
-    return instance.post(URL);
+    return axiosInstance.post(URL);
 };
 
 export const dislikeCommentAPI = (commentId) => {
     const URL = `/comments/${commentId}/dislike`;
-    return instance.post(URL);
+    return axiosInstance.post(URL);
 };
 
 export const deleteCommentAPI = (commentId) => {
     const URL = `/comments/${commentId}`;
-    return instance.delete(URL);
+    return axiosInstance.delete(URL);
 };
 
 export const hideCommentAPI = (commentId) => {
     const URL = `/comments/${commentId}/hide`;
-    return instance.post(URL);
+    return axiosInstance.post(URL);
 };
 
 export const reportCommentAPI = (commentId, reason) => {
@@ -239,7 +239,7 @@ export const reportCommentAPI = (commentId, reason) => {
     const data = {
         reason
     };
-    return instance.post(URL, data);
+    return axiosInstance.post(URL, data);
 };
 
 // ==========================================
@@ -248,7 +248,7 @@ export const reportCommentAPI = (commentId, reason) => {
 
 export const getWatchlistAPI = (current = 1, pageSize = 10) => {
     const URL = `/watchlist?current=${current}&pageSize=${pageSize}`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 export const addToWatchlistAPI = (movieId, movieData) => {
@@ -257,17 +257,17 @@ export const addToWatchlistAPI = (movieId, movieData) => {
         movieId,
         ...movieData
     };
-    return instance.post(URL, data);
+    return axiosInstance.post(URL, data);
 };
 
 export const removeFromWatchlistAPI = (movieId) => {
     const URL = `/watchlist/${movieId}`;
-    return instance.delete(URL);
+    return axiosInstance.delete(URL);
 };
 
 export const checkInWatchlistAPI = (movieId) => {
     const URL = `/watchlist/check/${movieId}`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 // ==========================================
@@ -276,7 +276,7 @@ export const checkInWatchlistAPI = (movieId) => {
 
 export const getFavoritesAPI = (current = 1, pageSize = 10) => {
     const URL = `/favorites?current=${current}&pageSize=${pageSize}`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 export const addToFavoritesAPI = (movieId, movieData) => {
@@ -285,12 +285,12 @@ export const addToFavoritesAPI = (movieId, movieData) => {
         movieId,
         ...movieData
     };
-    return instance.post(URL, data);
+    return axiosInstance.post(URL, data);
 };
 
 export const removeFromFavoritesAPI = (movieId) => {
     const URL = `/favorites/${movieId}`;
-    return instance.delete(URL);
+    return axiosInstance.delete(URL);
 };
 
 // ==========================================
@@ -299,7 +299,7 @@ export const removeFromFavoritesAPI = (movieId) => {
 
 export const getWatchHistoryAPI = (current = 1, pageSize = 10) => {
     const URL = `/history?current=${current}&pageSize=${pageSize}`;
-    return instance.get(URL);
+    return axiosInstance.get(URL);
 };
 
 export const addToWatchHistoryAPI = (movieId, movieData) => {
@@ -308,10 +308,10 @@ export const addToWatchHistoryAPI = (movieId, movieData) => {
         movieId,
         ...movieData
     };
-    return instance.post(URL, data);
+    return axiosInstance.post(URL, data);
 };
 
 export const clearWatchHistoryAPI = () => {
     const URL = "/history/clear";
-    return instance.delete(URL);
+    return axiosInstance.delete(URL);
 };

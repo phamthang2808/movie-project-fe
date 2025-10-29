@@ -1,0 +1,476 @@
+@use '../../index.scss'as *;
+
+// ==========================================
+// BACKDROP
+// ==========================================
+.pricing-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+// ==========================================
+// MODAL CONTAINER
+// ==========================================
+.pricing-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    background: linear-gradient(180deg, #1a1f2e 0%, #0f1419 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    z-index: 9999;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    animation: slideUp 0.3s ease;
+
+    /* Custom scrollbar */
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 140, 0, 0.5);
+        border-radius: 4px;
+
+        &:hover {
+            background: rgba(255, 140, 0, 0.7);
+        }
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+// ==========================================
+// CLOSE BUTTON
+// ==========================================
+.pricing-modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+
+    &:hover {
+        background: rgba(255, 68, 68, 0.2);
+        color: #ff4444;
+        transform: rotate(90deg);
+    }
+}
+
+// ==========================================
+// HEADER - USER INFO
+// ==========================================
+.pricing-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-avatar-large {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 140, 0, 0.3);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .premium-badge-large {
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        width: 28px;
+        height: 28px;
+        background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: white;
+        border: 3px solid #1a1f2e;
+
+        &.vip-gold {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.6);
+            animation: goldPulse 2s ease-in-out infinite;
+        }
+    }
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.username-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.username-large {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.infinity-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+
+    &.vip-gold {
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        box-shadow: 0 4px 16px rgba(255, 215, 0, 0.6);
+        animation: goldPulse 2s ease-in-out infinite;
+    }
+}
+
+@keyframes goldPulse {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(255, 215, 0, 0.6);
+    }
+    50% {
+        box-shadow: 0 4px 24px rgba(255, 215, 0, 0.9);
+    }
+}
+
+.user-status {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+// Balance info
+.balance-info-large {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 140, 0, 0.2);
+
+    svg {
+        color: #ffa500;
+    }
+
+    .balance-label {
+        font-size: 0.9375rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .balance-value {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    .recharge-btn-small {
+        padding: 0.5rem 1rem;
+        background: transparent;
+        border: 2px solid #ffa500;
+        border-radius: 8px;
+        color: #ffa500;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 165, 0, 0.1);
+            border-color: #ff8c00;
+        }
+    }
+}
+
+// ==========================================
+// TITLE
+// ==========================================
+.pricing-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin: 0 0 2.5rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #ffa500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// ==========================================
+// PRICING CARDS
+// ==========================================
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.pricing-card {
+    background: linear-gradient(135deg, #2a3341 0%, #1e2530 100%);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 140, 0, 0.5);
+        box-shadow: 0 12px 32px rgba(255, 140, 0, 0.2);
+    }
+
+    &.popular {
+        border-color: rgba(255, 140, 0, 0.6);
+        border-top-width: 4px;
+        border-top-color: #ffa500;
+        background: linear-gradient(135deg, #2a2410 0%, #1a1608 100%);
+        position: relative;
+        box-shadow: 0 8px 32px rgba(255, 140, 0, 0.15);
+
+        &:hover {
+            border-color: #ffa500;
+            border-top-color: #ff8c00;
+            box-shadow: 0 12px 40px rgba(255, 140, 0, 0.3);
+            transform: translateY(-8px);
+        }
+    }
+}
+
+// Plan duration
+.plan-duration {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 1.5rem 0;
+}
+
+// Plan price
+.plan-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+
+    .price-original {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: line-through;
+    }
+
+    .price-current {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #ffa500;
+    }
+
+    .price-currency {
+        color: #ffa500;
+    }
+
+    .discount-badge {
+        padding: 0.25rem 0.75rem;
+        background: rgba(255, 0, 0, 0.2);
+        border: 1px solid rgba(255, 0, 0, 0.4);
+        border-radius: 6px;
+        color: #ff6666;
+        font-size: 0.8125rem;
+        font-weight: 600;
+    }
+}
+
+// Features list
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    flex: 1;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+
+    .check-icon {
+        flex-shrink: 0;
+        color: #4ade80;
+        margin-top: 2px;
+    }
+}
+
+// Select button
+.plan-select-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    &:hover {
+        background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
+        border-color: transparent;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 140, 0, 0.4);
+    }
+}
+
+// ==========================================
+// RESPONSIVE
+// ==========================================
+@media (max-width: 968px) {
+    .pricing-cards {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .pricing-modal {
+        padding: 1.5rem;
+    }
+
+    .pricing-modal-header {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .balance-info-large {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .pricing-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .user-avatar-large {
+        width: 60px;
+        height: 60px;
+    }
+
+    .username-large {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .pricing-modal {
+        width: 95%;
+        padding: 1.25rem;
+    }
+
+    .pricing-title {
+        font-size: 1.5rem;
+    }
+
+    .plan-duration {
+        font-size: 1.5rem;
+    }
+
+    .plan-price .price-current {
+        font-size: 1.75rem;
+    }
+
+    .pricing-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .user-info-section {
+        gap: 0.75rem;
+    }
+
+    .user-avatar-large {
+        width: 50px;
+        height: 50px;
+    }
+
+    .username-large {
+        font-size: 1.125rem;
+    }
+}
