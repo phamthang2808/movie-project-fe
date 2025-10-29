@@ -1,6 +1,8 @@
+import { ConfigProvider, theme } from "antd";
 import React from "react";
 import {
   MovieActions,
+  MovieComments,
   MovieRating,
   MovieSidebar,
   MovieTabs,
@@ -35,38 +37,54 @@ const hardcodedMovie = {
 
 const MovieDetail = () => {
   return (
-    <div className="movie-detail-page">
-      {/* 1. BACKDROP / BANNER PHIM */}
-      <div
-        className="movie-backdrop"
-        style={{
-          "--backdrop-url": `url(${hardcodedMovie.backdropUrl})`,
-        }}
-      ></div>
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm,
+        token: {
+          colorPrimary: "#ff8c00",
+          colorBgContainer: "transparent",
+          colorBgElevated: "rgba(255, 255, 255, 0.05)",
+          colorText: "rgba(255, 255, 255, 0.9)",
+          colorTextSecondary: "rgba(255, 255, 255, 0.6)",
+          colorBorder: "rgba(255, 255, 255, 0.1)",
+          borderRadius: 8,
+        },
+      }}
+    >
+      <div className="movie-detail-page">
+        {/* 1. BACKDROP / BANNER PHIM */}
+        <div
+          className="movie-backdrop"
+          style={{
+            "--backdrop-url": `url(${hardcodedMovie.backdropUrl})`,
+          }}
+        ></div>
 
-      {/* 2. NỘI DUNG CHÍNH */}
-      <div className="movie-content-container">
-        <div className="movie-grid-layout">
-          {/* CỘT BÊN TRÁI (SIDEBAR) */}
-          <MovieSidebar movie={hardcodedMovie} />
+        {/* 2. NỘI DUNG CHÍNH */}
+        <div className="movie-content-container">
+          <div className="movie-grid-layout">
+            {/* CỘT BÊN TRÁI (SIDEBAR) */}
+            <MovieSidebar movie={hardcodedMovie} />
 
-          {/* NỘI DUNG CHÍNH (GIỮA) */}
-          <main className="movie-main-content">
-            <MovieActions />
-            <MovieRating
-              ratingScore={hardcodedMovie.ratingScore}
-              ratingCount={hardcodedMovie.ratingCount}
-            />
-            <MovieTabs movie={hardcodedMovie} />
-          </main>
+            {/* NỘI DUNG CHÍNH (GIỮA) */}
+            <main className="movie-main-content">
+              <MovieActions />
+              <MovieRating
+                ratingScore={hardcodedMovie.ratingScore}
+                ratingCount={hardcodedMovie.ratingCount}
+              />
+              <MovieTabs movie={hardcodedMovie} />
+              <MovieComments commentCount={52} />
+            </main>
 
-          {/* SIDEBAR PHẢI */}
-          <aside className="movie-sidebar-right">
-            <TopMoviesWeek />
-          </aside>
+            {/* SIDEBAR PHẢI */}
+            <aside className="movie-sidebar-right">
+              <TopMoviesWeek />
+            </aside>
+          </div>
         </div>
       </div>
-    </div>
+    </ConfigProvider>
   );
 };
 

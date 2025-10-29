@@ -377,6 +377,410 @@ $btn-dark: rgba(255, 255, 255, 0.1);
       }
     }
 
+    // ==========================
+    // Comment Section
+    // ==========================
+    .comments-section {
+      margin-top: 3rem;
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        .section-title {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: $text-white;
+
+          svg {
+            color: $primary-color;
+            width: 20px;
+            height: 20px;
+          }
+
+          .comment-count {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: normal;
+          }
+        }
+      }
+
+      .comments-tab {
+        .comment-input-area {
+          background: transparent;
+          border: none;
+          margin-bottom: 2.5rem;
+          padding: 0;
+
+          .input-header {
+            background: transparent;
+            padding: 0 0 1rem 0;
+            border-bottom: none;
+
+            p {
+              color: rgba(255, 255, 255, 0.5);
+              font-size: 0.9rem;
+              margin: 0;
+
+              a {
+                color: $primary-color;
+                text-decoration: none;
+                font-weight: 500;
+
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+
+          .input-content {
+            padding: 0;
+
+            // Ant Design TextArea custom styles
+            .ant-input,
+            textarea.ant-input {
+              background: transparent !important;
+              border: 1px solid rgba(255, 255, 255, 0.1) !important;
+              border-radius: 8px !important;
+              color: rgba(255, 255, 255, 0.9) !important;
+              font-family: inherit;
+              font-size: 0.9rem;
+              line-height: 1.5;
+              margin-bottom: 1.25rem;
+              transition: all 0.2s ease;
+
+              &::placeholder {
+                color: rgba(255, 255, 255, 0.3) !important;
+              }
+
+              &:hover {
+                border-color: rgba(255, 255, 255, 0.2) !important;
+                background: rgba(255, 255, 255, 0.01) !important;
+              }
+
+              &:focus,
+              &.ant-input-focused {
+                border-color: $primary-color !important;
+                background: rgba(255, 255, 255, 0.02) !important;
+                box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.1) !important;
+              }
+            }
+
+            // Character count styling
+            .ant-input-data-count {
+              color: rgba(255, 255, 255, 0.4) !important;
+              font-size: 0.75rem;
+            }
+
+            .comment-textarea {
+              width: 100%;
+            }
+
+            .comment-submit-row {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              .comment-options {
+
+                // Ant Design Checkbox custom styles
+                .ant-checkbox-wrapper {
+                  color: rgba(255, 255, 255, 0.6) !important;
+                  font-size: 0.85rem;
+
+                  .ant-checkbox {
+                    .ant-checkbox-inner {
+                      background: transparent !important;
+                      border-color: rgba(255, 255, 255, 0.3) !important;
+                      border-radius: 3px;
+                    }
+
+                    &:hover .ant-checkbox-inner {
+                      border-color: $primary-color !important;
+                    }
+
+                    &.ant-checkbox-checked .ant-checkbox-inner {
+                      background-color: $primary-color !important;
+                      border-color: $primary-color !important;
+                    }
+                  }
+
+                  &:hover .ant-checkbox-inner {
+                    border-color: $primary-color !important;
+                  }
+                }
+              }
+
+              // Ant Design Button custom styles
+              .ant-btn-primary {
+                background: $primary-color !important;
+                border: none !important;
+                border-radius: 18px !important;
+                padding: 0.6rem 1.25rem !important;
+                height: auto !important;
+                font-weight: 600;
+                font-size: 0.85rem;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+                transition: all 0.2s ease;
+                color: white !important;
+
+                svg {
+                  width: 14px;
+                  height: 14px;
+                }
+
+                &:hover {
+                  background: color.adjust($primary-color, $lightness: 8%) !important;
+                  transform: translateY(-1px);
+                  color: white !important;
+                }
+
+                &:active {
+                  transform: translateY(0);
+                  background: $primary-color !important;
+                }
+
+                &:focus {
+                  background: $primary-color !important;
+                  color: white !important;
+                }
+
+                &:disabled {
+                  background: rgba(255, 140, 0, 0.4) !important;
+                  color: rgba(255, 255, 255, 0.5) !important;
+                }
+              }
+
+              .btn-submit-comment {
+                background: $primary-color;
+                color: white;
+                border: none;
+                border-radius: 18px;
+                padding: 0.6rem 1.25rem;
+                font-weight: 600;
+                font-size: 0.85rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+                transition: all 0.2s ease;
+
+                svg {
+                  width: 14px;
+                  height: 14px;
+                }
+
+                &:hover {
+                  background: color.adjust($primary-color, $lightness: 8%);
+                  transform: translateY(-1px);
+                }
+
+                &:active {
+                  transform: translateY(0);
+                }
+              }
+            }
+          }
+        }
+
+        .comment-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          margin-top: 2rem;
+
+          .comment-item {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 1.25rem 0;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
+            &:first-child {
+              padding-top: 0;
+            }
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            &:hover {
+              background: transparent;
+            }
+
+            display: flex;
+            gap: 0.85rem;
+
+            .comment-avatar {
+              flex-shrink: 0;
+
+              .avatar-image {
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                object-fit: cover;
+                background: $bg-light;
+                border: 2px solid rgba(255, 255, 255, 0.05);
+              }
+            }
+
+            .comment-body {
+              flex: 1;
+
+              .comment-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+
+                .user-info {
+                  display: flex;
+                  align-items: center;
+                  gap: 0.4rem;
+
+                  .comment-author {
+                    font-weight: 600;
+                    font-size: 0.85rem;
+                    color: rgba(255, 255, 255, 0.9);
+                  }
+
+                  .comment-badge {
+                    padding: 0.1rem 0.35rem;
+                    background: transparent;
+                    border: none;
+                    color: rgba(255, 215, 0, 0.9);
+                    font-size: 0.75rem;
+                    border-radius: 0;
+                    font-weight: 400;
+                    line-height: 1;
+
+                    &.infinity {
+                      background: transparent;
+                      border: none;
+                      color: #ffd700;
+                      font-size: 0.9rem;
+                      padding: 0;
+                    }
+
+                    &.vip {
+                      background: transparent;
+                      border: none;
+                      color: #ffd700;
+                      font-size: 0.85rem;
+                      padding: 0;
+                    }
+                  }
+                }
+
+                .comment-time {
+                  display: flex;
+                  align-items: center;
+                  gap: 0.3rem;
+                  font-size: 0.75rem;
+                  color: rgba(255, 255, 255, 0.35);
+
+                  svg {
+                    width: 12px;
+                    height: 12px;
+                    color: rgba(255, 255, 255, 0.35);
+                  }
+                }
+              }
+
+              .comment-content {
+                margin-bottom: 0.65rem;
+
+                .comment-text {
+                  color: rgba(255, 255, 255, 0.7);
+                  line-height: 1.5;
+                  font-size: 0.9rem;
+                  margin: 0;
+                }
+              }
+
+              .comment-actions {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding-top: 0.75rem;
+
+                .action-btn {
+                  background: transparent !important;
+                  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                  color: rgba(255, 255, 255, 0.5) !important;
+                  font-size: 0.8rem;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.35rem;
+                  padding: 0.4rem 0.7rem !important;
+                  border-radius: 14px;
+                  transition: all 0.2s ease;
+                  font-weight: 400;
+                  box-shadow: none !important;
+
+                  &:hover {
+                    background: rgba(255, 255, 255, 0.03) !important;
+                    border-color: rgba(255, 255, 255, 0.15) !important;
+                    color: rgba(255, 255, 255, 0.8) !important;
+                  }
+
+                  svg {
+                    width: 14px;
+                    height: 14px;
+                    flex-shrink: 0;
+                  }
+
+                  span {
+                    white-space: nowrap;
+                  }
+
+                  &.like-btn {
+                    &:hover {
+                      color: $primary-color !important;
+                      border-color: rgba(255, 140, 0, 0.25) !important;
+                      background: rgba(255, 140, 0, 0.05) !important;
+                    }
+                  }
+
+                  &.reply-btn {
+                    &:hover {
+                      color: #4a9eff !important;
+                      border-color: rgba(74, 158, 255, 0.25) !important;
+                      background: rgba(74, 158, 255, 0.05) !important;
+                    }
+                  }
+
+                  &.more-btn {
+                    padding: 0.4rem 0.55rem !important;
+                    margin-left: auto;
+
+                    &:hover {
+                      border-color: rgba(255, 255, 255, 0.2) !important;
+                    }
+                  }
+
+                  // Style cho button dislike (không có span)
+                  &:not(.like-btn):not(.reply-btn):not(.more-btn) {
+                    padding: 0.4rem 0.55rem !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -458,6 +862,63 @@ $btn-dark: rgba(255, 255, 255, 0.1);
     .tab-btn {
       font-size: 0.8rem;
       padding: 0 0.25rem 0.75rem;
+    }
+  }
+}
+
+// ==========================
+// GLOBAL OVERRIDE cho Ant Design trong comments
+// ==========================
+.movie-detail-page {
+  .comments-section {
+
+    // Force override Ant Design TextArea
+    .ant-input,
+    .ant-input-affix-wrapper,
+    textarea.ant-input,
+    .ant-input-textarea {
+      background: transparent !important;
+      background-color: transparent !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    // Force override Ant Design Button
+    .ant-btn,
+    .ant-btn-primary,
+    button.ant-btn {
+      background: #ff8c00 !important;
+      background-color: #ff8c00 !important;
+      border-color: #ff8c00 !important;
+      color: white !important;
+
+      &:hover,
+      &:focus {
+        background: #ffa533 !important;
+        background-color: #ffa533 !important;
+        border-color: #ffa533 !important;
+        color: white !important;
+      }
+    }
+
+    // Force override Comment Action Buttons
+    .comment-actions {
+
+      button,
+      .action-btn {
+        background: transparent !important;
+        background-color: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        color: rgba(255, 255, 255, 0.5) !important;
+        box-shadow: none !important;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.03) !important;
+          background-color: rgba(255, 255, 255, 0.03) !important;
+          border-color: rgba(255, 255, 255, 0.15) !important;
+          color: rgba(255, 255, 255, 0.8) !important;
+        }
+      }
     }
   }
 }

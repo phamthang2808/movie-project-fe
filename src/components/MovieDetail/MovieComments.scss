@@ -1,0 +1,282 @@
+// CSS override mạnh cho Comment section
+.comments-section {
+    margin-top: 3rem !important; // Phần bình luận xuống tý
+
+    // Thêm spacing cho tiêu đề "Bình luận"
+    .section-header {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .section-title {
+        margin-bottom: 0 !important;
+    }
+
+    // Comment Input Area
+    .comment-input-area {
+        margin-bottom: 2rem !important;
+
+        .input-content {
+            position: relative !important;
+        }
+
+        // Textarea wrapper để chứa count
+        .ant-input-textarea {
+            position: relative !important;
+
+            textarea {
+                border-radius: 12px !important;
+            }
+        }
+
+        // Textarea styling
+        .comment-textarea.ant-input {
+            border-radius: 12px !important;
+            padding: 12px !important;
+        }
+
+        // Wrapper cho textarea với counter  
+        .ant-input-textarea-show-count {
+            margin-bottom: 1rem !important;
+
+            &::after {
+                color: rgba(255, 255, 255, 0.3) !important;
+                font-size: 0.75rem !important;
+                margin-top: 0.5rem !important;
+            }
+        }
+
+        // Custom counter nếu có
+        .ant-input-data-count {
+            color: rgba(255, 255, 255, 0.3) !important;
+            font-size: 0.75rem !important;
+        }
+
+        .comment-submit-row {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin-top: 0.75rem !important; // Nút gửi cách trên tý
+            gap: 1.5rem !important;
+            padding: 0 0.5rem !important;
+
+            .comment-options {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+            }
+
+            .btn-submit-comment {
+                flex-shrink: 0 !important;
+                background: transparent !important;
+                background-color: transparent !important;
+                border: 1px solid rgba(255, 140, 0, 0.5) !important;
+                color: #ff8c00 !important;
+                font-weight: 500 !important;
+
+                svg {
+                    color: #ff8c00 !important;
+                    stroke: #ff8c00 !important;
+                }
+
+                &:hover {
+                    background: rgba(255, 140, 0, 0.1) !important;
+                    background-color: rgba(255, 140, 0, 0.1) !important;
+                    border-color: #ff8c00 !important;
+                    color: #ff8c00 !important;
+
+                    svg {
+                        color: #ff8c00 !important;
+                        stroke: #ff8c00 !important;
+                    }
+                }
+
+                &:active,
+                &:focus {
+                    background: rgba(255, 140, 0, 0.15) !important;
+                    background-color: rgba(255, 140, 0, 0.15) !important;
+                    border-color: #ff8c00 !important;
+                    color: #ff8c00 !important;
+
+                    svg {
+                        color: #ff8c00 !important;
+                        stroke: #ff8c00 !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Comment List
+    .comment-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        margin-top: 2rem !important;
+    }
+
+    // Comment Item
+    .comment-item {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 1rem !important;
+        padding: 1rem 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+
+        &:last-child {
+            border-bottom: none !important;
+        }
+
+        .comment-avatar {
+            flex-shrink: 0 !important;
+
+            .avatar-image {
+                width: 40px !important;
+                height: 40px !important;
+                border-radius: 50% !important;
+                object-fit: cover !important;
+            }
+        }
+
+        .comment-body {
+            flex: 1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0.5rem !important;
+        }
+
+        .comment-header {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 0.75rem !important;
+
+            .user-info {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 0.5rem !important;
+            }
+
+            .comment-author {
+                font-weight: 600 !important;
+                color: rgba(255, 255, 255, 0.9) !important;
+                font-size: 0.9rem !important;
+            }
+
+            .comment-badge {
+                background: transparent !important;
+                padding: 0.1rem 0.4rem !important;
+                border-radius: 8px !important;
+                font-size: 0.75rem !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .comment-time {
+                color: rgba(255, 255, 255, 0.4) !important;
+                font-size: 0.8rem !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 0.3rem !important;
+
+                svg {
+                    width: 14px !important;
+                    height: 14px !important;
+                }
+            }
+        }
+
+        .comment-content {
+            .comment-text {
+                color: rgba(255, 255, 255, 0.8) !important;
+                font-size: 0.9rem !important;
+                line-height: 1.6 !important;
+                margin: 0 !important;
+            }
+        }
+    }
+
+    // Comment Actions
+    .comment-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        padding-top: 0.75rem !important;
+
+        button.action-btn,
+        .action-btn {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: rgba(255, 255, 255, 0.5) !important;
+            box-shadow: none !important;
+            padding: 0.4rem 0.7rem !important;
+            border-radius: 14px !important;
+            font-size: 0.8rem !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 0.35rem !important;
+            transition: all 0.2s ease !important;
+            white-space: nowrap !important;
+            font-weight: 400 !important;
+
+            svg {
+                width: 14px !important;
+                height: 14px !important;
+                flex-shrink: 0 !important;
+            }
+
+            span {
+                white-space: nowrap !important;
+            }
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.03) !important;
+                background-color: rgba(255, 255, 255, 0.03) !important;
+                border-color: rgba(255, 255, 255, 0.15) !important;
+                color: rgba(255, 255, 255, 0.8) !important;
+                box-shadow: none !important;
+            }
+
+            &:focus,
+            &:active {
+                background: transparent !important;
+                background-color: transparent !important;
+                border-color: rgba(255, 255, 255, 0.08) !important;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+
+            &.like-btn {
+                &:hover {
+                    color: #ff8c00 !important;
+                    border-color: rgba(255, 140, 0, 0.25) !important;
+                    background: rgba(255, 140, 0, 0.05) !important;
+                }
+            }
+
+            &.reply-btn {
+                &:hover {
+                    color: #4a9eff !important;
+                    border-color: rgba(74, 158, 255, 0.25) !important;
+                    background: rgba(74, 158, 255, 0.05) !important;
+                }
+            }
+
+            &.more-btn {
+                padding: 0.4rem 0.55rem !important;
+                margin-left: auto !important;
+            }
+
+            // Button không có span (dislike)
+            &:not(.like-btn):not(.reply-btn):not(.more-btn) {
+                padding: 0.4rem 0.55rem !important;
+            }
+        }
+    }
+}

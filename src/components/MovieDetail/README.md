@@ -11,6 +11,9 @@ MovieDetail/
 ├── MovieActions.jsx      # Các nút hành động (Play, Yêu thích, Chia sẻ,...)
 ├── MovieRating.jsx       # Phần đánh giá phim
 ├── MovieTabs.jsx         # Tabs và nội dung tabs (Tập phim, Gallery,...)
+├── MovieComments.jsx     # Phần bình luận chính
+├── CommentInput.jsx      # Input để nhập bình luận
+├── CommentItem.jsx       # Từng item bình luận
 └── README.md            # File này
 ```
 
@@ -104,8 +107,60 @@ Hiển thị tabs và nội dung tương ứng.
 <MovieTabs movie={movieData} />
 ```
 
+### 5. MovieComments
+
+Hiển thị phần bình luận với input và danh sách comments.
+
+**Props:**
+
+- `commentCount` (number): Số lượng bình luận (mặc định: 52)
+
+**Ví dụ:**
+
+```jsx
+<MovieComments commentCount={120} />
+```
+
+### 6. CommentInput
+
+Component input để viết bình luận (được sử dụng bên trong MovieComments).
+
+**Props:** Không có
+
+### 7. CommentItem
+
+Component hiển thị từng bình luận (được sử dụng bên trong MovieComments).
+
+**Props:**
+
+- `comment` (object): Đối tượng bình luận
+  - `id`: ID bình luận
+  - `author`: Tên người bình luận
+  - `badge`: Badge của user (∞, 👑, v.v.)
+  - `badgeType`: Loại badge (infinity, vip)
+  - `avatar`: URL avatar
+  - `time`: Thời gian bình luận
+  - `text`: Nội dung bình luận
+
+**Ví dụ:**
+
+```jsx
+<CommentItem
+  comment={{
+    id: 1,
+    author: "User Name",
+    badge: "∞",
+    badgeType: "infinity",
+    avatar: "https://...",
+    time: "2 giờ trước",
+    text: "Phim hay quá!",
+  }}
+/>
+```
+
 ## Lưu ý
 
 - Tất cả components đều sử dụng class CSS từ `MovieDetail.scss`
 - State quản lý tabs được đặt trong `MovieTabs` component
-- Có thể mở rộng thêm các component khác như `MovieBackdrop`, `MovieComments`, v.v.
+- Dữ liệu comments mẫu được đặt trong `MovieComments.jsx`
+- Có thể mở rộng thêm các component khác như `MovieBackdrop`, v.v.

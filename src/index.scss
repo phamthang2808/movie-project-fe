@@ -122,3 +122,99 @@ body {
     padding: 0 0.5rem;
   }
 }
+
+// ================================================
+// ANT DESIGN OVERRIDE - PHẢI Ở CUỐI ĐỂ OVERRIDE
+// ================================================
+.movie-detail-page .comments-section {
+
+  // Override Ant Design Input/TextArea
+  .ant-input,
+  .ant-input-affix-wrapper,
+  textarea.ant-input,
+  .ant-input-textarea,
+  .ant-input-textarea-show-count::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 12px !important;
+  }
+
+  // Override Character Count
+  .ant-input-data-count {
+    color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  // Override Checkbox
+  .ant-checkbox-wrapper {
+    color: rgba(255, 255, 255, 0.6) !important;
+
+    .ant-checkbox-inner {
+      background: transparent !important;
+      border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .ant-checkbox-checked .ant-checkbox-inner {
+      background-color: #ff8c00 !important;
+      border-color: #ff8c00 !important;
+    }
+  }
+
+  // Override Primary Button (Nút Gửi)
+  .btn-submit-comment.ant-btn-primary {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 140, 0, 0.5) !important;
+    color: #ff8c00 !important;
+    box-shadow: none !important;
+
+    svg {
+      color: #ff8c00 !important;
+      stroke: #ff8c00 !important;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: rgba(255, 140, 0, 0.1) !important;
+      background-color: rgba(255, 140, 0, 0.1) !important;
+      border-color: #ff8c00 !important;
+      color: #ff8c00 !important;
+      box-shadow: none !important;
+
+      svg {
+        color: #ff8c00 !important;
+        stroke: #ff8c00 !important;
+      }
+    }
+  }
+
+  // Override Comment Action Buttons
+  .comment-actions {
+
+    button,
+    .action-btn {
+      background: transparent !important;
+      background-color: transparent !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: rgba(255, 255, 255, 0.5) !important;
+      box-shadow: none !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.03) !important;
+        background-color: rgba(255, 255, 255, 0.03) !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        box-shadow: none !important;
+      }
+
+      &:focus,
+      &:active {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+      }
+    }
+  }
+}
