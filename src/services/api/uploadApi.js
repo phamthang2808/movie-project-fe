@@ -35,7 +35,7 @@ export const uploadApi = {
         }
 
         const data = await response.json();
-        return data.url || data.data ?.url || data.fileUrl;
+        return data.url || data.data ? .url || data.fileUrl;
     },
 
     /**
@@ -66,7 +66,7 @@ export const uploadApi = {
         }
 
         const data = await response.json();
-        return data.urls || data.data ?.urls || [];
+        return data.urls || data.data ? .urls || [];
     },
 
     /**

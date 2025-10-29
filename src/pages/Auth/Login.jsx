@@ -15,15 +15,97 @@ const Login = () => {
   });
   const navigate = useNavigate();
 
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [touched, setTouched] = useState({
+    email: false,
+    password: false,
+  });
+
+  const validateField = (name, value) => {
+    let error = "";
+
+    switch (name) {
+      case "email":
+        if (!value.trim()) {
+          error = "Vui lòng nhập email";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          error = "Email không hợp lệ";
+        }
+        break;
+
+      case "password":
+        if (!value) {
+          error = "Vui lòng nhập mật khẩu";
+        } else if (value.length < 6) {
+          error = "Mật khẩu phải có ít nhất 6 ký tự";
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    return error;
+  };
+
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
+    });
+
+    // Validate field nếu đã touched
+    if (touched[name]) {
+      const error = validateField(name, value);
+      setErrors({
+        ...errors,
+        [name]: error,
+      });
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+
+    setTouched({
+      ...touched,
+      [name]: true,
+    });
+
+    const error = validateField(name, value);
+    setErrors({
+      ...errors,
+      [name]: error,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Mark all fields as touched
+    setTouched({
+      email: true,
+      password: true,
+    });
+
+    // Validate all fields
+    const newErrors = {
+      email: validateField("email", formData.email),
+      password: validateField("password", formData.password),
+    };
+
+    setErrors(newErrors);
+
+    // Check if there are any errors
+    if (Object.values(newErrors).some((error) => error !== "")) {
+      return;
+    }
 
     try {
       setLoading(true);
@@ -67,13 +149,18 @@ const Login = () => {
               id="email"
               name="email"
               type="email"
-              className="auth-input"
+              className={`auth-input ${
+                errors.email && touched.email ? "error" : ""
+              }`}
               placeholder="you@example.com"
               value={formData.email}
               onChange={handleChange}
-              required
+              onBlur={handleBlur}
               disabled={loading}
             />
+            {errors.email && touched.email && (
+              <span className="auth-error">{errors.email}</span>
+            )}
 
             <label className="auth-label" htmlFor="password">
               Mật khẩu
@@ -83,11 +170,13 @@ const Login = () => {
                 id="password"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                className="auth-input"
+                className={`auth-input ${
+                  errors.password && touched.password ? "error" : ""
+                }`}
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={handleChange}
-                required
+                onBlur={handleBlur}
                 disabled={loading}
               />
               <button
@@ -99,6 +188,9 @@ const Login = () => {
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
+            {errors.password && touched.password && (
+              <span className="auth-error">{errors.password}</span>
+            )}
 
             <div className="auth-captcha">
               <span className="captcha-badge">Thành công!</span>

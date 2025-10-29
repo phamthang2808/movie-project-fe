@@ -1,0 +1,278 @@
+@use '../../../index.scss' as *;
+
+.admin-movies {
+  .movies-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    .header-left {
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1rem;
+      }
+    }
+
+    .btn-add {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      background: linear-gradient(135deg, #ff8c00 0%, #ff6b00 100%);
+      border: none;
+      border-radius: 0.5rem;
+      color: #fff;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 140, 0, 0.3);
+      }
+    }
+  }
+
+  .movies-toolbar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+
+    .search-box {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      svg {
+        position: absolute;
+        left: 1rem;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      input {
+        width: 100%;
+        padding: 0.875rem 1rem 0.875rem 3rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        color: #fff;
+        font-size: 0.9375rem;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.4);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: rgba(255, 140, 0, 0.5);
+          box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+        }
+      }
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+
+      .filter-select {
+        padding: 0.875rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        color: #fff;
+        font-size: 0.9375rem;
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+          border-color: rgba(255, 140, 0, 0.5);
+        }
+
+        option {
+          background: #1a1f2e;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .movies-table {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    overflow: hidden;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        background: rgba(255, 255, 255, 0.02);
+
+        tr {
+          th {
+            text-align: left;
+            padding: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.02);
+          }
+
+          td {
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+
+            &.movie-title {
+              font-weight: 600;
+            }
+
+            .status {
+              display: inline-block;
+              padding: 0.25rem 0.75rem;
+              border-radius: 1rem;
+              font-size: 0.875rem;
+              font-weight: 500;
+
+              &.active {
+                background: rgba(16, 185, 129, 0.1);
+                color: #10b981;
+              }
+
+              &.completed {
+                background: rgba(59, 130, 246, 0.1);
+                color: #3b82f6;
+              }
+
+              &.upcoming {
+                background: rgba(251, 191, 36, 0.1);
+                color: #fbbf24;
+              }
+            }
+
+            .rating {
+              font-weight: 600;
+            }
+
+            .action-buttons {
+              display: flex;
+              gap: 0.5rem;
+
+              .btn-action {
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &.btn-view {
+                  background: rgba(59, 130, 246, 0.1);
+                  border-color: rgba(59, 130, 246, 0.3);
+                  color: #3b82f6;
+
+                  &:hover {
+                    background: rgba(59, 130, 246, 0.2);
+                    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+                  }
+                }
+
+                &.btn-edit {
+                  background: rgba(255, 140, 0, 0.1);
+                  border-color: rgba(255, 140, 0, 0.3);
+                  color: #ff8c00;
+
+                  &:hover {
+                    background: rgba(255, 140, 0, 0.2);
+                    box-shadow: 0 0 15px rgba(255, 140, 0, 0.2);
+                  }
+                }
+
+                &.btn-delete {
+                  background: rgba(239, 68, 68, 0.1);
+                  border-color: rgba(239, 68, 68, 0.3);
+                  color: #ef4444;
+
+                  &:hover {
+                    background: rgba(239, 68, 68, 0.2);
+                    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .no-results {
+      padding: 3rem;
+      text-align: center;
+
+      p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 1024px) {
+  .admin-movies {
+    .movies-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .movies-toolbar {
+      flex-direction: column;
+
+      .search-box {
+        min-width: 100%;
+      }
+
+      .filters {
+        width: 100%;
+
+        .filter-select {
+          flex: 1;
+        }
+      }
+    }
+
+    .movies-table {
+      overflow-x: auto;
+    }
+  }
+}
+

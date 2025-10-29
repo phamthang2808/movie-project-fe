@@ -7,15 +7,18 @@ import {
   useLocation,
 } from "react-router-dom";
 import "./App.scss";
+import AdminLayout from "./components/Admin/AdminLayout";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Loading from "./components/Loading";
 import Account from "./pages/Account";
-import Home from "./pages/Home";
+import AdminDashboard from "./pages/Admin/Dashboard";
+import AdminMovies from "./pages/Admin/Movies";
 import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
+import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 import Recharge from "./pages/Recharge";
-import Register from "./pages/Auth/Register";
 import Search from "./pages/Search";
 import Series from "./pages/Series";
 import Watch from "./pages/Watch";
@@ -30,6 +33,7 @@ function App() {
   const HideFooterRoutes = ["/login", "/register"];
   const location = useLocation();
   const shouldHideFooter = HideFooterRoutes.includes(location.pathname);
+  const isAdminRoute = location.pathname.startsWith("/admin");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -51,8 +55,8 @@ function App() {
   return (
     <div className="app">
       {isLoading && <Loading />}
-      <Header />
-      <main className="main-content">
+      {!isAdminRoute && <Header />}
+      <main className={isAdminRoute ? "" : "main-content"}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movie" element={<MovieDetail />} />
@@ -63,9 +67,15 @@ function App() {
           <Route path="/watch" element={<Watch />} />
           <Route path="/recharge" element={<Recharge />} />
           <Route path="/account" element={<Account />} />
+
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="movies" element={<AdminMovies />} />
+          </Route>
         </Routes>
       </main>
-      {!shouldHideFooter && <Footer />}
+      {!shouldHideFooter && !isAdminRoute && <Footer />}
     </div>
   );
 }
