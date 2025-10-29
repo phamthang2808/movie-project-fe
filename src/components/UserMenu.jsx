@@ -7,7 +7,7 @@ import {
   Plus,
   User as UserIcon,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PricingModal from "./PricingModal";
 import SafeAvatar from "./SafeAvatar";
@@ -16,6 +16,7 @@ import "./UserMenu.scss";
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPricingModalOpen, setIsPricingModalOpen] = useState(false);
+  const [userState, setUserState] = useState(null);
 
   // Lấy thông tin user từ localStorage
   const getUserFromStorage = () => {
@@ -30,13 +31,34 @@ const UserMenu = () => {
     return null;
   };
 
-  const userFromStorage = getUserFromStorage();
+  // Load user data và lắng nghe thay đổi
+  useEffect(() => {
+    const loadUser = () => {
+      setUserState(getUserFromStorage());
+    };
+
+    loadUser();
+
+    // Lắng nghe thay đổi từ localStorage
+    window.addEventListener("storage", loadUser);
+
+    // Lắng nghe custom event để cập nhật ngay lập tức
+    const handleUserUpdate = () => {
+      loadUser();
+    };
+    window.addEventListener("userUpdated", handleUserUpdate);
+
+    return () => {
+      window.removeEventListener("storage", loadUser);
+      window.removeEventListener("userUpdated", handleUserUpdate);
+    };
+  }, []);
 
   const user = {
-    username: userFromStorage?.fullName || userFromStorage?.email || "User",
-    isPremium: userFromStorage?.isPremium || false,
-    balance: userFromStorage?.balance || 0,
-    avatar: userFromStorage?.avatar || "",
+    username: userState?.fullName || userState?.email || "User",
+    isPremium: userState?.isPremium || false,
+    balance: userState?.balance || 0,
+    avatar: userState?.avatar || "",
   };
 
   const handleLogout = () => {
@@ -114,7 +136,7 @@ const UserMenu = () => {
               {/* Menu Items */}
               <div className="user-menu-items">
                 <Link
-                  to="/favorites"
+                  to="/account?tab=favorites"
                   className="user-menu-item"
                   onClick={() => setIsOpen(false)}
                 >
@@ -123,7 +145,7 @@ const UserMenu = () => {
                 </Link>
 
                 <Link
-                  to="/watchlist"
+                  to="/account?tab=watchlist"
                   className="user-menu-item"
                   onClick={() => setIsOpen(false)}
                 >
@@ -132,7 +154,7 @@ const UserMenu = () => {
                 </Link>
 
                 <Link
-                  to="/continue-watching"
+                  to="/account?tab=continue"
                   className="user-menu-item"
                   onClick={() => setIsOpen(false)}
                 >
@@ -141,7 +163,7 @@ const UserMenu = () => {
                 </Link>
 
                 <Link
-                  to="/account"
+                  to="/account?tab=account"
                   className="user-menu-item"
                   onClick={() => setIsOpen(false)}
                 >

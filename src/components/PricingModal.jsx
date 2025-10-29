@@ -96,17 +96,17 @@ const PricingModal = ({ isOpen, onClose, user }) => {
             <div className="user-avatar-large">
               <SafeAvatar src={user?.avatar} alt={user?.username} />
               {user?.isPremium && (
-                <span className="premium-badge-large">∞</span>
+                <span className="premium-badge-large vip-gold">∞</span>
               )}
             </div>
             <div className="user-details">
               <div className="username-row">
                 <span className="username-large">{user?.username}</span>
-                {user?.isPremium && <span className="infinity-icon">∞</span>}
+                {user?.isPremium && <span className="infinity-icon vip-gold">∞</span>}
               </div>
               <p className="user-status">
                 {user?.isPremium
-                  ? "Bạn đang là thành viên miễn phí."
+                  ? "Bạn đang là thành viên VIP."
                   : "Bạn đang là thành viên miễn phí."}
               </p>
             </div>
@@ -177,6 +177,7 @@ const PricingModal = ({ isOpen, onClose, user }) => {
           onClose={handleCloseConfirm}
           onConfirm={handleConfirmPurchase}
           plan={selectedPlan}
+          user={user}
         />
       </div>
     </>

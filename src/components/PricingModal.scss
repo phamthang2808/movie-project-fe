@@ -147,6 +147,12 @@
         font-weight: 700;
         color: white;
         border: 3px solid #1a1f2e;
+
+        &.vip-gold {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.6);
+            animation: goldPulse 2s ease-in-out infinite;
+        }
     }
 }
 
@@ -180,6 +186,21 @@
     font-weight: 700;
     color: white;
     box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+
+    &.vip-gold {
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        box-shadow: 0 4px 16px rgba(255, 215, 0, 0.6);
+        animation: goldPulse 2s ease-in-out infinite;
+    }
+}
+
+@keyframes goldPulse {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(255, 215, 0, 0.6);
+    }
+    50% {
+        box-shadow: 0 4px 24px rgba(255, 215, 0, 0.9);
+    }
 }
 
 .user-status {

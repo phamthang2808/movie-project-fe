@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, Search, User, X } from "lucide-react";
+import { Bell, ChevronDown, Menu, Search, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoImg from "../assets/images/logo.png";
@@ -109,6 +109,40 @@ const Header = () => {
   // Check if user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Notifications state
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const [notifications, setNotifications] = useState(() => {
+    const saved = localStorage.getItem("notifications");
+    return saved
+      ? JSON.parse(saved)
+      : [
+          {
+            id: 1,
+            type: "update",
+            title: "Cập nhật tập mới",
+            message: "Nhập Thanh Vân - Tập 15 đã được cập nhật",
+            time: "2 giờ trước",
+            read: false,
+          },
+          {
+            id: 2,
+            type: "system",
+            title: "Nâng cấp tài khoản",
+            message: "Tài khoản VIP của bạn sẽ hết hạn sau 7 ngày",
+            time: "1 ngày trước",
+            read: false,
+          },
+          {
+            id: 3,
+            type: "info",
+            title: "Phim mới",
+            message: "5 bộ phim mới đã được thêm vào thư viện",
+            time: "3 ngày trước",
+            read: true,
+          },
+        ];
+  });
+
   useEffect(() => {
     // Check localStorage for token
     const checkLoginStatus = () => {
@@ -129,6 +163,24 @@ const Header = () => {
       clearInterval(interval);
     };
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("notifications", JSON.stringify(notifications));
+  }, [notifications]);
+
+  const handleMarkAsRead = (notificationId) => {
+    setNotifications((prev) =>
+      prev.map((notif) =>
+        notif.id === notificationId ? { ...notif, read: true } : notif
+      )
+    );
+  };
+
+  const handleMarkAllAsRead = () => {
+    setNotifications((prev) => prev.map((notif) => ({ ...notif, read: true })));
+  };
+
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -279,6 +331,79 @@ const Header = () => {
         <div className="header-actions">
           {/* <div className="nav-link-special">NEW Rổ Bóng</div> */}
           {/* <div className="download-app"> ... </div> */}
+
+          {/* Notification Icon */}
+          {isLoggedIn && (
+            <div className="notification-wrapper">
+              <button
+                className="notification-btn"
+                onClick={() => setIsNotificationOpen(!isNotificationOpen)}
+                aria-label="Thông báo"
+              >
+                <Bell size={22} />
+                {unreadCount > 0 && (
+                  <span className="notification-badge-header">
+                    {unreadCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Notification Dropdown */}
+              {isNotificationOpen && (
+                <>
+                  <div
+                    className="notification-overlay"
+                    onClick={() => setIsNotificationOpen(false)}
+                  ></div>
+                  <div className="notification-dropdown">
+                    <div className="notification-dropdown-header">
+                      <h3>Thông báo</h3>
+                      {unreadCount > 0 && (
+                        <button
+                          className="mark-all-read-btn"
+                          onClick={handleMarkAllAsRead}
+                        >
+                          Đánh dấu đã đọc
+                        </button>
+                      )}
+                    </div>
+                    <div className="notification-dropdown-body">
+                      {notifications.length > 0 ? (
+                        notifications.map((notif) => (
+                          <div
+                            key={notif.id}
+                            className={`notification-dropdown-item ${
+                              notif.read ? "read" : "unread"
+                            }`}
+                            onClick={() => handleMarkAsRead(notif.id)}
+                          >
+                            <div className="notification-dropdown-icon">
+                              <Bell size={18} />
+                            </div>
+                            <div className="notification-dropdown-content">
+                              <h4>{notif.title}</h4>
+                              <p>{notif.message}</p>
+                              <span className="notification-time">
+                                {notif.time}
+                              </span>
+                            </div>
+                            {!notif.read && (
+                              <div className="unread-indicator"></div>
+                            )}
+                          </div>
+                        ))
+                      ) : (
+                        <div className="notification-empty">
+                          <Bell size={48} />
+                          <p>Không có thông báo</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
 
           {/* Show UserMenu if logged in, otherwise show login button */}
           {isLoggedIn ? (

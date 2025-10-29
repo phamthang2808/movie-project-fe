@@ -49,7 +49,7 @@ const RechargePackages = ({ selectedPackage, onSelectPackage }) => {
               {pkg.name} {pkg.coins}
             </h3>
             <p className="package-amount">
-              {pkg.amount.toLocaleString("vi-VN")} vnđ
+              {pkg.amount.toLocaleString("vi-VN")} VND
             </p>
 
             {selectedPackage?.id === pkg.id && (
@@ -65,7 +65,7 @@ const RechargePackages = ({ selectedPackage, onSelectPackage }) => {
         <p className="selected-info">
           Bạn đang chọn gói{" "}
           <span className="highlight-amount">
-            {selectedPackage.amount.toLocaleString("vi-VN")} vnđ
+            {selectedPackage.amount.toLocaleString("vi-VN")} VND
           </span>
           .
         </p>

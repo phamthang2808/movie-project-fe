@@ -1,17 +1,75 @@
 import { Check, X } from "lucide-react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { showError, showSuccess } from "../utils/notification";
 import "./ConfirmPurchaseModal.scss";
 
-const ConfirmPurchaseModal = ({ isOpen, onClose, onConfirm, plan }) => {
+const ConfirmPurchaseModal = ({ isOpen, onClose, onConfirm, plan, user }) => {
   const navigate = useNavigate();
 
   if (!isOpen || !plan) return null;
 
   const handleConfirm = () => {
+    // Kiểm tra số dư
+    const currentBalance = user?.balance || 0;
+    const planPrice = plan.price;
+
+    if (currentBalance < planPrice) {
+      // Không đủ tiền - thông báo và chuyển đến trang nạp tiền
+      showError(
+        "Số dư không đủ",
+        `Vui lòng nạp thêm ${(planPrice - currentBalance).toLocaleString(
+          "vi-VN"
+        )} VND vào tài khoản`
+      );
+      onClose();
+      setTimeout(() => {
+        navigate("/recharge");
+      }, 1500);
+      return;
+    }
+
+    // Đủ tiền - trừ tiền và nâng cấp VIP
+    const newBalance = currentBalance - planPrice;
+
+    // Tính ngày hết hạn VIP
+    const today = new Date();
+    const vipEndDate = new Date(today);
+    const months = parseInt(plan.duration);
+    vipEndDate.setMonth(vipEndDate.getMonth() + months);
+
+    // Cập nhật thông tin user
+    const updatedUser = {
+      ...user,
+      balance: newBalance,
+      isPremium: true,
+      vipEndDate: vipEndDate.toISOString(),
+      vipPlan: plan.duration,
+    };
+
+    // Lưu vào localStorage
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+
+    // Trigger custom event để các component khác cập nhật ngay lập tức
+    window.dispatchEvent(new Event("storage"));
+    window.dispatchEvent(new Event("userUpdated"));
+
+    // Thông báo thành công
+    showSuccess(
+      "Nâng cấp thành công!",
+      `Bạn đã nâng cấp lên gói VIP ${
+        plan.duration
+      }. Số dư còn lại: ${newBalance.toLocaleString("vi-VN")} VND`
+    );
+
+    // Gọi callback và đóng modal
     onConfirm();
-    // Navigate to recharge page
-    navigate("/recharge");
+    onClose();
+
+    // Reload trang để cập nhật UI
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   // Tính ngày bắt đầu và kết thúc
@@ -65,6 +123,23 @@ const ConfirmPurchaseModal = ({ isOpen, onClose, onConfirm, plan }) => {
             </span>
           </p>
 
+          {/* Current Balance */}
+          <div className="balance-section">
+            <div className="balance-row">
+              <span className="balance-label">Số dư hiện tại</span>
+              <span className="balance-value">
+                {(user?.balance || 0).toLocaleString("vi-VN")} VND
+              </span>
+            </div>
+            {user?.balance < plan.price && (
+              <p className="insufficient-balance">
+                ⚠️ Số dư không đủ. Vui lòng nạp thêm{" "}
+                {(plan.price - (user?.balance || 0)).toLocaleString("vi-VN")}{" "}
+                VND
+              </p>
+            )}
+          </div>
+
           <div className="date-info">
             <p className="date-row">
               <span className="date-label">Bắt đầu</span>
@@ -97,6 +172,7 @@ ConfirmPurchaseModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
   plan: PropTypes.object,
+  user: PropTypes.object,
 };
 
 export default ConfirmPurchaseModal;

@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import bankIcon from "../../assets/images/bank.jpg";
 import momoIcon from "../../assets/images/momo.jpg";
 import vnpayIcon from "../../assets/images/vnpay.jpg";
+import { showWarning } from "../../utils/notification";
 import "./PaymentMethods.scss";
 
 const paymentMethods = [
@@ -17,18 +18,29 @@ const paymentMethods = [
     name: "Thanh toán qua ví Momo",
     icon: momoIcon,
     iconType: "image",
-    available: false,
+    available: true,
+    maintenance: true,
   },
   {
     id: "vnpay",
     name: "Thanh toán qua VNPay",
     icon: vnpayIcon,
     iconType: "image",
-    available: false,
+    available: true,
   },
 ];
 
 const PaymentMethods = ({ selectedMethod, onSelectMethod }) => {
+  const handleMethodClick = (method) => {
+    if (method.maintenance) {
+      showWarning(
+        "Thanh toán qua Momo hiện đang bảo trì. Vui lòng chọn phương thức khác!"
+      );
+      return;
+    }
+    onSelectMethod(method);
+  };
+
   return (
     <div className="payment-methods-section">
       <h2 className="section-title">
@@ -42,8 +54,8 @@ const PaymentMethods = ({ selectedMethod, onSelectMethod }) => {
               key={method.id}
               className={`payment-method-card ${
                 selectedMethod?.id === method.id ? "selected" : ""
-              } ${!method.available ? "disabled" : ""}`}
-              onClick={() => method.available && onSelectMethod(method)}
+              } ${method.maintenance ? "maintenance" : ""}`}
+              onClick={() => handleMethodClick(method)}
             >
               <div className="method-icon">
                 {method.iconType === "image" ? (
@@ -57,9 +69,7 @@ const PaymentMethods = ({ selectedMethod, onSelectMethod }) => {
                 )}
               </div>
               <h3 className="method-name">{method.name}</h3>
-              <button className="method-btn" disabled={!method.available}>
-                Chọn
-              </button>
+              <button className="method-btn">Chọn</button>
             </div>
           );
         })}

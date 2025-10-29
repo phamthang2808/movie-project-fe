@@ -1,5 +1,6 @@
 import { ArrowUp, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import logoImg from "../assets/images/logo.png";
+import flagIcon from "../assets/images/vn.jpg";
 import "./Footer.scss";
 
 const uiText = {
@@ -19,7 +20,10 @@ const Footer = () => {
       <div className="footer-container">
         {/* Banner */}
         <div className="footer-banner">
-          ⭐ Hoàng Sa & Trường Sa là của Việt Nam!
+          <img src={flagIcon} alt="Vietnam" className="flag-icon" />
+          <span className="flag-text">
+            Hoàng Sa & Trường Sa là của Việt Nam!
+          </span>
         </div>
 
         {/* Logo and Brand */}
