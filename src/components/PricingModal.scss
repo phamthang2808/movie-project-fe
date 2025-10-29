@@ -272,24 +272,17 @@
 
     &.popular {
         border-color: rgba(255, 140, 0, 0.6);
+        border-top-width: 4px;
+        border-top-color: #ffa500;
         background: linear-gradient(135deg, #2a2410 0%, #1a1608 100%);
         position: relative;
         box-shadow: 0 8px 32px rgba(255, 140, 0, 0.15);
 
-        &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 50%, #ffa500 100%);
-            border-radius: 14px 14px 0 0;
-        }
-
         &:hover {
             border-color: #ffa500;
+            border-top-color: #ff8c00;
             box-shadow: 0 12px 40px rgba(255, 140, 0, 0.3);
+            transform: translateY(-8px);
         }
     }
 }
