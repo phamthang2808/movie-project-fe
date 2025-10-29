@@ -1,0 +1,213 @@
+@use "../../../index.scss" as *;
+
+.staff-movies {
+  .page-header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1rem;
+    }
+  }
+
+  .filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .search-box {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      svg {
+        position: absolute;
+        left: 1rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      input {
+        width: 100%;
+        padding: 0.875rem 1rem 0.875rem 3rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        color: #fff;
+        font-size: 0.95rem;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.4);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: #3b82f6;
+          background: rgba(255, 255, 255, 0.08);
+        }
+      }
+    }
+
+    .filter-select {
+      padding: 0.875rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      color: #fff;
+      font-size: 0.95rem;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+        border-color: #3b82f6;
+      }
+
+      option {
+        background: #1a1f2e;
+        color: #fff;
+      }
+    }
+  }
+
+  .movies-table {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    overflow: hidden;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        background: rgba(255, 255, 255, 0.02);
+
+        tr {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        th {
+          padding: 1rem;
+          text-align: left;
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.7);
+          text-transform: uppercase;
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.02);
+          }
+
+          td {
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+
+            &.movie-title {
+              font-weight: 500;
+              color: #fff;
+            }
+
+            .status-badge {
+              padding: 0.375rem 0.75rem;
+              border-radius: 999px;
+              font-size: 0.8125rem;
+              font-weight: 600;
+
+              &.status-active {
+                background: rgba(16, 185, 129, 0.1);
+                color: #10b981;
+              }
+
+              &.status-completed {
+                background: rgba(59, 130, 246, 0.1);
+                color: #3b82f6;
+              }
+
+              &.status-upcoming {
+                background: rgba(251, 191, 36, 0.1);
+                color: #fbbf24;
+              }
+            }
+
+            .rating {
+              color: #fbbf24;
+              font-weight: 600;
+            }
+
+            .action-buttons {
+              display: flex;
+              gap: 0.5rem;
+
+              button {
+                padding: 0.5rem;
+                background: transparent;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 0.375rem;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.btn-view {
+                  color: #3b82f6;
+                  border-color: rgba(59, 130, 246, 0.3);
+
+                  &:hover {
+                    background: rgba(59, 130, 246, 0.1);
+                  }
+                }
+
+                &.btn-edit {
+                  color: #ff8c00;
+                  border-color: rgba(255, 140, 0, 0.3);
+
+                  &:hover {
+                    background: rgba(255, 140, 0, 0.1);
+                  }
+                }
+
+                &.btn-delete {
+                  color: #ef4444;
+                  border-color: rgba(239, 68, 68, 0.3);
+
+                  &:hover {
+                    background: rgba(239, 68, 68, 0.1);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .staff-movies {
+    .movies-table {
+      overflow-x: auto;
+
+      table {
+        min-width: 1000px;
+      }
+    }
+  }
+}
+

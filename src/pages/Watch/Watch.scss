@@ -6,7 +6,7 @@ $text-gray: #9ca3af;
 
 .watch-page {
   min-height: 100vh;
-  background: $bg-dark;
+  // Không có background riêng - sử dụng background chung từ body
   padding-top: 4.375rem;
 }
 

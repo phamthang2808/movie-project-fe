@@ -17,12 +17,11 @@ const AdminLayout = () => {
   const navigate = useNavigate();
 
   const menuItems = [
-    { path: "/admin", icon: Home, label: "Tổng quan", exact: true },
+    { path: "/admin", icon: BarChart3, label: "Tổng quan", exact: true },
     { path: "/admin/movies", icon: Film, label: "Quản lý Phim" },
     { path: "/admin/users", icon: Users, label: "Quản lý Users" },
     { path: "/admin/categories", icon: Tags, label: "Thể loại" },
     { path: "/admin/comments", icon: MessageSquare, label: "Bình luận" },
-    { path: "/admin/stats", icon: BarChart3, label: "Thống kê" },
     { path: "/admin/settings", icon: Settings, label: "Cài đặt" },
   ];
 
@@ -30,6 +29,10 @@ const AdminLayout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     showSuccess("Đăng xuất thành công!");
+    navigate("/");
+  };
+
+  const handleBackToHome = () => {
     navigate("/");
   };
 
@@ -66,7 +69,11 @@ const AdminLayout = () => {
         </nav>
 
         <div className="sidebar-footer">
-          <button onClick={handleLogout} className="logout-btn">
+          <button onClick={handleBackToHome} className="footer-btn">
+            <Home size={20} />
+            <span>Về trang chủ</span>
+          </button>
+          <button onClick={handleLogout} className="footer-btn logout">
             <LogOut size={20} />
             <span>Đăng xuất</span>
           </button>

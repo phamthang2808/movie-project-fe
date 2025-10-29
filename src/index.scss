@@ -32,9 +32,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #0a0e14;
-  background-image: url('./assets/images/footer-icon.svg');
-  background-size: 120px 120px;
-  background-repeat: repeat;
+  background-image: url('./assets/images/main.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   color: $text-white;
@@ -46,9 +46,9 @@ body {
     position: fixed;
     inset: 0;
     background: linear-gradient(135deg,
-        rgba(11, 18, 24, 0.92) 0%,
-        rgba(17, 24, 39, 0.88) 50%,
-        rgba(11, 18, 24, 0.92) 100%);
+        rgba(11, 18, 24, 0.85) 0%,
+        rgba(17, 24, 39, 0.80) 50%,
+        rgba(11, 18, 24, 0.85) 100%);
     pointer-events: none;
     z-index: 0;
   }

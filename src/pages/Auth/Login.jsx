@@ -207,39 +207,76 @@ const Login = () => {
               Đăng nhập
             </LoadingButton>
 
-            {/* TEST BUTTON - XÓA KHI DEPLOY */}
-            <button
-              type="button"
-              className="auth-test-btn"
-              onClick={() => {
-                localStorage.setItem("token", "fake-token-123");
-                localStorage.setItem(
-                  "user",
-                  JSON.stringify({
-                    fullName: "Thắng Cá Chép",
-                    email: "thangcutehuhu2808@gmail.com",
-                    isPremium: true,
-                    balance: 500000,
-                    avatar: "", // Để rỗng → hiển thị vn.jpg mặc định
-                  })
-                );
-                window.location.href = "/";
-              }}
-              style={{
-                width: "100%",
-                padding: "0.75rem",
-                marginTop: "0.5rem",
-                background: "#28a745",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontSize: "0.875rem",
-                fontWeight: "600",
-              }}
-            >
-              🚀 Test Login (Demo)
-            </button>
+            {/* TEST BUTTONS - XÓA KHI DEPLOY */}
+            <div className="test-login-group">
+              <p className="test-title">🧪 Test Login (Xóa khi deploy)</p>
+
+              <button
+                type="button"
+                className="test-btn test-user"
+                onClick={() => {
+                  localStorage.setItem("token", "fake-token-user");
+                  localStorage.setItem(
+                    "user",
+                    JSON.stringify({
+                      fullName: "Nguyễn Văn User",
+                      email: "user@example.com",
+                      role: "user",
+                      isPremium: true,
+                      balance: 500000,
+                      avatar: "",
+                    })
+                  );
+                  window.location.href = "/";
+                }}
+              >
+                👤 Login User
+              </button>
+
+              <button
+                type="button"
+                className="test-btn test-staff"
+                onClick={() => {
+                  localStorage.setItem("token", "fake-token-staff");
+                  localStorage.setItem(
+                    "user",
+                    JSON.stringify({
+                      fullName: "Trần Thị Staff",
+                      email: "staff@example.com",
+                      role: "staff",
+                      isPremium: true,
+                      balance: 1000000,
+                      avatar: "",
+                    })
+                  );
+                  window.location.href = "/staff";
+                }}
+              >
+                👔 Login Staff
+              </button>
+
+              <button
+                type="button"
+                className="test-btn test-admin"
+                onClick={() => {
+                  localStorage.setItem("token", "fake-token-admin");
+                  localStorage.setItem(
+                    "user",
+                    JSON.stringify({
+                      fullName: "Lê Văn Admin",
+                      email: "admin@example.com",
+                      role: "admin",
+                      isPremium: true,
+                      balance: 10000000,
+                      avatar: "",
+                    })
+                  );
+                  window.location.href = "/admin";
+                }}
+              >
+                🔐 Login Admin
+              </button>
+            </div>
           </form>
 
           <button className="auth-google" onClick={(e) => e.preventDefault()}>

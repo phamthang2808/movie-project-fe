@@ -43,7 +43,7 @@ axiosInstance.interceptors.request.use(
     (config) => {
         // Bắt đầu loading bar
         NProgress.start();
-        
+
         // Lấy token từ localStorage
         const token = localStorage.getItem("token");
 
@@ -51,6 +51,10 @@ axiosInstance.interceptors.request.use(
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
+
+        // Thêm Accept-Language header cho đa ngôn ngữ
+        const language = localStorage.getItem("language") || "vi";
+        config.headers["Accept-Language"] = language;
 
         return config;
     },
@@ -72,7 +76,7 @@ axiosInstance.interceptors.response.use(
     (error) => {
         // Hoàn thành loading bar
         NProgress.done();
-        
+
         // Xử lý lỗi 401 - Token hết hạn
         if (error.response && error.response.status === 401) {
             localStorage.removeItem("token");
@@ -108,7 +112,6 @@ export const apiRequest = async (endpoint, options = {}) => {
         return response.data;
     } catch (error) {
         console.error("API Request Error:", error);
-        throw error.response?.data || error;
+        throw error.response ? .data || error;
     }
 };
-

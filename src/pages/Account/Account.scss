@@ -3,7 +3,7 @@
 
 .account-page {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0b1218 0%, #1a2332 100%);
+    // Không có background riêng - sử dụng background chung từ body
     padding: 2rem 1rem;
     padding-top: 6rem;
 }
