@@ -1,4 +1,4 @@
-@import "../../index.scss";
+@use '../../index.scss'as *;
 
 // ==========================================
 // BANK TRANSFER DETAIL
@@ -117,15 +117,19 @@
 
 .qr-wrapper {
   background: white;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .qr-image {
-  width: 240px;
-  height: 240px;
+  width: 280px;
+  height: 280px;
   display: block;
+  object-fit: cover;
 }
 
 .timer-display {
@@ -236,12 +240,12 @@
   }
 
   .qr-wrapper {
-    padding: 0.75rem;
+    padding: 0.5rem;
   }
 
   .qr-image {
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
   }
 
   .timer-display {
@@ -262,5 +266,3 @@
     }
   }
 }
-
-

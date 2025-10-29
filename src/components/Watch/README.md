@@ -128,3 +128,4 @@ Các biến màu:
 - Background: `#0b1220`, `#151f30`
 - Text: `#ffffff`, `#9ca3af`
 
+

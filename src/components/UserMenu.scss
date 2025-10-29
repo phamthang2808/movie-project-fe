@@ -1,12 +1,9 @@
-@import "../index.scss";
+@use '../index.scss'as *;
 
 .user-menu-wrapper {
     position: relative;
 }
 
-// ==========================================
-// USER AVATAR BUTTON
-// ==========================================
 .user-avatar-btn {
     position: relative;
     width: 40px;
@@ -47,9 +44,6 @@
     }
 }
 
-// ==========================================
-// DROPDOWN MENU
-// ==========================================
 .user-dropdown {
     position: absolute;
     top: calc(100% + 12px);
@@ -75,9 +69,6 @@
     }
 }
 
-// ==========================================
-// USER INFO HEADER
-// ==========================================
 .user-dropdown-header {
     padding: 1.25rem;
     background: linear-gradient(135deg, #2a3441 0%, #1e2530 100%);
@@ -150,9 +141,6 @@
     }
 }
 
-// ==========================================
-// BALANCE SECTION
-// ==========================================
 .balance-section {
     display: flex;
     align-items: center;
@@ -206,9 +194,6 @@
     }
 }
 
-// ==========================================
-// MENU ITEMS
-// ==========================================
 .user-menu-items {
     padding: 0.5rem;
     display: flex;
@@ -266,9 +251,6 @@
     }
 }
 
-// ==========================================
-// BACKDROP
-// ==========================================
 .user-menu-backdrop {
     position: fixed;
     inset: 0;
@@ -276,9 +258,6 @@
     background: transparent;
 }
 
-// ==========================================
-// RESPONSIVE
-// ==========================================
 @media (max-width: 768px) {
     .user-dropdown {
         width: 260px;

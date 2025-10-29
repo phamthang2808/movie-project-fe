@@ -1,4 +1,4 @@
-@import "../../index.scss";
+@use '../../index.scss'as *;
 
 // ==========================================
 // RECHARGE PACKAGES SECTION
@@ -96,6 +96,7 @@
   from {
     transform: scale(0);
   }
+
   to {
     transform: scale(1);
   }
@@ -176,5 +177,3 @@
     font-size: 0.9375rem;
   }
 }
-
-

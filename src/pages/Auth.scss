@@ -12,7 +12,6 @@
     background-size: 45%;
 }
 
-/* Left pane no longer used when centering the card */
 .auth-left {
     display: none;
 }
@@ -66,7 +65,7 @@
     width: 100%;
 
     .auth-input {
-        padding-right: 3rem; // Space for toggle button
+        padding-right: 3rem;
     }
 }
 

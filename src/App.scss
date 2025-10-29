@@ -1,6 +1,5 @@
 .app {
   min-height: 100vh;
-  // background-color: #111827;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -10,7 +9,6 @@
   flex-grow: 1;
   position: relative;
 
-  // Background pattern for all pages
   &::before {
     content: "";
     position: fixed;
@@ -23,7 +21,6 @@
     z-index: 0;
   }
 
-  // Ensure content is above the background
   >* {
     position: relative;
     z-index: 1;

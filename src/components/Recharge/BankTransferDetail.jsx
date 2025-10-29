@@ -1,6 +1,7 @@
 import { Copy } from "lucide-react";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import qrImage from "../../assets/images/qr.jpg";
 import { showSuccess } from "../../utils/notification";
 import "./BankTransferDetail.scss";
 
@@ -26,7 +27,7 @@ const BankTransferDetail = ({ package: pkg, onComplete }) => {
     accountName: "THANG CA CHEP",
     amount: pkg.amount,
     content: transactionCode,
-    qrCode: `https://img.vietqr.io/image/BIDV-123456789-compact2.png?amount=${pkg.amount}&addInfo=${transactionCode}`, // VietQR API
+    qrCode: qrImage,
   };
 
   // Countdown timer

@@ -1,4 +1,4 @@
-@import "../index.scss";
+@use '../index.scss'as *;
 
 .pagination-container {
     display: flex;
@@ -17,9 +17,6 @@
     justify-content: center;
 }
 
-// ==========================================
-// PAGINATION BUTTONS
-// ==========================================
 .pagination-btn {
     display: inline-flex;
     align-items: center;
@@ -59,16 +56,12 @@
     }
 }
 
-// First/Last buttons (chỉ icon)
 .first-btn,
 .last-btn {
     min-width: 40px;
     padding: 0;
 }
 
-// ==========================================
-// PAGE NUMBERS
-// ==========================================
 .pagination-numbers {
     display: flex;
     align-items: center;
@@ -116,9 +109,6 @@
     letter-spacing: 0.1em;
 }
 
-// ==========================================
-// PAGE INFO
-// ==========================================
 .pagination-info {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.6);
@@ -131,9 +121,6 @@
     }
 }
 
-// ==========================================
-// RESPONSIVE
-// ==========================================
 @media (max-width: 768px) {
     .pagination-container {
         margin-top: 2rem;
@@ -151,13 +138,13 @@
         font-size: 0.8125rem;
 
         .btn-text {
-            display: none; // Ẩn text "Trước/Sau" trên mobile
+            display: none;
         }
     }
 
     .first-btn,
     .last-btn {
-        display: none; // Ẩn nút đầu/cuối trên mobile
+        display: none;
     }
 
     .pagination-numbers {

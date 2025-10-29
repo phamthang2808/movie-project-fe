@@ -1,9 +1,8 @@
 @use 'sass:color';
 
-// Biến màu (Bạn nên đặt ở file global và @import vào đây)
-$primary-color: #ff8c00; // Màu cam/vàng
-$bg-dark: #111827; // Nền chính (Đã đổi sang màu nền global của bạn)
-$bg-light: #1F2937; // Nền sáng hơn 1 chút (Đã đổi)
+$primary-color: #ff8c00;
+$bg-dark: #111827;
+$bg-light: #1F2937;
 $text-white: #ffffff;
 $text-gray: #a0a0a0;
 $text-gray-light: #d1d5db;
@@ -14,14 +13,13 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 }
 
 .movie-backdrop {
-  height: 50vh; // Chiều cao banner
+  height: 50vh;
   width: 100%;
-  background-image: var(--backdrop-url); // Sử dụng CSS variable từ JSX
+  background-image: var(--backdrop-url);
   background-size: cover;
   background-position: center;
   position: relative;
 
-  // Lớp phủ gradient
   &::after {
     content: "";
     position: absolute;
@@ -30,10 +28,9 @@ $btn-dark: rgba(255, 255, 255, 0.1);
     width: 100%;
     height: 100%;
     background: linear-gradient(to top,
-        $bg-dark 10%, // Dùng màu nền chính ở đáy
-        rgba(17, 24, 39, 0.7) 50%, // Màu tối hơn ở giữa
-        rgba(17, 24, 39, 0.3) 100% // Mờ dần ở trên
-      );
+        $bg-dark 10%,
+        rgba(17, 24, 39, 0.7) 50%,
+        rgba(17, 24, 39, 0.3) 100%);
   }
 }
 
@@ -41,8 +38,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
-
-  // Kéo nội dung lên đè lên banner
   margin-top: -150px;
   position: relative;
   z-index: 10;
@@ -50,13 +45,10 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
 .movie-grid-layout {
   display: grid;
-  grid-template-columns: 300px 1fr 340px; // Trái: 300px | Giữa: tự động | Phải: 300px
+  grid-template-columns: 300px 1fr 340px;
   gap: 2rem;
 }
 
-// ==========================
-// Sidebar Trái
-// ==========================
 .movie-sidebar {
   .movie-poster {
     width: 100%;
@@ -142,19 +134,12 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   }
 }
 
-// ==========================
-// Sidebar Phải (Top Movies Week)
-// ==========================
 .movie-sidebar-right {
   position: relative;
-  // TopMoviesWeek component sẽ tự xử lý style bên trong
 }
 
-// ==========================
-// Nội dung chính (Giữa)
-// ==========================
 .movie-main-content {
-  padding-top: 4rem; // Đẩy nội dung xuống 1 chút
+  padding-top: 4rem;
   color: $text-white;
 
   .movie-actions {
@@ -165,7 +150,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
     .btn-play {
       background: $primary-color;
-      color: $bg-dark; // Đổi sang màu nền chính
+      color: $bg-dark;
       border: none;
       border-radius: 20px;
       padding: 0.75rem 1.5rem;
@@ -239,7 +224,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
     .btn-rate {
       background: $primary-color;
-      color: $bg-dark; // Đổi sang màu nền chính
+      color: $bg-dark;
       border: none;
       border-radius: 6px;
       padding: 0.5rem 1rem;
@@ -275,8 +260,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   }
 
   .movie-tab-content {
-
-    // Tab Tập Phim
     .episodes-tab {
       .episode-selector {
         display: flex;
@@ -325,18 +308,18 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
         .episode-list {
           list-style: none;
-          padding: 0; // Thêm reset padding
+          padding: 0;
 
           .episode-item {
             display: flex;
             align-items: center;
             padding: 1rem;
             border-radius: 6px;
-            background: $bg-dark; // Dùng nền chính
-            margin-bottom: 0.5rem; // Thêm khoảng cách giữa các tập
+            background: $bg-dark;
+            margin-bottom: 0.5rem;
 
             &:last-child {
-              margin-bottom: 0; // Xóa margin cho tập cuối
+              margin-bottom: 0;
             }
 
             &.active {
@@ -345,7 +328,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
             .episode-badge {
               background: $primary-color;
-              color: $bg-dark; // Đổi sang màu nền chính
+              color: $bg-dark;
               font-size: 0.8rem;
               font-weight: 700;
               padding: 0.25rem 0.5rem;
@@ -360,7 +343,7 @@ $btn-dark: rgba(255, 255, 255, 0.1);
 
             .btn-watch-now {
               background: $primary-color;
-              color: $bg-dark; // Đổi sang màu nền chính
+              color: $bg-dark;
               border: none;
               border-radius: 20px;
               padding: 0.5rem 1rem;
@@ -377,9 +360,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
       }
     }
 
-    // ==========================
-    // Comment Section
-    // ==========================
     .comments-section {
       margin-top: 3rem;
 
@@ -442,7 +422,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
           .input-content {
             padding: 0;
 
-            // Ant Design TextArea custom styles
             .ant-input,
             textarea.ant-input {
               background: transparent !important;
@@ -472,7 +451,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
               }
             }
 
-            // Character count styling
             .ant-input-data-count {
               color: rgba(255, 255, 255, 0.4) !important;
               font-size: 0.75rem;
@@ -488,8 +466,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
               align-items: center;
 
               .comment-options {
-
-                // Ant Design Checkbox custom styles
                 .ant-checkbox-wrapper {
                   color: rgba(255, 255, 255, 0.6) !important;
                   font-size: 0.85rem;
@@ -517,7 +493,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
                 }
               }
 
-              // Ant Design Button custom styles
               .ant-btn-primary {
                 background: $primary-color !important;
                 border: none !important;
@@ -770,7 +745,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
                     }
                   }
 
-                  // Style cho button dislike (không có span)
                   &:not(.like-btn):not(.reply-btn):not(.more-btn) {
                     padding: 0.4rem 0.55rem !important;
                   }
@@ -784,12 +758,9 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   }
 }
 
-// ==========================
-// Responsive
-// ==========================
 @media (max-width: 1200px) {
   .movie-grid-layout {
-    grid-template-columns: 250px 1fr 250px; // Thu nhỏ sidebar
+    grid-template-columns: 250px 1fr 250px;
   }
 }
 
@@ -799,11 +770,11 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   }
 
   .movie-grid-layout {
-    grid-template-columns: 1fr; // Chuyển thành 1 cột
+    grid-template-columns: 1fr;
   }
 
   .movie-sidebar-right {
-    display: none; // Ẩn sidebar phải trên tablet/mobile
+    display: none;
   }
 
   .movie-sidebar {
@@ -811,7 +782,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
     gap: 1rem;
     margin-bottom: 1.5rem;
 
-    // Ẩn bớt thông tin sidebar
     .info-section {
       display: none;
     }
@@ -920,7 +890,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   }
 }
 
-// Extra Small Mobile
 @media (max-width: 480px) {
   .movie-sidebar {
     .movie-poster {
@@ -993,13 +962,9 @@ $btn-dark: rgba(255, 255, 255, 0.1);
   }
 }
 
-// ==========================
-// GLOBAL OVERRIDE cho Ant Design trong comments
-// ==========================
 .movie-detail-page {
   .comments-section {
 
-    // Force override Ant Design TextArea
     .ant-input,
     .ant-input-affix-wrapper,
     textarea.ant-input,
@@ -1029,7 +994,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
       }
     }
 
-    // Override wrapper
     .ant-input-textarea,
     .ant-input-textarea-show-count {
       background: transparent !important;
@@ -1042,7 +1006,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
       }
     }
 
-    // Force override Checkbox
     .ant-checkbox-wrapper {
       color: rgba(255, 255, 255, 0.9) !important;
       font-size: 0.9rem !important;
@@ -1081,7 +1044,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
       }
     }
 
-    // Force override textarea trong show-count wrapper
     .ant-input-textarea-show-count {
       background: transparent !important;
       border: none !important;
@@ -1117,7 +1079,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
       }
     }
 
-    // Force override Ant Design Button
     .ant-btn,
     .ant-btn-primary,
     button.ant-btn {
@@ -1135,7 +1096,6 @@ $btn-dark: rgba(255, 255, 255, 0.1);
       }
     }
 
-    // Force override Comment Action Buttons
     .comment-actions {
 
       button,

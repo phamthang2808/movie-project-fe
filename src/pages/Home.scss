@@ -1,7 +1,3 @@
-// Import biến màu và các mixins nếu có (ví dụ)
-// @import '../../styles/variables.scss';
-
-// Biến màu (Nếu chưa import từ file global)
 $primary-color: #ff8c00;
 $bg-dark: #111827;
 $bg-light: #1F2937;
@@ -9,7 +5,6 @@ $text-white: #ffffff;
 $text-gray: #a0a0a0;
 $text-gray-light: #d1d5db;
 
-// Keyframes Animations
 @keyframes slideInFromLeft {
   from {
     opacity: 0;
@@ -44,29 +39,22 @@ $text-gray-light: #d1d5db;
   }
 }
 
-// ==========================
-// Trang Home chung
-// ==========================
 .home {
   padding: 0;
   width: 100%;
-  overflow-x: hidden; // Thêm để tránh scroll ngang do 100vw
+  overflow-x: hidden;
 }
 
-// Override container cho trang home
 .home .container {
-  max-width: 100%; // Container chiếm full width
+  max-width: 100%;
   padding: 0;
   margin: 0;
 }
 
-// ==========================
-// Featured Movie Section (Banner chính)
-// ==========================
 .featured-section {
   position: relative;
-  margin-bottom: 4rem; // Khoảng cách dưới banner
-  height: 100vh; // Chiếm toàn bộ chiều cao màn hình
+  margin-bottom: 4rem;
+  height: 100vh;
   min-height: 600px;
   overflow: hidden;
   width: 100%;
@@ -74,8 +62,8 @@ $text-gray-light: #d1d5db;
 
 .featured-backdrop {
   position: absolute;
-  inset: 0; // top: 0; left: 0; right: 0; bottom: 0;
-  background-image: var(--featured-bg, none); // Dùng biến CSS từ JSX
+  inset: 0;
+  background-image: var(--featured-bg, none);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -89,31 +77,27 @@ $text-gray-light: #d1d5db;
 .backdrop-overlay {
   position: absolute;
   inset: 0;
-  // Gradient từ trong suốt ở trên -> đen đậm ở dưới
   background: linear-gradient(to bottom,
-      rgba(17, 24, 39, 0) 50%, // Trong suốt 50% trên
-      rgba(17, 24, 39, 0.8) 80%, // Bắt đầu tối dần
-      $bg-dark 100% // Đen hoàn toàn ở dưới cùng
-    );
+      rgba(17, 24, 39, 0) 50%,
+      rgba(17, 24, 39, 0.8) 80%,
+      $bg-dark 100%);
 }
 
 
 .featured-content {
-  position: relative; // Nằm trên backdrop và overlay
+  position: relative;
   z-index: 2;
-  // Căn chỉnh nội dung vào container chuẩn
   max-width: 1900px;
   margin: 0 auto;
-  padding: 3rem 2rem; // Padding giống các section khác
+  padding: 3rem 2rem;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; // Đẩy nội dung xuống dưới
-  gap: 1.25rem; // Khoảng cách giữa các element
+  justify-content: flex-end;
+  gap: 1.25rem;
 
   &.animate {
 
-    // Animation cho các thành phần con
     .featured-title,
     .featured-original-title,
     .featured-meta,
@@ -124,7 +108,6 @@ $text-gray-light: #d1d5db;
       animation-fill-mode: both;
     }
 
-    // Delay animation
     .featured-title {
       animation-delay: 0.1s;
     }
@@ -151,7 +134,6 @@ $text-gray-light: #d1d5db;
   }
 }
 
-// Styling các element trong featured-content
 .featured-title {
   font-size: 3rem;
   font-weight: 900;
@@ -163,14 +145,14 @@ $text-gray-light: #d1d5db;
 
 .featured-original-title {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.7); // Hơi mờ hơn
-  margin: -0.5rem 0 0.5rem; // Gần title hơn
-  font-weight: 400; // Đổi font weight
+  color: rgba(255, 255, 255, 0.7);
+  margin: -0.5rem 0 0.5rem;
+  font-weight: 400;
 }
 
 .featured-meta {
   display: flex;
-  gap: 0.75rem; // Giảm gap
+  gap: 0.75rem;
   flex-wrap: wrap;
   align-items: center;
 }
@@ -178,45 +160,44 @@ $text-gray-light: #d1d5db;
 .meta-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem; // Giảm gap icon
-  padding: 0.375rem 0.75rem; // Giảm padding
-  background-color: rgba(255, 255, 255, 0.15); // Nền hơi mờ
-  border-radius: 6px; // Bo góc ít hơn
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
   color: $text-white;
-  font-size: 0.8125rem; // Giảm font
+  font-size: 0.8125rem;
   font-weight: 500;
-  backdrop-filter: blur(5px); // Blur nhẹ
+  backdrop-filter: blur(5px);
 }
 
 .meta-icon {
-  width: 14px; // Giảm size icon
+  width: 14px;
   height: 14px;
-  opacity: 0.8; // Hơi mờ icon
+  opacity: 0.8;
 }
 
 .featured-genres {
   display: flex;
-  gap: 0.5rem; // Giảm gap
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .genre-tag {
-  padding: 0.3rem 0.6rem; // Giảm padding
-  background-color: rgba(255, 255, 255, 0.1); // Nền tối hơn badge
+  padding: 0.3rem 0.6rem;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
-  color: $text-gray-light; // Màu chữ sáng hơn gray
-  font-size: 0.75rem; // Giảm font
+  color: $text-gray-light;
+  font-size: 0.75rem;
   font-weight: 500;
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .featured-description {
-  max-width: 55%; // Giới hạn chiều rộng mô tả
-  font-size: 0.9375rem; // Giảm font
-  color: $text-gray-light; // Màu sáng hơn gray
+  max-width: 55%;
+  font-size: 0.9375rem;
+  color: $text-gray-light;
   line-height: 1.6;
-  margin: 0.5rem 0; // Thêm margin trên dưới
-  // Giới hạn 3 dòng text
+  margin: 0.5rem 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -225,62 +206,61 @@ $text-gray-light: #d1d5db;
 
 .featured-actions {
   display: flex;
-  gap: 0.75rem; // Giảm gap
+  gap: 0.75rem;
   align-items: center;
 }
 
 .action-btn {
-  display: inline-flex; // Đổi sang inline-flex
+  display: inline-flex;
   align-items: center;
-  justify-content: center; // Thêm căn giữa
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.625rem 1.25rem; // Giảm padding
+  padding: 0.625rem 1.25rem;
   border-radius: 50px;
-  font-size: 0.9375rem; // Giảm font
+  font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease; // Sửa transition
+  transition: all 0.2s ease;
   text-decoration: none;
   border: none;
 
   &.play-btn {
     background-color: $text-white;
-    color: $bg-dark; // Màu chữ tối
+    color: $bg-dark;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.85);
-      transform: scale(1.03); // Giảm scale
+      transform: scale(1.03);
     }
   }
 
   &.icon-btn {
-    width: 2.75rem; // Giảm kích thước nút tròn
+    width: 2.75rem;
     height: 2.75rem;
     padding: 0;
-    background-color: rgba(255, 255, 255, 0.15); // Nền tối hơn
-    backdrop-filter: blur(8px); // Blur nhẹ hơn
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
     color: $text-white;
-    border: 1px solid rgba(255, 255, 255, 0.1); // Thêm border
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.25);
-      transform: scale(1.08); // Giảm scale
+      transform: scale(1.08);
     }
   }
 }
 
 .action-icon {
-  width: 1.125rem; // Giảm size icon
+  width: 1.125rem;
   height: 1.125rem;
 }
 
-// Thumbnail Strip
 .thumbnail-strip {
   position: absolute;
-  bottom: 2rem; // Đẩy lên 1 chút
-  right: 2rem; // Cách lề phải
+  bottom: 2rem;
+  right: 2rem;
   display: flex;
-  gap: 0.5rem; // Giảm gap
+  gap: 0.5rem;
   z-index: 10;
   background: none;
   backdrop-filter: none;
@@ -295,30 +275,29 @@ $text-gray-light: #d1d5db;
 .thumbnail-item {
   position: relative;
   flex-shrink: 0;
-  width: 120px; // Tăng chiều rộng thumbnail
-  height: 70px; // Tăng chiều cao thumbnail
+  width: 120px;
+  height: 70px;
   cursor: pointer;
-  transition: all 0.2s ease; // Sửa transition
-  border-radius: 6px; // Bo góc ít hơn
+  transition: all 0.2s ease;
+  border-radius: 6px;
   overflow: hidden;
   border: 2px solid transparent;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Thêm bóng đổ
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
   &:hover {
-    transform: scale(1.08); // Giảm scale
-    border-color: rgba($text-white, 0.7); // Viền trắng mờ
+    transform: scale(1.08);
+    border-color: rgba($text-white, 0.7);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 
     .thumbnail-overlay {
-      // Hiện overlay khi hover
       opacity: 1;
     }
   }
 
   &.active {
     border-color: $primary-color;
-    transform: scale(1.08); // Giảm scale
-    box-shadow: 0 0 12px rgba($primary-color, 0.4); // Sửa shadow active
+    transform: scale(1.08);
+    box-shadow: 0 0 12px rgba($primary-color, 0.4);
   }
 }
 
@@ -331,90 +310,85 @@ $text-gray-light: #d1d5db;
 .thumbnail-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4); // Overlay tối hơn
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0; // Mặc định ẩn
-  transition: opacity 0.2s ease; // Sửa transition
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .thumbnail-play-icon {
-  width: 1.25rem; // Giảm size icon play
+  width: 1.25rem;
   height: 1.25rem;
   color: $text-white;
-  opacity: 0.8; // Hơi mờ
+  opacity: 0.8;
 }
 
-// ==========================
-// Quick Topics Section
-// ==========================
 .topics-section {
   margin: 2rem 0 3rem;
-  padding: 0 2rem; // Căn lề giống container chuẩn
-  max-width: 1900px; // Giới hạn chiều rộng giống container
+  padding: 0 2rem;
+  max-width: 1900px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .topics-title {
-  font-size: 1.5rem; // Giảm font size
-  font-weight: 700; // Giảm font weight
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: 1.25rem;
-  padding-left: 0.75rem; // Căn lề giống row-title
-  border-left: 4px solid $primary-color; // Đường kẻ giống row-title
+  padding-left: 0.75rem;
+  border-left: 4px solid $primary-color;
   line-height: 1.2;
 }
 
 .topic-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); // Tự động chia cột
-  gap: 1rem; // Giảm gap
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 .topic-card {
   display: block;
-  border-radius: 8px; // Giảm bo góc
+  border-radius: 8px;
   text-decoration: none;
   color: #fff;
-  height: 120px; // Giảm chiều cao
+  height: 120px;
   position: relative;
   overflow: hidden;
   background-color: var(--topic-color);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); // Viền mờ hơn
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   transition: transform .2s ease, box-shadow .2s ease;
 
   &:hover {
-    transform: translateY(-3px); // Giảm hiệu ứng
-    box-shadow: 0 8px 20px rgba(0, 0, 0, .25); // Giảm bóng đổ
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
   }
 }
 
 .topic-content {
   position: absolute;
   inset: 0;
-  padding: 1rem; // Giảm padding
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .topic-name {
-  font-size: 1.125rem; // Giảm font
-  font-weight: 600; // Giảm font weight
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 .topic-link {
   align-self: flex-start;
-  font-size: .8125rem; // Giảm font
-  background: rgba(255, 255, 255, 0.1); // Nền tối hơn
-  padding: .3rem .6rem; // Giảm padding
+  font-size: .8125rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: .3rem .6rem;
   border-radius: 999px;
 }
 
 .topic-more {
-
-  // Giữ nguyên hoặc tùy chỉnh thêm
   .topic-content {
     justify-content: center;
     align-items: center;
@@ -426,13 +400,10 @@ $text-gray-light: #d1d5db;
 }
 
 
-// ==========================
-// Row Catalog Section (Hàng phim)
-// ==========================
 .row-catalog {
   margin-bottom: 3rem;
-  padding: 0 2rem; // Căn lề chuẩn
-  max-width: 1900px; // Chiều rộng chuẩn
+  padding: 0 2rem;
+  max-width: 1900px;
   margin-left: auto;
   margin-right: auto;
 
@@ -465,13 +436,10 @@ $text-gray-light: #d1d5db;
 
   .poster-grid {
     display: grid;
-    // Bắt đầu với 2 cột
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 
-    // Tăng số cột theo kích thước màn hình
     @media (min-width: 480px) {
-      // Thêm breakpoint nhỏ
       grid-template-columns: repeat(3, 1fr);
     }
 
@@ -489,12 +457,11 @@ $text-gray-light: #d1d5db;
     }
 
     @media (min-width: 1280px) {
-      grid-template-columns: repeat(7, 1fr); // 7 cột cho màn hình lớn
+      grid-template-columns: repeat(7, 1fr);
       gap: 1.5rem;
     }
 
     @media (min-width: 1536px) {
-      // Breakpoint lớn hơn nữa
       grid-template-columns: repeat(8, 1fr);
     }
   }
@@ -581,7 +548,6 @@ $text-gray-light: #d1d5db;
     }
   }
 
-  // Responsive cho poster cards
   @media (max-width: 768px) {
     .poster-card {
       .poster-thumb {
@@ -635,20 +601,14 @@ $text-gray-light: #d1d5db;
   }
 }
 
-// ==========================
-// Anime Vault Section (ĐÃ SỬA)
-// ==========================
 .anime-vault {
   position: relative;
-  margin: 4rem 0; // Tăng margin
-  min-height: 450px; // Tăng chiều cao
-  overflow: hidden; // Giữ overflow hidden
-
-  /* === BẮT ĐẦU SỬA === */
-  width: 100vw; // Chiếm toàn bộ chiều rộng viewport
-  margin-left: calc(-50vw + 50%); // Căn giữa section tràn lề
-  border-radius: 0; // Bỏ bo góc
-  /* === KẾT THÚC SỬA === */
+  margin: 4rem 0;
+  min-height: 450px;
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  border-radius: 0;
 }
 
 .anime-vault-backdrop {
@@ -656,17 +616,14 @@ $text-gray-light: #d1d5db;
   inset: 0;
   background-image: var(--anime-bg);
   background-size: cover;
-  background-position: center 30%; // Điều chỉnh vị trí nền
+  background-position: center 30%;
   background-repeat: no-repeat;
-  /* === XÓA DÒNG NÀY === */
-  // filter: blur(2px);
 }
 
 .anime-vault-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient( // Gradient phức tạp hơn
-      90deg,
+  background: linear-gradient(90deg,
       rgba($bg-dark, 0.95) 30%,
       rgba($bg-dark, 0.7) 60%,
       rgba($bg-dark, 0.3) 100%);
@@ -675,26 +632,22 @@ $text-gray-light: #d1d5db;
 .anime-vault-content {
   position: relative;
   z-index: 2;
-  // Căn nội dung vào container chuẩn
   max-width: 1900px;
   margin: 0 auto;
-  padding: 3rem 2rem; // Padding chuẩn
+  padding: 3rem 2rem;
   color: $text-white;
 
-  // Giới hạn chiều rộng nội dung bên trong (Nếu cần)
-  // max-width: 60%; // Bỏ dòng này nếu muốn nội dung chiếm hết container
-
   .vault-title {
-    font-size: 1.125rem; // Giảm font
+    font-size: 1.125rem;
     font-weight: 600;
-    color: $primary-color; // Màu cam
+    color: $primary-color;
     margin-bottom: 0.75rem;
-    text-transform: uppercase; // Viết hoa
+    text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   .vault-hero {
-    font-size: 2.5rem; // Tăng font
+    font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.2;
@@ -705,9 +658,9 @@ $text-gray-light: #d1d5db;
     color: $text-gray-light;
     line-height: 1.6;
     margin-bottom: 1.5rem;
-    max-width: 500px; // Giới hạn chiều rộng text
+    max-width: 500px;
     display: -webkit-box;
-    -webkit-line-clamp: 2; // Giới hạn 2 dòng
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -731,11 +684,10 @@ $text-gray-light: #d1d5db;
 
   .vault-strip {
     display: flex;
-    gap: 0.75rem; // Tăng gap
-    overflow-x: auto; // Cho phép cuộn ngang nếu cần
-    padding-bottom: 1rem; // Để có chỗ cho scrollbar
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
 
-    // Custom scrollbar
     &::-webkit-scrollbar {
       height: 6px;
     }
@@ -756,14 +708,14 @@ $text-gray-light: #d1d5db;
 
     .vault-item {
       flex-shrink: 0;
-      width: 80px; // Tăng kích thước item
+      width: 80px;
       height: 110px;
       border-radius: 6px;
       overflow: hidden;
       cursor: pointer;
       border: 2px solid transparent;
       transition: all 0.2s ease;
-      background: $bg-light; // Nền chờ
+      background: $bg-light;
 
       &:hover {
         transform: scale(1.05);
@@ -772,7 +724,6 @@ $text-gray-light: #d1d5db;
 
       &:focus,
       &:active {
-        // Style khi được chọn
         border-color: $primary-color;
         box-shadow: 0 0 10px rgba($primary-color, 0.5);
       }
@@ -787,16 +738,12 @@ $text-gray-light: #d1d5db;
 }
 
 
-// ==========================
-// Responsive tổng thể
-// ==========================
 @media (max-width: 1024px) {
   .featured-section {
     height: 85vh;
     min-height: 500px;
   }
 
-  // Giảm chiều cao banner
   .featured-title {
     font-size: 2.5rem;
   }
@@ -816,7 +763,6 @@ $text-gray-light: #d1d5db;
     height: 60px;
   }
 
-  // Sửa padding cho anime-vault-content trên tablet
   .anime-vault-content {
     padding: 2rem;
   }
@@ -906,7 +852,6 @@ $text-gray-light: #d1d5db;
     display: none;
   }
 
-  // Ẩn thumbnail trên mobile
   .topics-section,
   .row-catalog {
     padding: 0 1rem;
@@ -923,7 +868,6 @@ $text-gray-light: #d1d5db;
     min-height: 350px;
   }
 
-  // Sửa padding cho anime-vault-content trên mobile
   .anime-vault-content {
     padding: 1.5rem;
   }
@@ -1022,7 +966,6 @@ $text-gray-light: #d1d5db;
     }
   }
 
-  // Nút tròn thành chữ nhật
   .row-catalog .row-head {
     flex-direction: column;
     align-items: flex-start;

@@ -35,3 +35,4 @@ SafeAvatar.propTypes = {
 
 export default SafeAvatar;
 
+

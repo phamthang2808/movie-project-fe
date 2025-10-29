@@ -1,6 +1,5 @@
 @use 'sass:color';
 
-// Variables
 $primary-color: #E50914;
 $secondary-color: #564d4d;
 $bg-dark: #111827;
@@ -10,18 +9,12 @@ $text-white: #FFFFFF;
 $text-gray: #9CA3AF;
 $text-gray-light: #D1D5DB;
 
-// =======================================================
-// SỬA Ở ĐÂY
-// =======================================================
-
-// Reset & Base
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* THÊM 2 DÒNG NÀY ĐỂ ĐẢM BẢO CHIỀU CAO 100% */
 html,
 #root {
   height: 100%;
@@ -35,16 +28,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: $bg-dark;
   color: $text-white;
-
-  /* SỬA 'min-height: 100vh' THÀNH 'height: 100%' */
   height: 100%;
 }
 
-// =======================================================
-// KẾT THÚC SỬA
-// =======================================================
-
-// Components
 .btn-primary {
   background-color: $primary-color;
   color: $text-white;
@@ -68,7 +54,6 @@ body {
   }
 }
 
-// Utility Classes
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -116,19 +101,14 @@ body {
   }
 }
 
-// Responsive
 @media (max-width: 640px) {
   .container {
     padding: 0 0.5rem;
   }
 }
 
-// ================================================
-// ANT DESIGN OVERRIDE - PHẢI Ở CUỐI ĐỂ OVERRIDE
-// ================================================
 .movie-detail-page .comments-section {
 
-  // Override Ant Design Input/TextArea
   .ant-input,
   .ant-input-affix-wrapper,
   textarea.ant-input,
@@ -158,7 +138,6 @@ body {
     }
   }
 
-  // Override wrapper
   .ant-input-textarea,
   .ant-input-textarea-show-count {
     background: transparent !important;
@@ -171,12 +150,10 @@ body {
     }
   }
 
-  // Override Character Count
   .ant-input-data-count {
     color: rgba(255, 255, 255, 0.4) !important;
   }
 
-  // Override textarea trong show-count wrapper
   .ant-input-textarea-show-count {
     background: transparent !important;
     border: none !important;
@@ -212,7 +189,6 @@ body {
     }
   }
 
-  // Override Checkbox
   .ant-checkbox-wrapper {
     color: rgba(255, 255, 255, 0.9) !important;
     font-size: 0.9rem !important;
@@ -251,7 +227,6 @@ body {
     }
   }
 
-  // Override Primary Button (Nút Gửi)
   .btn-submit-comment.ant-btn-primary {
     background: transparent !important;
     background-color: transparent !important;
@@ -281,7 +256,6 @@ body {
     }
   }
 
-  // Override Comment Action Buttons
   .comment-actions {
 
     button,

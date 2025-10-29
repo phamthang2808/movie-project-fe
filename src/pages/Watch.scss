@@ -7,19 +7,15 @@ $text-gray: #9ca3af;
 .watch-page {
   min-height: 100vh;
   background: $bg-dark;
-  padding-top: 4.375rem; // Header height
+  padding-top: 4.375rem;
 }
 
-// =====================================
-// VIDEO PLAYER SECTION
-// =====================================
 .video-player-section {
   position: relative;
   width: 100%;
   background: linear-gradient(180deg, rgba(11, 18, 32, 0.95) 0%, #000 100%);
 }
 
-// Video Header Info - Thông tin phim trên video
 .video-header-info {
   padding: 1.5rem 0 1rem 0;
   background: linear-gradient(180deg, $bg-dark 0%, transparent 100%);
@@ -128,7 +124,6 @@ $text-gray: #9ca3af;
   }
 }
 
-// Video Wrapper with Container
 .video-wrapper {
   padding: 1rem 0 2rem 0;
 
@@ -200,9 +195,6 @@ $text-gray: #9ca3af;
   }
 }
 
-// =====================================
-// WATCH CONTENT (MAIN + SIDEBAR)
-// =====================================
 .watch-content {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -224,9 +216,6 @@ $text-gray: #9ca3af;
   overflow-y: auto;
 }
 
-// =====================================
-// WATCH INFO SECTION
-// =====================================
 .watch-info-section {
   background: $bg-dark-2;
   border-radius: 12px;
@@ -234,7 +223,6 @@ $text-gray: #9ca3af;
   margin-bottom: 2rem;
 }
 
-// Action Buttons
 .watch-actions {
   display: flex;
   flex-wrap: wrap;
@@ -276,7 +264,6 @@ $text-gray: #9ca3af;
   }
 }
 
-// Tabs
 .watch-tabs {
   display: flex;
   gap: 2rem;
@@ -314,7 +301,6 @@ $text-gray: #9ca3af;
   }
 }
 
-// Movie Info Layout
 .watch-movie-info {
   .movie-info-layout {
     display: flex;
@@ -492,9 +478,6 @@ $text-gray: #9ca3af;
   }
 }
 
-// =====================================
-// RECOMMENDED SECTION (SIDEBAR)
-// =====================================
 .recommended-section {
   background: $bg-dark-2;
   border-radius: 12px;
@@ -621,9 +604,6 @@ $text-gray: #9ca3af;
   }
 }
 
-// =====================================
-// RESPONSIVE
-// =====================================
 @media (max-width: 1200px) {
   .watch-content {
     grid-template-columns: 1fr 280px;

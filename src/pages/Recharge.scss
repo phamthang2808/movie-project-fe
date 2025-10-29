@@ -1,13 +1,11 @@
-@import "../index.scss";
+@use '../index.scss'as *;
+@use 'sass:color';
 
-// ==========================================
-// RECHARGE PAGE
-// ==========================================
 .recharge-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #0b1218 0%, #1a2332 100%);
   padding: 2rem 1rem;
-  padding-top: 5rem; // Space for header
+  padding-top: 5rem;
 }
 
 .recharge-container {
@@ -15,9 +13,6 @@
   margin: 0 auto;
 }
 
-// ==========================================
-// HEADER
-// ==========================================
 .recharge-header {
   display: flex;
   align-items: center;
@@ -52,9 +47,6 @@
   }
 }
 
-// ==========================================
-// USER INFO SECTION
-// ==========================================
 .user-info-section {
   background: linear-gradient(135deg, #1e2938 0%, #2a3647 100%);
   border-radius: 16px;
@@ -137,16 +129,13 @@
       transition: all 0.3s ease;
 
       &:hover {
-        color: lighten($primary-color, 10%);
+        color: color.adjust($primary-color, $lightness: 10%);
         text-decoration: underline;
       }
     }
   }
 }
 
-// ==========================================
-// RESPONSIVE
-// ==========================================
 @media (max-width: 768px) {
   .recharge-page {
     padding: 1.5rem 1rem;
@@ -211,5 +200,3 @@
     }
   }
 }
-
-
