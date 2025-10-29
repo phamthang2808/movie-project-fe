@@ -477,7 +477,7 @@ const Home = () => {
                 <button
                   type="button"
                   className="action-btn play-btn"
-                  onClick={() => navigate(`/movie/${selectedMovie.id}`)}
+                  onClick={() => navigate("/movie")}
                 >
                   <Play className="action-icon" />
                   <span>{uiText.buttons.play}</span>

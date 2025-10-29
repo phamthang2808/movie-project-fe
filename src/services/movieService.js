@@ -89,3 +89,4 @@ export const searchMovies = async (query) => {
 
 
 
+
