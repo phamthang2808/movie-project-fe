@@ -3,7 +3,9 @@
  * Xử lý payment và recharge operations
  */
 
-import { apiRequest } from "./config";
+import {
+    apiRequest
+} from "./config";
 
 export const paymentApi = {
     /**
@@ -81,5 +83,33 @@ export const paymentApi = {
             method: "POST",
         });
     },
-};
 
+    /**
+     * Create VNPay payment session
+     * Backend should return a payment URL to redirect the user
+     */
+    createVnpayPayment: async ({
+        amount,
+        bankCode
+    }) => {
+        return apiRequest("/vnpay/create", {
+            method: "POST",
+            withCredentials: false,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                bankCode,
+                amount: String(amount)
+            }),
+        });
+    },
+
+    // Verify VNPay callback (backend expects GET with query string)
+    verifyVnpayReturn: async (queryString) => {
+        const qs = typeof queryString === "string" ? queryString.replace(/^\?/, "") : new URLSearchParams(queryString).toString();
+        return apiRequest(`/vnpay/return?${qs}`, {
+            method: "GET",
+        });
+    },
+};

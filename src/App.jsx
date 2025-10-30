@@ -22,6 +22,7 @@ import Register from "./pages/Auth/Register";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 import Recharge from "./pages/Recharge";
+import VnpayReturn from "./pages/Recharge/VnpayReturn";
 import Search from "./pages/Search";
 import Series from "./pages/Series";
 import StaffComments from "./pages/Staff/Comments";
@@ -74,6 +75,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/watch" element={<Watch />} />
           <Route path="/recharge" element={<Recharge />} />
+          <Route path="/vnpay/return" element={<VnpayReturn />} />
           <Route path="/account" element={<Account />} />
 
           {/* Staff Routes - Chỉ staff mới vào được */}

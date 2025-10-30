@@ -5,6 +5,8 @@ import BankTransferDetail from "../../components/Recharge/BankTransferDetail";
 import PaymentMethods from "../../components/Recharge/PaymentMethods";
 import RechargePackages from "../../components/Recharge/RechargePackages";
 import SafeAvatar from "../../components/SafeAvatar";
+import { paymentApi } from "../../services/api/paymentApi";
+import { showWarning } from "../../utils/notification";
 import "./Recharge.scss";
 
 const Recharge = () => {
@@ -41,6 +43,37 @@ const Recharge = () => {
       setShowBankDetail(true);
     } else {
       setShowBankDetail(false);
+    }
+
+    // Nếu chọn VNPAY và đã chọn gói, gọi API tạo payment và redirect
+    if (method.id === "vnpay") {
+      if (!selectedPackage) {
+        showWarning("Vui lòng chọn gói nạp trước khi thanh toán VNPay");
+        return;
+      }
+
+      // call backend to create VNPay session then redirect
+      paymentApi
+        .createVnpayPayment({ amount: selectedPackage.amount, bankCode: "NCB" })
+        .then((res) => {
+          // Expect backend returns a URL string or { url }
+          const paymentUrl =
+            typeof res === "string" ? res : res?.data || res?.url;
+          if (paymentUrl) {
+            window.location.href = paymentUrl;
+          }
+        })
+        .catch((err) => {
+          const message =
+            err?.message ||
+            err?.data?.message ||
+            err?.response?.data?.message ||
+            "Không thể khởi tạo thanh toán VNPay. Vui lòng thử lại!";
+          showWarning(message);
+          // Log chi tiết để debug
+          // eslint-disable-next-line no-console
+          console.error("VNPay create error:", err);
+        });
     }
   };
 

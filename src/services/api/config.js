@@ -105,13 +105,21 @@ export const getAuthToken = () => {
  */
 export const apiRequest = async (endpoint, options = {}) => {
     try {
-        const response = await axiosInstance({
+        // Normalize fetch-like "body" to axios "data"
+        const axiosConfig = {
             url: endpoint,
             ...options,
-        });
+        };
+
+        if (Object.prototype.hasOwnProperty.call(axiosConfig, "body")) {
+            axiosConfig.data = axiosConfig.body;
+            delete axiosConfig.body;
+        }
+
+        const response = await axiosInstance(axiosConfig);
         return response.data;
     } catch (error) {
         console.error("API Request Error:", error);
-        throw error.response ? .data || error;
+        throw error.response ?.data || error;
     }
 };
