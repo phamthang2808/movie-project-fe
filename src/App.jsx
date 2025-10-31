@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import "./App.scss";
 import AdminLayout from "./components/Admin/AdminLayout";
+import ChatBox from "./components/ChatBox";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Loading from "./components/Loading";
@@ -109,6 +110,7 @@ function App() {
         </Routes>
       </main>
       {!shouldHideFooter && !isAdminRoute && !isStaffRoute && <Footer />}
+      {!isAdminRoute && !isStaffRoute && <ChatBox />}
     </div>
   );
 }

@@ -154,7 +154,7 @@ $bg-dark: #1a1a2e;
     .back-to-top {
         position: fixed;
         bottom: 2rem;
-        right: 2rem;
+        right: 2rem; // Sát mép phải
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -167,7 +167,7 @@ $bg-dark: #1a1a2e;
         justify-content: center;
         box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
         transition: all 0.3s ease;
-        z-index: 1000;
+        z-index: 999;
 
         &:hover {
             transform: translateY(-4px);
@@ -177,6 +177,11 @@ $bg-dark: #1a1a2e;
         .arrow-icon {
             width: 24px;
             height: 24px;
+        }
+
+        // Ẩn nút khi chatbox mở
+        body.chatbox-open & {
+            display: none;
         }
     }
 }
@@ -220,13 +225,18 @@ $bg-dark: #1a1a2e;
 
         .back-to-top {
             bottom: 1rem;
-            right: 1rem;
+            right: 1rem; // Sát mép phải
             width: 44px;
             height: 44px;
 
             .arrow-icon {
                 width: 20px;
                 height: 20px;
+            }
+
+            // Ẩn nút khi chatbox mở
+            body.chatbox-open & {
+                display: none;
             }
         }
     }

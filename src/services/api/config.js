@@ -119,7 +119,6 @@ export const apiRequest = async (endpoint, options = {}) => {
         const response = await axiosInstance(axiosConfig);
         return response.data;
     } catch (error) {
-        console.error("API Request Error:", error);
         throw error.response ?.data || error;
     }
 };
