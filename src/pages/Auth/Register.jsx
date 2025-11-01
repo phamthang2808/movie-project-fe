@@ -1,8 +1,11 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoadingButton from "../../components/LoadingButton";
 import { authApi } from "../../services/api";
+import {
+  initiateGoogleOAuth,
+  isGoogleOAuthConfigured,
+} from "../../utils/googleOAuth";
 import { showError, showSuccess } from "../../utils/notification";
 import "./Auth.scss";
 
@@ -154,28 +157,35 @@ const Register = () => {
     setIsLoading(true);
 
     try {
+      console.log("🔄 Đang đăng ký...", {
+        name: formData.displayName,
+        email: formData.email,
+      });
+
       const response = await authApi.register({
         name: formData.displayName,
         email: formData.email,
         password: formData.password,
       });
 
-      showSuccess("Đăng ký thành công!");
+      console.log("✅ Đăng ký thành công!", response);
 
-      // Lưu token và user info
-      if (response.token) {
-        localStorage.setItem("token", response.token);
-      }
-      if (response.user) {
-        localStorage.setItem("user", JSON.stringify(response.user));
-      }
+      showSuccess(
+        "Đăng ký thành công! Vui lòng kiểm tra email để xác thực tài khoản."
+      );
 
-      // Redirect về trang chủ sau 1 giây
+      // KHÔNG lưu token - User phải verify email trước
+      // Chuyển hướng về login
       setTimeout(() => {
-        navigate("/");
-      }, 1000);
+        navigate("/login");
+      }, 2000);
     } catch (error) {
-      console.error("Register error:", error);
+      console.error("❌ Register error:", error);
+      console.error("Error details:", {
+        message: error.message,
+        response: error.response,
+        responseData: error.response?.data,
+      });
       showError(error.message || "Đăng ký thất bại. Vui lòng thử lại!");
     } finally {
       setIsLoading(false);
@@ -298,17 +308,25 @@ const Register = () => {
               <span className="captcha-brand">Cloudflare Turnstile</span>
             </div>
 
-            <LoadingButton
-              type="submit"
-              className="auth-submit"
-              isLoading={isLoading}
-              loadingText="Đang đăng ký..."
-            >
+            <button type="submit" className="auth-submit" disabled={isLoading}>
               Đăng ký
-            </LoadingButton>
+            </button>
           </form>
 
-          <button className="auth-google" onClick={(e) => e.preventDefault()}>
+          <button
+            className="auth-google"
+            onClick={(e) => {
+              e.preventDefault();
+              if (isGoogleOAuthConfigured()) {
+                initiateGoogleOAuth("register");
+              } else {
+                showError(
+                  "Google OAuth chưa được cấu hình",
+                  "Vui lòng liên hệ admin để kích hoạt tính năng này."
+                );
+              }
+            }}
+          >
             <span className="g-icon">
               <img src="/icons/google.png" alt="Google" />
             </span>

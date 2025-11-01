@@ -11,7 +11,7 @@ import "nprogress/nprogress.css";
 // NPROGRESS CONFIGURATION
 // ==========================================
 NProgress.configure({
-    showSpinner: false,
+    showSpinner: true,
     trickleSpeed: 200,
     minimum: 0.3,
 });
@@ -30,10 +30,7 @@ export const API_CONFIG = {
 const axiosInstance = axios.create({
     baseURL: API_CONFIG.BASE_URL,
     timeout: API_CONFIG.TIMEOUT,
-    withCredentials: true,
-    headers: {
-        "Content-Type": "application/json",
-    },
+    withCredentials: false,
 });
 
 // ==========================================
@@ -41,8 +38,16 @@ const axiosInstance = axios.create({
 // ==========================================
 axiosInstance.interceptors.request.use(
     (config) => {
-        // Bắt đầu loading bar
-        NProgress.start();
+        // Bỏ qua NProgress cho các request không phải từ API (như Vite HMR)
+        const isApiRequest = config.url && !config.url.includes("vite");
+        if (isApiRequest) {
+            NProgress.start();
+        }
+
+        // Đảm bảo headers object tồn tại
+        if (!config.headers) {
+            config.headers = {};
+        }
 
         // Lấy token từ localStorage
         const token = localStorage.getItem("token");
@@ -55,6 +60,11 @@ axiosInstance.interceptors.request.use(
         // Thêm Accept-Language header cho đa ngôn ngữ
         const language = localStorage.getItem("language") || "vi";
         config.headers["Accept-Language"] = language;
+
+        // Nếu có data và chưa có Content-Type, thêm application/json
+        if (config.data && !config.headers["Content-Type"]) {
+            config.headers["Content-Type"] = "application/json";
+        }
 
         return config;
     },
@@ -69,13 +79,19 @@ axiosInstance.interceptors.request.use(
 // ==========================================
 axiosInstance.interceptors.response.use(
     (response) => {
-        // Hoàn thành loading bar
-        NProgress.done();
+        // Hoàn thành loading bar (chỉ cho API request)
+        const isApiRequest = response.config ?.url && !response.config.url.includes("vite");
+        if (isApiRequest) {
+            NProgress.done();
+        }
         return response;
     },
     (error) => {
-        // Hoàn thành loading bar
-        NProgress.done();
+        // Hoàn thành loading bar (chỉ cho API request)
+        const isApiRequest = error.config ?.url && !error.config.url.includes("vite");
+        if (isApiRequest) {
+            NProgress.done();
+        }
 
         // Xử lý lỗi 401 - Token hết hạn
         if (error.response && error.response.status === 401) {
@@ -108,12 +124,23 @@ export const apiRequest = async (endpoint, options = {}) => {
         // Normalize fetch-like "body" to axios "data"
         const axiosConfig = {
             url: endpoint,
+            method: options.method || "GET",
             ...options,
         };
 
         if (Object.prototype.hasOwnProperty.call(axiosConfig, "body")) {
             axiosConfig.data = axiosConfig.body;
             delete axiosConfig.body;
+        }
+
+        // Đảm bảo Content-Type được set cho POST/PUT/PATCH request có data
+        if (axiosConfig.data && ["POST", "PUT", "PATCH"].includes(axiosConfig.method ?.toUpperCase())) {
+            if (!axiosConfig.headers) {
+                axiosConfig.headers = {};
+            }
+            if (!axiosConfig.headers["Content-Type"]) {
+                axiosConfig.headers["Content-Type"] = "application/json";
+            }
         }
 
         const response = await axiosInstance(axiosConfig);

@@ -1,8 +1,8 @@
 package com.example.thangcachep.movie_project_be.controllers;
 
-import com.example.thangcachep.movie_project_be.dto.response.MovieResponse;
 import com.example.thangcachep.movie_project_be.entities.MovieEntity;
-import com.example.thangcachep.movie_project_be.services.MovieService;
+import com.example.thangcachep.movie_project_be.models.responses.MovieResponse;
+import com.example.thangcachep.movie_project_be.services.impl.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

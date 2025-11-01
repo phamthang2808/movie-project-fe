@@ -1,7 +1,7 @@
 package com.example.thangcachep.movie_project_be.config;
 
 import com.example.thangcachep.movie_project_be.filters.JwtAuthenticationFilter;
-import com.example.thangcachep.movie_project_be.services.CustomUserDetailsService;
+import com.example.thangcachep.movie_project_be.services.impl.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -57,6 +57,8 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/api/v1/vnpay/**").permitAll()
+                    .requestMatchers("/api/v1/chat/**").permitAll()
                 .requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers("/api/v1/movies/**").permitAll()
                 .requestMatchers("/api/v1/categories/**").permitAll()

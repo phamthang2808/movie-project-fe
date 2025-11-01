@@ -2,7 +2,11 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingButton from "../../components/LoadingButton";
-import { loginUserAPI } from "../../services/movieService";
+import { authApi } from "../../services/api";
+import {
+  initiateGoogleOAuth,
+  isGoogleOAuthConfigured,
+} from "../../utils/googleOAuth";
 import { handleApiError, showSuccess } from "../../utils/notification";
 import "./Auth.scss";
 
@@ -109,16 +113,19 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const response = await loginUserAPI(formData.email, formData.password);
+      const response = await authApi.login({
+        email: formData.email,
+        password: formData.password,
+      });
 
       // Lưu token và user info
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+      if (response.token) {
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("user", JSON.stringify(response.user));
       }
 
       // Show success notification - Ưu tiên message từ backend
-      const successMessage = response.data.message || "Đăng nhập thành công";
+      const successMessage = response.message || "Đăng nhập thành công";
       showSuccess("Đăng nhập thành công", successMessage);
 
       // Redirect to home - dùng window.location để reload và update header
@@ -279,7 +286,20 @@ const Login = () => {
             </div>
           </form>
 
-          <button className="auth-google" onClick={(e) => e.preventDefault()}>
+          <button
+            className="auth-google"
+            onClick={(e) => {
+              e.preventDefault();
+              if (isGoogleOAuthConfigured()) {
+                initiateGoogleOAuth("login");
+              } else {
+                handleApiError(
+                  new Error("Google OAuth chưa được cấu hình"),
+                  "Google OAuth chưa được cấu hình. Vui lòng liên hệ admin."
+                );
+              }
+            }}
+          >
             <span className="g-icon">
               {" "}
               <img src="/icons/google.png" alt="Google" />

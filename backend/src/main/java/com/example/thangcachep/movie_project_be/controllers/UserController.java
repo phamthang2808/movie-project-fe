@@ -1,8 +1,9 @@
 package com.example.thangcachep.movie_project_be.controllers;
 
-import com.example.thangcachep.movie_project_be.dto.response.UserResponse;
+
 import com.example.thangcachep.movie_project_be.entities.UserEntity;
-import com.example.thangcachep.movie_project_be.services.UserService;
+import com.example.thangcachep.movie_project_be.models.responses.UserResponse;
+import com.example.thangcachep.movie_project_be.services.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;

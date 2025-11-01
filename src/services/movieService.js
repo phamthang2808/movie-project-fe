@@ -109,7 +109,7 @@ export const registerUserAPI = (fullName, email, password, phone) => {
 export const loginUserAPI = (email, password) => {
     const URL = "/auth/login";
     const data = {
-        username: email,
+        email: email,
         password
     };
     return axiosInstance.post(URL, data);

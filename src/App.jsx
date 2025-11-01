@@ -18,8 +18,10 @@ import Account from "./pages/Account";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import AdminMovies from "./pages/Admin/Movies";
 import AdminUsers from "./pages/Admin/Users";
+import GoogleCallback from "./pages/Auth/GoogleCallback";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
+import VerifyEmail from "./pages/Auth/VerifyEmail";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 import Recharge from "./pages/Recharge";
@@ -39,7 +41,12 @@ NProgress.configure({
 });
 
 function App() {
-  const HideFooterRoutes = ["/login", "/register"];
+  const HideFooterRoutes = [
+    "/login",
+    "/register",
+    "/verify-email",
+    "/auth/google/callback",
+  ];
   const location = useLocation();
   const shouldHideFooter = HideFooterRoutes.includes(location.pathname);
   const isAdminRoute = location.pathname.startsWith("/admin");
@@ -74,6 +81,8 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="/auth/google/callback" element={<GoogleCallback />} />
           <Route path="/watch" element={<Watch />} />
           <Route path="/recharge" element={<Recharge />} />
           <Route path="/vnpay/return" element={<VnpayReturn />} />

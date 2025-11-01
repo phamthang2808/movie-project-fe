@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { authApi } from "../../services/api";
+import { handleApiError } from "../../utils/notification";
 import PricingModal from "../PricingModal";
 import SafeAvatar from "../SafeAvatar";
 import "./UserMenu.scss";
@@ -61,10 +63,19 @@ const UserMenu = () => {
     avatar: userState?.avatar || "",
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    window.location.href = "/";
+  const handleLogout = async () => {
+    try {
+      // Gửi request logout lên backend để invalidate token
+      await authApi.logout();
+    } catch (error) {
+      // Vẫn tiếp tục logout ở client dù có lỗi
+      handleApiError(error, "Lỗi khi đăng xuất");
+    } finally {
+      // Xóa token và user info ở client
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/";
+    }
   };
 
   return (
@@ -117,7 +128,7 @@ const UserMenu = () => {
               {/* Balance Section */}
               <div className="balance-section">
                 <div className="balance-info">
-                  <CreditCard size={18} className="balance-icon" />
+                  <CreditCard size={12} className="balance-icon" />
                   <span className="balance-label">Số dư</span>
                   <span className="balance-amount">
                     {user.balance.toLocaleString("vi-VN")} VND
@@ -128,7 +139,7 @@ const UserMenu = () => {
                   className="recharge-btn"
                   onClick={() => setIsOpen(false)}
                 >
-                  <Plus size={16} />
+                  <Plus size={10} />
                   Nạp
                 </Link>
               </div>

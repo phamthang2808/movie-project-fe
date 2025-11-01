@@ -1,7 +1,7 @@
 package com.example.thangcachep.movie_project_be.controllers;
 
-import com.example.thangcachep.movie_project_be.dto.response.CategoryResponse;
-import com.example.thangcachep.movie_project_be.services.CategoryService;
+import com.example.thangcachep.movie_project_be.models.responses.CategoryResponse;
+import com.example.thangcachep.movie_project_be.services.impl.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

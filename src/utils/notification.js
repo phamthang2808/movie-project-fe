@@ -3,7 +3,9 @@
  * Sử dụng Ant Design notification
  */
 
-import { notification as antdNotification } from "antd";
+import {
+    notification as antdNotification
+} from "antd";
 
 // Cấu hình mặc định
 antdNotification.config({
@@ -60,13 +62,24 @@ export const handleApiError = (error, defaultMessage = "Có lỗi xảy ra") => 
     let errorMessage = defaultMessage;
     let errorDescription = "";
 
-    if (error.response) {
+    // Trường hợp 1: error là object data từ apiRequest (error.response?.data)
+    if (error && typeof error === "object" && !error.response && !error.stack) {
+        // Đây là object data được throw từ apiRequest
+        errorMessage = error.message || error.error || defaultMessage;
+        errorDescription = error.details || error.description || "";
+    }
+    // Trường hợp 2: error là axios error object có .response
+    else if (error.response) {
         // Lấy message từ backend
-        const { data } = error.response;
-        errorMessage = data?.message || data?.error || defaultMessage;
-        errorDescription = data?.details || "";
-    } else if (error.message) {
-        errorDescription = error.message;
+        const {
+            data
+        } = error.response;
+        errorMessage = data ?.message || data ?.error || defaultMessage;
+        errorDescription = data ?.details || data ?.description || "";
+    }
+    // Trường hợp 3: error là Error object thông thường
+    else if (error.message) {
+        errorMessage = error.message;
     }
 
     showError(errorMessage, errorDescription);
@@ -77,22 +90,8 @@ export const handleApiError = (error, defaultMessage = "Có lỗi xảy ra") => 
  * Tự động lấy message từ backend hoặc dùng message mặc định
  */
 export const handleApiSuccess = (response, defaultMessage = "Thành công") => {
-    const message = response?.data?.message || defaultMessage;
-    const description = response?.data?.details || "";
-    
+    const message = response ?.data ?.message || defaultMessage;
+    const description = response ?.data ?.details || "";
+
     showSuccess(message, description);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-

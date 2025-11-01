@@ -3,7 +3,9 @@
  * Xử lý authentication (đăng nhập, đăng ký, đăng xuất)
  */
 
-import { apiRequest } from "./config";
+import {
+    apiRequest
+} from "./config";
 
 export const authApi = {
     /**
@@ -12,7 +14,7 @@ export const authApi = {
     login: async (credentials) => {
         return apiRequest("/auth/login", {
             method: "POST",
-            body: JSON.stringify(credentials),
+            body: credentials,
         });
     },
 
@@ -22,7 +24,7 @@ export const authApi = {
     register: async (userData) => {
         return apiRequest("/auth/register", {
             method: "POST",
-            body: JSON.stringify(userData),
+            body: userData,
         });
     },
 
@@ -41,7 +43,9 @@ export const authApi = {
     refreshToken: async (refreshToken) => {
         return apiRequest("/auth/refresh-token", {
             method: "POST",
-            body: JSON.stringify({ refreshToken }),
+            body: {
+                refreshToken
+            },
         });
     },
 
@@ -49,9 +53,8 @@ export const authApi = {
      * Verify email
      */
     verifyEmail: async (token) => {
-        return apiRequest("/auth/verify-email", {
+        return apiRequest(`/auth/verify-email?token=${encodeURIComponent(token)}`, {
             method: "POST",
-            body: JSON.stringify({ token }),
         });
     },
 
@@ -61,7 +64,9 @@ export const authApi = {
     forgotPassword: async (email) => {
         return apiRequest("/auth/forgot-password", {
             method: "POST",
-            body: JSON.stringify({ email }),
+            body: {
+                email
+            },
         });
     },
 
@@ -71,8 +76,22 @@ export const authApi = {
     resetPassword: async (token, newPassword) => {
         return apiRequest("/auth/reset-password", {
             method: "POST",
-            body: JSON.stringify({ token, newPassword }),
+            body: {
+                token,
+                newPassword
+            },
+        });
+    },
+
+    /**
+     * Google OAuth login/register
+     */
+    googleLogin: async (code) => {
+        return apiRequest("/auth/google", {
+            method: "POST",
+            body: {
+                code
+            },
         });
     },
 };
-

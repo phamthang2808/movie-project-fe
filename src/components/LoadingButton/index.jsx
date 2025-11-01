@@ -17,6 +17,7 @@ const LoadingButton = ({
     size = "medium", // small, medium, large
     icon = null,
     fullWidth = false,
+    loadingText = "Đang xử lý...",
     ...props
 }) => {
     const isDisabled = disabled || loading;
@@ -34,7 +35,7 @@ const LoadingButton = ({
             {loading ? (
                 <>
                     <Loader2 className="spinner" size={16} />
-                    <span>Đang xử lý...</span>
+                    <span>{loadingText}</span>
                 </>
             ) : (
                 <>
@@ -57,6 +58,7 @@ LoadingButton.propTypes = {
     size: PropTypes.oneOf(["small", "medium", "large"]),
     icon: PropTypes.node,
     fullWidth: PropTypes.bool,
+    loadingText: PropTypes.string,
 };
 
 export default LoadingButton;
