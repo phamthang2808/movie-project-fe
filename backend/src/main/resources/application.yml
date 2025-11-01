@@ -94,12 +94,12 @@ app:
 google:
   oauth:
     # Điền Client ID sau dấu : (hoặc dùng environment variable GOOGLE_CLIENT_ID)
-    client-id: ${GOOGLE_CLIENT_ID:434551586297-eij22e1e21dsplq9rccpbug4cnu6atdf.apps.googleusercontent.com}
-    # Điền Client Secret sau dấu : (lấy từ Google Console → Credentials → OAuth client ID)
-    # QUAN TRỌNG: Phải điền Client Secret, nếu không sẽ bị lỗi invalid_grant
-    client-secret: ${GOOGLE_CLIENT_SECRET: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}
+    # LƯU Ý: Client ID có thể public, nhưng tốt nhất dùng env variable
+    client-id: ${GOOGLE_CLIENT_ID:}
+    # Client Secret PHẢI dùng environment variable, KHÔNG được hardcode
+    # Tạo file .env hoặc set environment variable GOOGLE_CLIENT_SECRET
+    client-secret: ${GOOGLE_CLIENT_SECRET:}
     # Redirect URI phải KHỚP với URI frontend gửi lên Google (kể cả port)
-    # Frontend đang chạy port 5173 → phải dùng port 5173
     redirect-uri: ${GOOGLE_REDIRECT_URI:http://localhost:5173/auth/google/callback}
 #  "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p --databases hotel --routines --triggers --events --single-transaction --quick --set-gtid-purged=OFF --add-drop-table > sql\hotel.sql
 #"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p --databases hotel --routines --triggers --events --single-transaction --quick --set-gtid-purged=OFF --add-drop-table > hotel.sql
