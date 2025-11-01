@@ -19,6 +19,7 @@ GOOGLE_REDIRECT_URI=http://localhost:5173/auth/google/callback
 ```
 
 **Lấy thông tin từ:**
+
 - Google Cloud Console → APIs & Services → Credentials
 - OAuth 2.0 Client ID của bạn
 
